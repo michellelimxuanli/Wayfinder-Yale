@@ -15,6 +15,7 @@
 		08C0E2C21F55EF8B007630DC /* GoToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E2C11F55EF8B007630DC /* GoToTests.swift */; };
 		08C0E2CD1F55EF8B007630DC /* GoToUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E2CC1F55EF8B007630DC /* GoToUITests.swift */; };
 		08C0E2DB1F55F9B3007630DC /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E2DA1F55F9B3007630DC /* ApiKeys.swift */; };
+		08C0E3171F566B27007630DC /* AppleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E3161F566B27007630DC /* AppleMapsViewController.swift */; };
 		205685F6CDD2BCEF3F307948 /* Pods_GoTo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D69525F1FA5FAB3A80109F /* Pods_GoTo.framework */; };
 		4C7F7F13DABFE1179B973B56 /* Pods_GoToTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB0850EBA7D729643A84A6 /* Pods_GoToTests.framework */; };
 		849B42A7941B03293A5C4E79 /* Pods_GoToUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B4D1EA6E9AB22664EE3E4A /* Pods_GoToUITests.framework */; };
@@ -52,6 +53,7 @@
 		08C0E2CC1F55EF8B007630DC /* GoToUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToUITests.swift; sourceTree = "<group>"; };
 		08C0E2CE1F55EF8B007630DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08C0E2DA1F55F9B3007630DC /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
+		08C0E3161F566B27007630DC /* AppleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMapsViewController.swift; sourceTree = "<group>"; };
 		41FB0850EBA7D729643A84A6 /* Pods_GoToTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoToTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42248848733A03EF68CD883E /* Pods-GoToTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoToTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoToTests/Pods-GoToTests.release.xcconfig"; sourceTree = "<group>"; };
 		74FCC48DF205DD5B1F9F0DF5 /* Pods-GoTo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoTo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoTo/Pods-GoTo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				08C0E2B51F55EF8B007630DC /* LaunchScreen.storyboard */,
 				08C0E2B81F55EF8B007630DC /* Info.plist */,
 				08C0E2DA1F55F9B3007630DC /* ApiKeys.swift */,
+				08C0E3161F566B27007630DC /* AppleMapsViewController.swift */,
 			);
 			path = GoTo;
 			sourceTree = "<group>";
@@ -330,10 +333,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GoTo/Pods-GoTo-frameworks.sh",
 				"${PODS_ROOT}/IndoorAtlas/indooratlas-ios-sdk/IndoorAtlas.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IndoorAtlas.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -463,6 +468,7 @@
 			files = (
 				08C0E2AF1F55EF8B007630DC /* ViewController.swift in Sources */,
 				08C0E2AD1F55EF8B007630DC /* AppDelegate.swift in Sources */,
+				08C0E3171F566B27007630DC /* AppleMapsViewController.swift in Sources */,
 				08C0E2DB1F55F9B3007630DC /* ApiKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
