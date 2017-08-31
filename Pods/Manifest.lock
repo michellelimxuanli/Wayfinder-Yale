@@ -1,10 +1,21 @@
 PODS:
+  - BlueSocket (0.12.61)
+  - BlueSSLService (0.12.48):
+    - BlueSocket (~> 0.12.61)
+  - BoltProtocol (0.9.0):
+    - BlueSocket (~> 0.12.53)
+    - BlueSSLService (~> 0.12.43)
+    - PackStream (~> 0.8.3)
   - IndoorAtlas (2.5.1)
+  - PackStream (0.8.3)
   - SVProgressHUD (2.1.2)
+  - Theo (3.1.2):
+    - BoltProtocol (~> 0.9.0)
 
 DEPENDENCIES:
   - IndoorAtlas
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+  - Theo
 
 EXTERNAL SOURCES:
   SVProgressHUD:
@@ -16,9 +27,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
+  BlueSocket: 40546b837252928b88970376acb0570733dcce4e
+  BlueSSLService: 02c168491086129e2ce3e49d46a96fc18367e757
+  BoltProtocol: 828d3eeecc5987d007f8995eb98e90414f68f1b0
   IndoorAtlas: d569f66a96400b60a58ad9d0abd626acb7d01aa5
+  PackStream: 62c6a525928db94974852eaa64d5a4d52d320207
   SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
+  Theo: 02666de2dc48eb517264867483270c5a3876cabe
 
-PODFILE CHECKSUM: a671e61d933613e853db7f712c35ddc98d404e07
+PODFILE CHECKSUM: 0ef9f2177b4484397459b6ffd647b5b21e520557
 
 COCOAPODS: 1.3.1
