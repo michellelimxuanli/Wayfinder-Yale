@@ -14,7 +14,7 @@ import Mapbox
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, IALocationManagerDelegate {
     
-    
+    var mapView: MGLMapView!
     var label = UILabel()
     
     // Manager for IALocationManager
@@ -23,20 +23,35 @@ class AppleMapsViewController: UIViewController, IALocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let mapView = MGLMapView(frame: view.bounds)
+        mapView = MGLMapView(frame: view.bounds)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // Set the map’s center coordinate and zoom level.
-        mapView.setCenter(CLLocationCoordinate2D(latitude: 59.31, longitude: 18.06), zoomLevel: 9, animated: false)
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562), zoomLevel: 19, animated: false)
         view.addSubview(mapView)
         
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
+        
+        addAnnotation()
     }
     
     // Hide status bar
     override var prefersStatusBarHidden : Bool {
         return true
+    }
+    
+    func addAnnotation() {
+        let annotation = MGLPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
+        annotation.title = "Kinkaku-ji"
+        annotation.subtitle = "\(annotation.coordinate.latitude), \(annotation.coordinate.longitude)"
+        
+        mapView.addAnnotation(annotation)
+        
+        // Center the map on the annotation.
+        mapView.setCenter(annotation.coordinate, zoomLevel: 19, animated: false)
+        
     }
     
     // This function is called whenever new location is received from IALocationManager
@@ -61,13 +76,12 @@ class AppleMapsViewController: UIViewController, IALocationManagerDelegate {
 //            // Assign the camera to your map view.
 //            map.camera = camera;
         }
-            //Commenting the following as it displayed a useless textbox
-//        if let traceId = manager.extraInfo?[kIATraceId] as? NSString {
-//            label.text = "Trace ID: \(traceId)"
-//        }
     }
     
+    
+    
     // This function is used for rendering the overlay components
+    
 //    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 //        
 //        var circleRenderer = MKCircleRenderer()
