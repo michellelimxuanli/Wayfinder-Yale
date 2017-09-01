@@ -16,6 +16,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     
     var mapView: MGLMapView!
     var label = UILabel()
+    var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
     
     // Manager for IALocationManager
     var manager = IALocationManager.sharedInstance()
@@ -27,14 +28,13 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // Set the map’s center coordinate and zoom level.
-        mapView.setCenter(CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562), zoomLevel: 19, animated: false)
+        mapView.setCenter(initial_center, zoomLevel: 19, animated: false)
         view.addSubview(mapView)
-                mapView.delegate = self
         
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
-        addAnnotation()
+        addAnnotation(center: initial_center)
     }
     
     // Hide status bar
@@ -42,16 +42,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         return true
     }
     
-    func addAnnotation() {
+    func addAnnotation(center: CLLocationCoordinate2D) {
         let annotation = MGLPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
-        annotation.title = "Kinkaku-ji"
-        annotation.subtitle = "\(annotation.coordinate.latitude), \(annotation.coordinate.longitude)"
+        annotation.coordinate = center
         
         mapView.addAnnotation(annotation)
-        
-        // Center the map on the annotation.
-        mapView.setCenter(annotation.coordinate, zoomLevel: 19, animated: false)
         
     }
     
@@ -67,10 +62,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
             SVProgressHUD.dismiss()
             
             // Remove all previous overlays from the map and add new
-//            map.removeOverlays(map.overlays)
-//            circle = MKCircle(center: newLocation, radius: 2)
-//            map.add(circle)
-//            
+            mapView.removeAnnotations(mapView.annotations!)
+            addAnnotation(center: newLocation)
+            
 //            // Ask Map Kit for a camera that looks at the location from an altitude of 300 meters above the eye coordinates.
 //            camera = MKMapCamera(lookingAtCenter: (l.location?.coordinate)!, fromEyeCoordinate: (l.location?.coordinate)!, eyeAltitude: 300)
 //            
@@ -78,25 +72,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
 //            map.camera = camera;
         }
     }
-    
-    
-    
-    // This function is used for rendering the overlay components
-    
-//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//        
-//        var circleRenderer = MKCircleRenderer()
-//        
-//        // Try conversion to MKCircle for the overlay
-//        if let overlay = overlay as? MKCircle {
-//            
-//            // Set up circleRenderer for rending the circle
-//            circleRenderer = MKCircleRenderer(circle: overlay)
-//            circleRenderer.fillColor = UIColor(colorLiteralRed: 0, green: 0.647, blue: 0.961, alpha: 1.0)
-//        }
-//        
-//        return circleRenderer
-//    }
     
     // Authenticate to IndoorAtlas services and request location updates
     func requestLocation() {
@@ -118,10 +93,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        map.frame = view.bounds
-//        view.addSubview(map)
-//        view.sendSubview(toBack: map)
-//        map.delegate = self
+        mapView.frame = view.bounds
+        view.addSubview(mapView)
+        view.sendSubview(toBack: mapView)
+        mapView.delegate = self
         
         var frame = view.bounds
         frame.origin.y = 64
@@ -143,8 +118,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         self.manager.stopUpdatingLocation()
         
         manager.delegate = nil
-//        map.delegate = nil
-//        map.removeFromSuperview()
+        mapView.delegate = nil
+        mapView.removeFromSuperview()
         label.removeFromSuperview()
         
         UIApplication.shared.isStatusBarHidden = false
@@ -155,7 +130,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     
     func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         // Try to reuse the existing ‘pisa’ annotation image, if it exists.
-        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "pisa")
+        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
         
         if annotationImage == nil {
             var image = UIImage(named: "circle")!
@@ -170,7 +145,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
             image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
             image = ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
             // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
-            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "pisa")
+            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
         }
         
         return annotationImage
