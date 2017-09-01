@@ -7,16 +7,13 @@
 //
 
 import UIKit
-import MapKit
 import IndoorAtlas
 import SVProgressHUD
+import Mapbox
 
 // View controller for Apple Maps Example
-class AppleMapsViewController: UIViewController, IALocationManagerDelegate, MKMapViewDelegate {
+class AppleMapsViewController: UIViewController, IALocationManagerDelegate {
     
-    var map = MKMapView()
-    var camera = MKMapCamera()
-    var circle = MKCircle()
     
     var label = UILabel()
     
@@ -25,6 +22,13 @@ class AppleMapsViewController: UIViewController, IALocationManagerDelegate, MKMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let mapView = MGLMapView(frame: view.bounds)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Set the map’s center coordinate and zoom level.
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 59.31, longitude: 18.06), zoomLevel: 9, animated: false)
+        view.addSubview(mapView)
         
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
@@ -47,37 +51,37 @@ class AppleMapsViewController: UIViewController, IALocationManagerDelegate, MKMa
             SVProgressHUD.dismiss()
             
             // Remove all previous overlays from the map and add new
-            map.removeOverlays(map.overlays)
-            circle = MKCircle(center: newLocation, radius: 2)
-            map.add(circle)
-            
-            // Ask Map Kit for a camera that looks at the location from an altitude of 300 meters above the eye coordinates.
-            camera = MKMapCamera(lookingAtCenter: (l.location?.coordinate)!, fromEyeCoordinate: (l.location?.coordinate)!, eyeAltitude: 300)
-            
-            // Assign the camera to your map view.
-            map.camera = camera;
+//            map.removeOverlays(map.overlays)
+//            circle = MKCircle(center: newLocation, radius: 2)
+//            map.add(circle)
+//            
+//            // Ask Map Kit for a camera that looks at the location from an altitude of 300 meters above the eye coordinates.
+//            camera = MKMapCamera(lookingAtCenter: (l.location?.coordinate)!, fromEyeCoordinate: (l.location?.coordinate)!, eyeAltitude: 300)
+//            
+//            // Assign the camera to your map view.
+//            map.camera = camera;
         }
-        
-        if let traceId = manager.extraInfo?[kIATraceId] as? NSString {
-            label.text = "Trace ID: \(traceId)"
-        }
+            //Commenting the following as it displayed a useless textbox
+//        if let traceId = manager.extraInfo?[kIATraceId] as? NSString {
+//            label.text = "Trace ID: \(traceId)"
+//        }
     }
     
     // This function is used for rendering the overlay components
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        var circleRenderer = MKCircleRenderer()
-        
-        // Try conversion to MKCircle for the overlay
-        if let overlay = overlay as? MKCircle {
-            
-            // Set up circleRenderer for rending the circle
-            circleRenderer = MKCircleRenderer(circle: overlay)
-            circleRenderer.fillColor = UIColor(colorLiteralRed: 0, green: 0.647, blue: 0.961, alpha: 1.0)
-        }
-        
-        return circleRenderer
-    }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        
+//        var circleRenderer = MKCircleRenderer()
+//        
+//        // Try conversion to MKCircle for the overlay
+//        if let overlay = overlay as? MKCircle {
+//            
+//            // Set up circleRenderer for rending the circle
+//            circleRenderer = MKCircleRenderer(circle: overlay)
+//            circleRenderer.fillColor = UIColor(colorLiteralRed: 0, green: 0.647, blue: 0.961, alpha: 1.0)
+//        }
+//        
+//        return circleRenderer
+//    }
     
     // Authenticate to IndoorAtlas services and request location updates
     func requestLocation() {
@@ -99,10 +103,10 @@ class AppleMapsViewController: UIViewController, IALocationManagerDelegate, MKMa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        map.frame = view.bounds
-        view.addSubview(map)
-        view.sendSubview(toBack: map)
-        map.delegate = self
+//        map.frame = view.bounds
+//        view.addSubview(map)
+//        view.sendSubview(toBack: map)
+//        map.delegate = self
         
         var frame = view.bounds
         frame.origin.y = 64
@@ -124,8 +128,8 @@ class AppleMapsViewController: UIViewController, IALocationManagerDelegate, MKMa
         self.manager.stopUpdatingLocation()
         
         manager.delegate = nil
-        map.delegate = nil
-        map.removeFromSuperview()
+//        map.delegate = nil
+//        map.removeFromSuperview()
         label.removeFromSuperview()
         
         UIApplication.shared.isStatusBarHidden = false

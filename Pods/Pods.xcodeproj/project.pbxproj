@@ -8,91 +8,91 @@
 
 /* Begin PBXBuildFile section */
 		002AFAF21C33E7C89BC56EF98BD71ACE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		012BD4E79DAE81D4843325616A550AFE /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C498B4664952A11F4342EB5326D6F /* ClientProtocol.swift */; };
-		0B7F3A5778839F4CDC80F933767816FC /* BoltProtocol-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA4CB05FE3D61743DA0CF93A97F85DB /* BoltProtocol-dummy.m */; };
+		012BD4E79DAE81D4843325616A550AFE /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284B1D110E9B5F0C9C0333A47837D8D8 /* ClientProtocol.swift */; };
+		0B7F3A5778839F4CDC80F933767816FC /* BoltProtocol-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAAF010E500A283F061487A768A65E3 /* BoltProtocol-dummy.m */; };
 		0B826B66BE9EDCCCB61648105345AF7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		0EDFD009E3B14A810ADF105D7E6CFD14 /* Cypher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DA9EFE9E9618079DEDD2580227EC0 /* Cypher.swift */; };
-		11F8376287A875F4BB82F5CF429C49DC /* DecodableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C31137FA92BF981B55F58EF59CE041B /* DecodableType.swift */; };
-		1356AD3ECD799DA35EB6F672EDF8342C /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6491A382128052F046438355A683156 /* Relationship.swift */; };
+		0EDFD009E3B14A810ADF105D7E6CFD14 /* Cypher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637BC65E88C22D8F1DDB0F7AE812F00C /* Cypher.swift */; };
+		11F8376287A875F4BB82F5CF429C49DC /* DecodableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1BA41B8FD49FDE069AC9E57929181 /* DecodableType.swift */; };
+		1356AD3ECD799DA35EB6F672EDF8342C /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD80C2BB654810EAAB385D178EFA55DC /* Relationship.swift */; };
 		28E7BE786840A8F55CCB91D3C6759189 /* Pods-GoToUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C948F9F4EEB5EED7CAE57FAC252065 /* Pods-GoToUITests-dummy.m */; };
-		35A0B12574F0BABB945B4EA2808813D5 /* BlueSSLService-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D20ACBA52447C285BDC60C6ABDB1E /* BlueSSLService-dummy.m */; };
+		35A0B12574F0BABB945B4EA2808813D5 /* BlueSSLService-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 860CF17412CFE4892D0E13C4B73F57C0 /* BlueSSLService-dummy.m */; };
 		39BE51A03C9DBCC195B30974F4BE970C /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D035CAAA76B47D0FDA939483D571E54F /* SSLService.framework */; };
-		3B735BBEBC3BED90133A076ED0A82E91 /* EncryptedSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71A3924D3D2FC7115D3499C62D38518 /* EncryptedSocket.swift */; };
-		3B7602C417EAA802CD4346752764D175 /* Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D8FA6E71568A24162A8C8BB4DBCDC0 /* Null.swift */; };
+		3B735BBEBC3BED90133A076ED0A82E91 /* EncryptedSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50064B4908E00583EA79AE2E310DD2D9 /* EncryptedSocket.swift */; };
+		3B7602C417EAA802CD4346752764D175 /* Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FD7F330A5084DD6E3F2BDDB1A9647E /* Null.swift */; };
 		3E534C38EF7F3313CB3F79495B5C62AC /* Bolt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754D6774A3D49AFFF52AB147B6CF0C57 /* Bolt.framework */; };
-		3FB7DACC79C053574E8F3366A4FF511C /* SocketUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251DBE9577C7C4C73ABA956C6A2DFC6 /* SocketUtils.swift */; };
-		4391D2068A9AF287EC36659EF5027535 /* NSDictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADC420F46DB05D554B76BAEA35A7932 /* NSDictionary+Extensions.swift */; };
-		4DD4B5F04566F7797513FD247EA2CB81 /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443C712972606294B5FD2CC6237E0CE1 /* Structure.swift */; };
-		5485D184A57D640A697DACD5AA9EF95F /* ConnectionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77E6DE73FBBBD46510C0AD3B2FDF5D /* ConnectionSettings.swift */; };
-		549077A65E86FDF24E958D35A4DDE49B /* SSLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA94966AB9D16CA53BFA4F86476C0A /* SSLService.swift */; };
+		3FB7DACC79C053574E8F3366A4FF511C /* SocketUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2849D529325A9860101D6B36EAC0B1 /* SocketUtils.swift */; };
+		4391D2068A9AF287EC36659EF5027535 /* NSDictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7653F0633BAAD54A771E49633BA663E1 /* NSDictionary+Extensions.swift */; };
+		4DD4B5F04566F7797513FD247EA2CB81 /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE23C475E28F63A1CDC54E8DDF0BAC94 /* Structure.swift */; };
+		5485D184A57D640A697DACD5AA9EF95F /* ConnectionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053097ABE66A132D353681007EE95DB4 /* ConnectionSettings.swift */; };
+		549077A65E86FDF24E958D35A4DDE49B /* SSLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FA63F539D353D599D104F1FB34AE5B /* SSLService.swift */; };
 		55A60D0430C14AA4EB9C89FCAFFC80FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		58B0E7C34B9147E29C0C1176C641CDB1 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC78B7CDF7CC32AE525B6F3B5F7E03F /* Socket.swift */; };
+		58B0E7C34B9147E29C0C1176C641CDB1 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BE2CF895B671E7FE1884317B09655B /* Socket.swift */; };
 		596563BFF6CB95F2583140A15139EF58 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359B8A7189A7E61678853ED3C8FD6A18 /* Socket.framework */; };
 		5CD7758197A461E691A87126E72CF2E8 /* Pods-GoTo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AABA0F125EEC701D71681F6B4780E4 /* Pods-GoTo-dummy.m */; };
-		5F8A672BA7C4974DA91B79E010E3F35F /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3577F8C41508FF26F9823E75170A3F88 /* RestClient.swift */; };
-		5FE80B0C5765984520A54925A4A3E8E7 /* RestSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72F438F5637064BFA863AAD2F1B8E7 /* RestSession.swift */; };
-		60CD0268F3E8C14F43AB6D6F9C27139F /* PackStream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BE5E532247DB8530BF0EFE0599ED2CB /* PackStream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62D75B0F3C1641BA3C13A417957466C8 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE7C4F019AE118F96A298FD86E5AFC /* SVProgressAnimatedView.m */; };
-		639C98F4819727383B09B28548E6C27C /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 19AB69217A08D9780803AE951F48C196 /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6600361ECFBB3486D4607AF804AD62D7 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548898EAA338759FA640E599C10961F /* Int.swift */; };
+		5F8A672BA7C4974DA91B79E010E3F35F /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA217C7D43D763C3742665A2C8ED90 /* RestClient.swift */; };
+		5FE80B0C5765984520A54925A4A3E8E7 /* RestSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254C0C67B96A60CB3D11F857DC3A6ED0 /* RestSession.swift */; };
+		60CD0268F3E8C14F43AB6D6F9C27139F /* PackStream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CE8932C8EFE979AC32B07FBCACAAD6DB /* PackStream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62D75B0F3C1641BA3C13A417957466C8 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5455D620FDA47BD05C9A9E7745821C9 /* SVProgressAnimatedView.m */; };
+		639C98F4819727383B09B28548E6C27C /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C9D142C38589AD00C065D0796235985 /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6600361ECFBB3486D4607AF804AD62D7 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00534D62593A26B31A2850A2123B62DA /* Int.swift */; };
 		67F2EEA1576420902AACA1D6D993F3C1 /* PackStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE33E9CE5AD8687A9A7C158E7A2569F3 /* PackStream.framework */; };
-		68EB5C1ED9DDB77E4BF642D6D061AFE8 /* SocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472F85166467974D5C1045363A69E061 /* SocketProtocol.swift */; };
-		6C5FEC5DBC4E2DDAD2CE38E6316087BF /* SSLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E15A324871604F92CD38C65C3C6E9CA /* SSLConfiguration.swift */; };
-		6FE91C0FBA750851E5A1718D51FDC826 /* Theo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0F24CCC1674B11A659010B85BD3C4 /* Theo-dummy.m */; };
-		70119679E2ECF3FA522075C2050D96F3 /* BlueSocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 51CCA4E82726C690EE9658606413FC27 /* BlueSocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		702684001ABE8D1ABEF0020C565A6217 /* PackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9BD2EBEB23ABF2FE7044B4715DC307 /* PackProtocol.swift */; };
-		716B5E5A44EF813C7DCB0C68FFA8BCEA /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = A7382C6A8DC4ECD64FCC94CC96FFEBA4 /* SVProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		76E0C557ED050398291D1D7A1F5BB27A /* Theo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 085473F661AE210E3DDAE3BEF486CC1D /* Theo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		68EB5C1ED9DDB77E4BF642D6D061AFE8 /* SocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ACEFC03383EE46E69C8597FFDBAF41 /* SocketProtocol.swift */; };
+		6C5FEC5DBC4E2DDAD2CE38E6316087BF /* SSLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD1720FBFD3582DC35E05A9759B069 /* SSLConfiguration.swift */; };
+		6FE91C0FBA750851E5A1718D51FDC826 /* Theo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1170D848B467CE3049D522F407928270 /* Theo-dummy.m */; };
+		70119679E2ECF3FA522075C2050D96F3 /* BlueSocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C4BF7F72164DAA6F08A504F06B03FE /* BlueSocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		702684001ABE8D1ABEF0020C565A6217 /* PackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680F744797A9F76722CF2F5F6B01FD6 /* PackProtocol.swift */; };
+		716B5E5A44EF813C7DCB0C68FFA8BCEA /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E35CAB17C5D1473E5EBBD836214669 /* SVProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		76E0C557ED050398291D1D7A1F5BB27A /* Theo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E532CBB49D916E58B841154BBD712D0 /* Theo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		76EEB4035FCD0B9524AC62B56F776BF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		7BFD8F6455402B7D08FEA3EE54A042D4 /* CypherMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D5AE7853FEC9168B95F8B920A4B442 /* CypherMeta.swift */; };
-		7CD74FD0C8893F799C60FFD1D567ACF4 /* BlueSSLService-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 229735385AB7F844C926CDC7D85A17D7 /* BlueSSLService-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BFD8F6455402B7D08FEA3EE54A042D4 /* CypherMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29870EBE52BA7DC01EED97EC2AFE4 /* CypherMeta.swift */; };
+		7CD74FD0C8893F799C60FFD1D567ACF4 /* BlueSSLService-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 36F8B700C72012848F9BB9FAF8979C9B /* BlueSSLService-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7FF17C6C994B494E5974F06D4C849451 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
 		80B0B53051D6F2819D74BD30CB18BBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		816BA5B8B6767F81C3934B661E1071AC /* BlueSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C46ECCA00CFB9C1279CEB7CD643EF8 /* BlueSocket-dummy.m */; };
-		86D61A749198F2AE3ECDA5A8D5388EC7 /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC38CFAB01D287E6670719F7C7C4B5 /* SVProgressHUD-dummy.m */; };
+		816BA5B8B6767F81C3934B661E1071AC /* BlueSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 928CD106373DBEBA57D41DEFD1046C49 /* BlueSocket-dummy.m */; };
+		86D61A749198F2AE3ECDA5A8D5388EC7 /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B1E75C2C05F0E57B75C694BF7D9E19 /* SVProgressHUD-dummy.m */; };
 		8E51E4D2DDF439BF9B1EB5AB350EEA9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		8F3F28C474D7A1F8A5D53DAB34B09517 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DAEB3016F013F3DDDFFBB8F769E8D /* Bool.swift */; };
-		90ABB283DE54FF78B3965381AAAC9C37 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF296A45488EC160A4FAFC5CCE4278 /* Dictionary+Extensions.swift */; };
-		930D62AFBB64B39372C3118089A28B14 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E556FC37EA49D4F1AB3EA84C6DE0B9 /* Map.swift */; };
+		8F3F28C474D7A1F8A5D53DAB34B09517 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F9BE063618DC87062B85A9367CCCE0 /* Bool.swift */; };
+		90ABB283DE54FF78B3965381AAAC9C37 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF178CDC45CBEF7931CF05BC5A73C9 /* Dictionary+Extensions.swift */; };
+		930D62AFBB64B39372C3118089A28B14 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = F227A552143F9BE10D52AEB200C220A0 /* Map.swift */; };
 		9329539945D74D84BD4BE7A84B2B6DDA /* PackStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE33E9CE5AD8687A9A7C158E7A2569F3 /* PackStream.framework */; };
-		9469D4F9F8972AD3615287EDFD2FF9F7 /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F81CE06F0A8C2EC17052C7E72BD20A67 /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95CF91B6BD11FC7C4F0D3919F699A7E5 /* UnencryptedSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221B4A43B5A20E38679631461E08B1C /* UnencryptedSocket.swift */; };
+		9469D4F9F8972AD3615287EDFD2FF9F7 /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0475B0E92BDCF13EC1D1E3DBA8470663 /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95CF91B6BD11FC7C4F0D3919F699A7E5 /* UnencryptedSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7737DADD3D1B9988252EF6ED58FF68B /* UnencryptedSocket.swift */; };
 		976042F0940D745850867885430EE408 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E96A32CF3645369EA3BD564FCE817F /* QuartzCore.framework */; };
-		978B616DC920A9A6A0A886E899794A3A /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634D54CF46722FBD65A85059107AD206 /* List.swift */; };
-		9795796357805EDD1803DFE88AE69E5F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C88BD3FF1F2E525A1EAF125C068B367 /* Response.swift */; };
-		9A551C3C561BF11018611C4F08BE9E2D /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 913D0506DE841A79CDB25C9535AF1910 /* SVIndefiniteAnimatedView.m */; };
-		9B6234C6E21F452634BA3DB6473C88BD /* SSLKeyGeneratorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E392E75B9B039140F801A67B50A12 /* SSLKeyGeneratorConfig.swift */; };
-		A07123843259E85D6360DF3C7288EAF5 /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D1A73A7EC31A38947A77AD776983C75 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		978B616DC920A9A6A0A886E899794A3A /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA90A6C87FF47073C2CFD748F67B802 /* List.swift */; };
+		9795796357805EDD1803DFE88AE69E5F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = C871BE7DE6BF0A746F90FE0A6824F8A8 /* Response.swift */; };
+		9A551C3C561BF11018611C4F08BE9E2D /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D94BFCC75D49D732D4CFFC662867DFC /* SVIndefiniteAnimatedView.m */; };
+		9B6234C6E21F452634BA3DB6473C88BD /* SSLKeyGeneratorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A0ADD260C4F916354955AD306125BF /* SSLKeyGeneratorConfig.swift */; };
+		A07123843259E85D6360DF3C7288EAF5 /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 153A4ED164572E9280F2F27E3B436473 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0E7867749651C398A805A3A60A703B1 /* Pods-GoToTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D66C4C7C3636D527EDCA436096B114 /* Pods-GoToTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A33C4BF143FB70188D930C3B9E2C8D77 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540996F5A7C6BB2A0F6C9BFFDA79DA8A /* Errors.swift */; };
+		A33C4BF143FB70188D930C3B9E2C8D77 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39C64F8559FC0E0D8CF6D88B2249412 /* Errors.swift */; };
 		A75EC6A02E0F6C040B34EA71927A2BAF /* Pods-GoTo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3892BFE6B55FE6CE2833FCD104599D35 /* Pods-GoTo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A992A06817DC1A42CF02D024B9D3D2D8 /* BoltProtocol-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DF6722688F78CF14BE5D96EB6E69121 /* BoltProtocol-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A992A06817DC1A42CF02D024B9D3D2D8 /* BoltProtocol-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFCA3AE5CA22D62C659D3C1CD10663 /* BoltProtocol-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF9C89519CEA2B70479EFF3F7E77881 /* Pods-GoToTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9650F8C3F6E8A7A441EE60EBDA61F7F /* Pods-GoToTests-dummy.m */; };
-		ACEE8A8147F8B0FD402152080CD58F45 /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC4EEB539935C0D7EB2BAE6E3D7B9AA /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD1E082D680DF53CB259775DEFFF1434 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 989703D5CF094907FABC05BC1937383C /* SVProgressHUD.bundle */; };
-		AF6491C7B3C9627A3811B4DDB2579CAA /* RestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE494F462D352AE896BDC5013D6F143 /* RestRequest.swift */; };
-		B11C0307B9D3EF7442B882257908D1A6 /* BoltClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD95FD77DFCE7CA5BBA1840EE10B675 /* BoltClient.swift */; };
-		B1AB9B249736B5B71ABD4B4F26942244 /* Response+TheoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B1BE71FCDB20FEEEAEA9F29516A3F5 /* Response+TheoExtension.swift */; };
-		B1E7B7B9B52A6BEDF57520D5CCD57C5C /* RelationshipMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E717B01760647DFB66F2A837814C96E /* RelationshipMeta.swift */; };
+		ACEE8A8147F8B0FD402152080CD58F45 /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = DDBC0EE387777AF2034891B1073D1ABA /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD1E082D680DF53CB259775DEFFF1434 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3BAE24802B20B79CF1E11F7B2F0C3DA7 /* SVProgressHUD.bundle */; };
+		AF6491C7B3C9627A3811B4DDB2579CAA /* RestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6124F953A6DEE69F31DDE8122FC48F /* RestRequest.swift */; };
+		B11C0307B9D3EF7442B882257908D1A6 /* BoltClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9E2A2DDF093346C468ACE1155F83A /* BoltClient.swift */; };
+		B1AB9B249736B5B71ABD4B4F26942244 /* Response+TheoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098EDDFECE27021AE3CE38DD382DE303 /* Response+TheoExtension.swift */; };
+		B1E7B7B9B52A6BEDF57520D5CCD57C5C /* RelationshipMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EBA93E3509876F0390CA71A8C5BD9A /* RelationshipMeta.swift */; };
 		BDA93B02EAA89B7C0B82353F0A212DAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		C2C1479441F3E1EB5BA3C3704831FE8A /* DBMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = A185F7A668B80A7D300E15B3F4E59853 /* DBMeta.swift */; };
+		C2C1479441F3E1EB5BA3C3704831FE8A /* DBMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520AB57953B62337D0758AA6190D3865 /* DBMeta.swift */; };
 		C8076846247435CD4A653A354DAB5FCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */; };
-		CA929E18C40D875B897B8B0BC395E655 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37570884176599E1FEE4FC4133425E43 /* Request.swift */; };
-		CEB2AD61A5D01BBBDE0932C1B4405188 /* SocketProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4CBF40BAA6AAB630EE137E6190ADB0 /* SocketProtocols.swift */; };
-		CFDEB64EB53CB84D694196B318485D66 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D60AB32E63A9BA68B522954F99D1B29F /* SVRadialGradientLayer.m */; };
+		CA929E18C40D875B897B8B0BC395E655 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06FC1DB40468C4A31650DE2F3A50CBB /* Request.swift */; };
+		CEB2AD61A5D01BBBDE0932C1B4405188 /* SocketProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ACF77B0058EBADA7A2A87363ECD10E /* SocketProtocols.swift */; };
+		CFDEB64EB53CB84D694196B318485D66 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7609E1A7C61A769DA91252B699BA04 /* SVRadialGradientLayer.m */; };
 		D061FE9883BEEE503848C45CACF17D3A /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359B8A7189A7E61678853ED3C8FD6A18 /* Socket.framework */; };
-		D72E095BCF9D8BE7A4A94BBCEB9C570C /* Packer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8E2F0AA22017463FE530EF46E6F729 /* Packer.swift */; };
-		DBAFABFBC7892E92117AB285D02462BF /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4117E7D617CEFCF521A78E33B36599F4 /* Float.swift */; };
-		E8761B22B2B978A20AE1ED15F0B8E22E /* NodeMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655FDFEFB6829FF3D88C4FE611D13867 /* NodeMeta.swift */; };
+		D72E095BCF9D8BE7A4A94BBCEB9C570C /* Packer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A068DFCA598ACD8FB2CDBE528491F8F /* Packer.swift */; };
+		DBAFABFBC7892E92117AB285D02462BF /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5A2EA1AB54C70D669D02505D3AA78 /* Float.swift */; };
+		E8761B22B2B978A20AE1ED15F0B8E22E /* NodeMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75320270C2AF4A1C11DD1851855783B3 /* NodeMeta.swift */; };
 		E8B5153719F8A73E6F4B0437B0E7716B /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359B8A7189A7E61678853ED3C8FD6A18 /* Socket.framework */; };
-		EBFE4F520FE826FC022830FB97DA593B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A1FE99CDD514C5BA81D01A4125B9A2 /* String.swift */; };
-		ECA7746412AA67799CA838D99C144496 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E809F942ED6D7FC4AF27ED6F618597 /* Connection.swift */; };
-		F17271FBEC0069490BD34A981C9B53FD /* PackStream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD1BB3B992B977C2C27668D6CA74C68 /* PackStream-dummy.m */; };
+		EBFE4F520FE826FC022830FB97DA593B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2752896EEC8A7202D2953DE4015BC1D /* String.swift */; };
+		ECA7746412AA67799CA838D99C144496 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F474E5BCDF155876FC3D2A908F9F7B1 /* Connection.swift */; };
+		F17271FBEC0069490BD34A981C9B53FD /* PackStream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFBBE0A8721068BE6D6C3A9AFA35E97 /* PackStream-dummy.m */; };
 		F2F6807F6C8CA7B352AC312980C982E8 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D035CAAA76B47D0FDA939483D571E54F /* SSLService.framework */; };
-		F5D591BD9B1B20F7323FC69CD58D59B1 /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461648FFA11A0D6B557D346D6E756D9B /* StringProtocol.swift */; };
+		F5D591BD9B1B20F7323FC69CD58D59B1 /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CC428E157A873E7304C1243861768F /* StringProtocol.swift */; };
 		F69732C60CC530484B2C6C8112A1E29E /* Pods-GoToUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A390C96541596924377A18200FFE37 /* Pods-GoToUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FB18B2C78FB34B8389C30112AF1D1290 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 930A830C5FD8ED6A50C2E484B715E79C /* SVProgressHUD.m */; };
-		FBAC1FCBE952CEE849A53FF0CF464C3F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430C3EB76BC53C2E865AB0944DC8307C /* Node.swift */; };
+		FB18B2C78FB34B8389C30112AF1D1290 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712343A6F761E234E20AE9AE28D2810 /* SVProgressHUD.m */; };
+		FBAC1FCBE952CEE849A53FF0CF464C3F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B16607C15EABAB4430CDD5235476ABC /* Node.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,139 +197,140 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		048B9FAFE495E511D012297F198C38A7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		085473F661AE210E3DDAE3BEF486CC1D /* Theo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Theo-umbrella.h"; sourceTree = "<group>"; };
+		00534D62593A26B31A2850A2123B62DA /* Int.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Int.swift; path = Sources/Int.swift; sourceTree = "<group>"; };
+		03ACEFC03383EE46E69C8597FFDBAF41 /* SocketProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketProtocol.swift; path = Sources/SocketProtocol.swift; sourceTree = "<group>"; };
+		0475B0E92BDCF13EC1D1E3DBA8470663 /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		053097ABE66A132D353681007EE95DB4 /* ConnectionSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectionSettings.swift; path = Sources/ConnectionSettings.swift; sourceTree = "<group>"; };
+		076B93D7772EC5B0190437B0CDB5B8F0 /* Theo-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Theo-prefix.pch"; sourceTree = "<group>"; };
+		07F53F4DA2B9A577A4179EA6DEB37B2A /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 		08F16AB2916241A2B9095EB9666DDEEA /* Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Socket.framework; path = BlueSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		098EDDFECE27021AE3CE38DD382DE303 /* Response+TheoExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Response+TheoExtension.swift"; path = "Sources/Theo/Bolt/Response+TheoExtension.swift"; sourceTree = "<group>"; };
 		0AA073ED6A8A331D43D1B6045ED794A6 /* Theo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Theo.framework; path = Theo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0EDB732F4EEE2CC5E7DFBD03691CC90D /* PackStream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PackStream.xcconfig; sourceTree = "<group>"; };
-		0EEE7C4F019AE118F96A298FD86E5AFC /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
-		15AA94966AB9D16CA53BFA4F86476C0A /* SSLService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLService.swift; path = Sources/SSLService.swift; sourceTree = "<group>"; };
+		1170D848B467CE3049D522F407928270 /* Theo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Theo-dummy.m"; sourceTree = "<group>"; };
+		153A4ED164572E9280F2F27E3B436473 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		1712343A6F761E234E20AE9AE28D2810 /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		18663CCB7B59469D8B1322B31C9F38F5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19AB69217A08D9780803AE951F48C196 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
-		1B0E2F4B76D001E0A23951CE32AFD41B /* Theo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Theo.xcconfig; sourceTree = "<group>"; };
-		1BE494F462D352AE896BDC5013D6F143 /* RestRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestRequest.swift; path = Sources/Theo/Rest/RestRequest.swift; sourceTree = "<group>"; };
+		19A0ADD260C4F916354955AD306125BF /* SSLKeyGeneratorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLKeyGeneratorConfig.swift; path = Sources/SSLKeyGeneratorConfig.swift; sourceTree = "<group>"; };
 		1CBEA145DF61F2A5D79931F3727D05B6 /* Pods-GoTo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GoTo-frameworks.sh"; sourceTree = "<group>"; };
-		1E15A324871604F92CD38C65C3C6E9CA /* SSLConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLConfiguration.swift; path = Sources/SSLConfiguration.swift; sourceTree = "<group>"; };
-		208DA9EFE9E9618079DEDD2580227EC0 /* Cypher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cypher.swift; path = Sources/Theo/Cypher.swift; sourceTree = "<group>"; };
-		21BA7219F79E805C655A930EE118DB86 /* BlueSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BlueSocket.xcconfig; sourceTree = "<group>"; };
+		1F7A7924829E1A6BE8879CFBCFB643F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21BEC1A56C59005C6326ADD7771B876C /* Pods-GoToTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GoToTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		2204A80E12997014C59AD6EFBE43B348 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22526F3C2CFDD8F0CBF203ADFF2A0DEC /* Pods-GoToTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GoToTests.debug.xcconfig"; sourceTree = "<group>"; };
-		229735385AB7F844C926CDC7D85A17D7 /* BlueSSLService-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSSLService-umbrella.h"; sourceTree = "<group>"; };
+		254C0C67B96A60CB3D11F857DC3A6ED0 /* RestSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestSession.swift; path = Sources/Theo/Rest/RestSession.swift; sourceTree = "<group>"; };
+		25FA63F539D353D599D104F1FB34AE5B /* SSLService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLService.swift; path = Sources/SSLService.swift; sourceTree = "<group>"; };
 		271888D15DE8BF8A8D74B434626FB10C /* Pods_GoTo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GoTo.framework; path = "Pods-GoTo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		279D20ACBA52447C285BDC60C6ABDB1E /* BlueSSLService-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BlueSSLService-dummy.m"; sourceTree = "<group>"; };
-		28DC38CFAB01D287E6670719F7C7C4B5 /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		328DAEB3016F013F3DDDFFBB8F769E8D /* Bool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = Sources/Bool.swift; sourceTree = "<group>"; };
-		3397AF6FC71611756621802C2B603D1F /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
-		33E475D5C8DDF3D004857028438A25ED /* BlueSSLService.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BlueSSLService.xcconfig; sourceTree = "<group>"; };
-		3577F8C41508FF26F9823E75170A3F88 /* RestClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestClient.swift; path = Sources/Theo/Rest/RestClient.swift; sourceTree = "<group>"; };
+		284B1D110E9B5F0C9C0333A47837D8D8 /* ClientProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClientProtocol.swift; path = Sources/Theo/ClientProtocol.swift; sourceTree = "<group>"; };
 		359B8A7189A7E61678853ED3C8FD6A18 /* Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Socket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E96A32CF3645369EA3BD564FCE817F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		37570884176599E1FEE4FC4133425E43 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Sources/Request.swift; sourceTree = "<group>"; };
+		36F8B700C72012848F9BB9FAF8979C9B /* BlueSSLService-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSSLService-umbrella.h"; sourceTree = "<group>"; };
+		36F9BE063618DC87062B85A9367CCCE0 /* Bool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = Sources/Bool.swift; sourceTree = "<group>"; };
+		376C5752852B3EBF568B3F2A7DDB3B77 /* BoltProtocol-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BoltProtocol-prefix.pch"; sourceTree = "<group>"; };
+		377E21B660216CDC3106ED8DBB7A4B28 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3892BFE6B55FE6CE2833FCD104599D35 /* Pods-GoTo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GoTo-umbrella.h"; sourceTree = "<group>"; };
-		3A9BD2EBEB23ABF2FE7044B4715DC307 /* PackProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PackProtocol.swift; path = Sources/PackProtocol.swift; sourceTree = "<group>"; };
-		3BD1BB3B992B977C2C27668D6CA74C68 /* PackStream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PackStream-dummy.m"; sourceTree = "<group>"; };
-		3F3EAD278FC1FE1E7E64F3FB79687180 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4117E7D617CEFCF521A78E33B36599F4 /* Float.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Float.swift; path = Sources/Float.swift; sourceTree = "<group>"; };
+		3A068DFCA598ACD8FB2CDBE528491F8F /* Packer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Packer.swift; path = Sources/Packer.swift; sourceTree = "<group>"; };
+		3B2849D529325A9860101D6B36EAC0B1 /* SocketUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketUtils.swift; path = Sources/SocketUtils.swift; sourceTree = "<group>"; };
+		3BAE24802B20B79CF1E11F7B2F0C3DA7 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		3DFBBE0A8721068BE6D6C3A9AFA35E97 /* PackStream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PackStream-dummy.m"; sourceTree = "<group>"; };
 		42D66C4C7C3636D527EDCA436096B114 /* Pods-GoToTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GoToTests-umbrella.h"; sourceTree = "<group>"; };
-		430C3EB76BC53C2E865AB0944DC8307C /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = Sources/Theo/Node.swift; sourceTree = "<group>"; };
-		443C712972606294B5FD2CC6237E0CE1 /* Structure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Structure.swift; path = Sources/Structure.swift; sourceTree = "<group>"; };
-		45AEFC7988FD72856B31163B28C00D3D /* Theo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Theo.modulemap; sourceTree = "<group>"; };
-		461648FFA11A0D6B557D346D6E756D9B /* StringProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringProtocol.swift; path = Sources/Theo/Support/StringProtocol.swift; sourceTree = "<group>"; };
-		472F85166467974D5C1045363A69E061 /* SocketProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketProtocol.swift; path = Sources/SocketProtocol.swift; sourceTree = "<group>"; };
-		4C31137FA92BF981B55F58EF59CE041B /* DecodableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DecodableType.swift; path = Sources/Theo/Support/DecodableType.swift; sourceTree = "<group>"; };
-		4D1A73A7EC31A38947A77AD776983C75 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		4837DB434333D58C3D5EBF08FEF71AD0 /* BlueSSLService.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BlueSSLService.modulemap; sourceTree = "<group>"; };
+		4C7609E1A7C61A769DA91252B699BA04 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		4F474E5BCDF155876FC3D2A908F9F7B1 /* Connection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Connection.swift; path = Sources/Connection.swift; sourceTree = "<group>"; };
+		4FDEB7E2E58278596BB91DDE75B2B873 /* BlueSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSocket-prefix.pch"; sourceTree = "<group>"; };
+		50064B4908E00583EA79AE2E310DD2D9 /* EncryptedSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EncryptedSocket.swift; path = Sources/EncryptedSocket.swift; sourceTree = "<group>"; };
 		502A50D9FC911760B81B6132C5877910 /* Pods-GoToUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GoToUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		505398DBD01D31C025CE9CED0E610813 /* BlueSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BlueSocket.xcconfig; sourceTree = "<group>"; };
 		50EB6F5E17F7CA70A5C67D41E6D0F81C /* SSLService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SSLService.framework; path = BlueSSLService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		51CCA4E82726C690EE9658606413FC27 /* BlueSocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSocket-umbrella.h"; sourceTree = "<group>"; };
-		540996F5A7C6BB2A0F6C9BFFDA79DA8A /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Theo/Support/Errors.swift; sourceTree = "<group>"; };
-		55E556FC37EA49D4F1AB3EA84C6DE0B9 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Map.swift; sourceTree = "<group>"; };
+		5110CABB1AB149523DB0E4B899488308 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
+		520AB57953B62337D0758AA6190D3865 /* DBMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DBMeta.swift; path = Sources/Theo/Rest/DBMeta.swift; sourceTree = "<group>"; };
 		59E50E6C83314C2741B578D4FBF07721 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B02CDF0A782AC341CC930938179EDAD /* Pods-GoToTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-GoToTests.modulemap"; sourceTree = "<group>"; };
 		5B7306270F999AB1FA9CA8D03E45ADF7 /* Pods-GoToUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GoToUITests-frameworks.sh"; sourceTree = "<group>"; };
-		5BE5E532247DB8530BF0EFE0599ED2CB /* PackStream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PackStream-umbrella.h"; sourceTree = "<group>"; };
+		5C9D142C38589AD00C065D0796235985 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		5DDA24BB669E51A4D13285235D8E1F4D /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DF0F24CCC1674B11A659010B85BD3C4 /* Theo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Theo-dummy.m"; sourceTree = "<group>"; };
 		5F4917AFEC01EDAFCD849144173E36AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		634D54CF46722FBD65A85059107AD206 /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = Sources/List.swift; sourceTree = "<group>"; };
-		64921707C1D8B23E13493382828043E3 /* BlueSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSocket-prefix.pch"; sourceTree = "<group>"; };
-		655FDFEFB6829FF3D88C4FE611D13867 /* NodeMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NodeMeta.swift; path = Sources/Theo/Rest/NodeMeta.swift; sourceTree = "<group>"; };
+		60280DE32C65B54AE5D6C9BC2C95E38B /* Theo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Theo.xcconfig; sourceTree = "<group>"; };
+		637BC65E88C22D8F1DDB0F7AE812F00C /* Cypher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cypher.swift; path = Sources/Theo/Cypher.swift; sourceTree = "<group>"; };
+		6396FD28BF03A92FA74A166610322380 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = dynamic/Mapbox.framework; sourceTree = "<group>"; };
 		693811E1AB86C478D44DD45571CAD901 /* PackStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PackStream.framework; path = PackStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		69C376C85AF676ADB5A378F28BEDB591 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
+		69CC428E157A873E7304C1243861768F /* StringProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringProtocol.swift; path = Sources/Theo/Support/StringProtocol.swift; sourceTree = "<group>"; };
 		6B376021C367587B708899FC9DACE8D9 /* Pods_GoToTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GoToTests.framework; path = "Pods-GoToTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B84AE486AF8FA3FAA90B844DACD997B /* BlueSocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BlueSocket.modulemap; sourceTree = "<group>"; };
-		6BC78B7CDF7CC32AE525B6F3B5F7E03F /* Socket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Socket.swift; path = Sources/Socket.swift; sourceTree = "<group>"; };
-		6C5C498B4664952A11F4342EB5326D6F /* ClientProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClientProtocol.swift; path = Sources/Theo/ClientProtocol.swift; sourceTree = "<group>"; };
+		6BE1BA41B8FD49FDE069AC9E57929181 /* DecodableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DecodableType.swift; path = Sources/Theo/Support/DecodableType.swift; sourceTree = "<group>"; };
+		6CAAF010E500A283F061487A768A65E3 /* BoltProtocol-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BoltProtocol-dummy.m"; sourceTree = "<group>"; };
 		6D256752DBEB2EACAF1D9C88DCAA8128 /* Pods-GoToTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GoToTests-resources.sh"; sourceTree = "<group>"; };
-		6E72F438F5637064BFA863AAD2F1B8E7 /* RestSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestSession.swift; path = Sources/Theo/Rest/RestSession.swift; sourceTree = "<group>"; };
-		6EC4EEB539935C0D7EB2BAE6E3D7B9AA /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
-		6FD98038476E43C8AFE011D2B00FBC4E /* BoltProtocol.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BoltProtocol.modulemap; sourceTree = "<group>"; };
-		73D5AE7853FEC9168B95F8B920A4B442 /* CypherMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CypherMeta.swift; path = Sources/Theo/Rest/CypherMeta.swift; sourceTree = "<group>"; };
+		6F6124F953A6DEE69F31DDE8122FC48F /* RestRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestRequest.swift; path = Sources/Theo/Rest/RestRequest.swift; sourceTree = "<group>"; };
+		75320270C2AF4A1C11DD1851855783B3 /* NodeMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NodeMeta.swift; path = Sources/Theo/Rest/NodeMeta.swift; sourceTree = "<group>"; };
 		754117D3AE8264DEF167A151D888840E /* Pods-GoToUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GoToUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		754D6774A3D49AFFF52AB147B6CF0C57 /* Bolt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bolt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7710DADF816B365CEA77E525E4CE3411 /* BlueSSLService.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BlueSSLService.modulemap; sourceTree = "<group>"; };
+		7653F0633BAAD54A771E49633BA663E1 /* NSDictionary+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSDictionary+Extensions.swift"; path = "Sources/Theo/Support/NSDictionary+Extensions.swift"; sourceTree = "<group>"; };
+		76FD1720FBFD3582DC35E05A9759B069 /* SSLConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLConfiguration.swift; path = Sources/SSLConfiguration.swift; sourceTree = "<group>"; };
 		77AABA0F125EEC701D71681F6B4780E4 /* Pods-GoTo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GoTo-dummy.m"; sourceTree = "<group>"; };
-		7B8E2F0AA22017463FE530EF46E6F729 /* Packer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Packer.swift; path = Sources/Packer.swift; sourceTree = "<group>"; };
-		7DF6722688F78CF14BE5D96EB6E69121 /* BoltProtocol-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BoltProtocol-umbrella.h"; sourceTree = "<group>"; };
-		7E717B01760647DFB66F2A837814C96E /* RelationshipMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RelationshipMeta.swift; path = Sources/Theo/Rest/RelationshipMeta.swift; sourceTree = "<group>"; };
+		7EB9E2A2DDF093346C468ACE1155F83A /* BoltClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoltClient.swift; path = Sources/Theo/Bolt/BoltClient.swift; sourceTree = "<group>"; };
+		80E35CAB17C5D1473E5EBBD836214669 /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
 		833100ACC08EDC2A200CB117F9D12FD2 /* Pods-GoToUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GoToUITests-resources.sh"; sourceTree = "<group>"; };
-		859029DDF22103504154E575174453B8 /* PackStream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PackStream.modulemap; sourceTree = "<group>"; };
+		860CF17412CFE4892D0E13C4B73F57C0 /* BlueSSLService-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BlueSSLService-dummy.m"; sourceTree = "<group>"; };
 		89D81744ED09A8DCCA95DE14611A5252 /* Pods-GoToTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GoToTests-frameworks.sh"; sourceTree = "<group>"; };
-		8C88BD3FF1F2E525A1EAF125C068B367 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Sources/Response.swift; sourceTree = "<group>"; };
-		8F3BC40150EE18633A44F9110B4351DA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		913D0506DE841A79CDB25C9535AF1910 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		930A830C5FD8ED6A50C2E484B715E79C /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		8A184BEB254425107AAA61D8E8DE080D /* Theo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Theo.modulemap; sourceTree = "<group>"; };
+		8B16607C15EABAB4430CDD5235476ABC /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = Sources/Theo/Node.swift; sourceTree = "<group>"; };
+		8D94BFCC75D49D732D4CFFC662867DFC /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		904CFEEF9048FF879908262EF55C8027 /* PackStream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PackStream.modulemap; sourceTree = "<group>"; };
+		928CD106373DBEBA57D41DEFD1046C49 /* BlueSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BlueSocket-dummy.m"; sourceTree = "<group>"; };
+		9364ED1A73C55E10D0857B6B29B4E175 /* BoltProtocol.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BoltProtocol.modulemap; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		95D8FA6E71568A24162A8C8BB4DBCDC0 /* Null.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Null.swift; path = Sources/Null.swift; sourceTree = "<group>"; };
-		96E809F942ED6D7FC4AF27ED6F618597 /* Connection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Connection.swift; path = Sources/Connection.swift; sourceTree = "<group>"; };
-		989703D5CF094907FABC05BC1937383C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
-		9E7FDCDBB0AA867DFB132CBE8F20F3F0 /* BlueSSLService-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSSLService-prefix.pch"; sourceTree = "<group>"; };
+		93BE2CF895B671E7FE1884317B09655B /* Socket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Socket.swift; path = Sources/Socket.swift; sourceTree = "<group>"; };
+		93C3FDC0E00172F987E699946C0A969A /* PackStream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PackStream.xcconfig; sourceTree = "<group>"; };
+		94C4BF7F72164DAA6F08A504F06B03FE /* BlueSocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSocket-umbrella.h"; sourceTree = "<group>"; };
+		9DB702B61A53147DA40840E13E4EF061 /* BoltProtocol.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BoltProtocol.xcconfig; sourceTree = "<group>"; };
+		9E532CBB49D916E58B841154BBD712D0 /* Theo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Theo-umbrella.h"; sourceTree = "<group>"; };
 		A1134730DF63CD21F6AD056D226A91D5 /* Pods_GoToUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GoToUITests.framework; path = "Pods-GoToUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A185F7A668B80A7D300E15B3F4E59853 /* DBMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DBMeta.swift; path = Sources/Theo/Rest/DBMeta.swift; sourceTree = "<group>"; };
 		A1C948F9F4EEB5EED7CAE57FAC252065 /* Pods-GoToUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GoToUITests-dummy.m"; sourceTree = "<group>"; };
 		A44331377CFD2DA66A344177D32F1486 /* Pods-GoToUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GoToUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A7382C6A8DC4ECD64FCC94CC96FFEBA4 /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
-		A9A1FE99CDD514C5BA81D01A4125B9A2 /* String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = String.swift; path = Sources/String.swift; sourceTree = "<group>"; };
+		A7737DADD3D1B9988252EF6ED58FF68B /* UnencryptedSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnencryptedSocket.swift; path = Sources/UnencryptedSocket.swift; sourceTree = "<group>"; };
+		A9EBA93E3509876F0390CA71A8C5BD9A /* RelationshipMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RelationshipMeta.swift; path = Sources/Theo/Rest/RelationshipMeta.swift; sourceTree = "<group>"; };
+		AE23C475E28F63A1CDC54E8DDF0BAC94 /* Structure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Structure.swift; path = Sources/Structure.swift; sourceTree = "<group>"; };
+		AF78EAC59EDEF6379900C60C13921F8A /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
 		B25CBE93B0210569A12A1531A10B00DF /* Pods-GoToUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-GoToUITests.modulemap"; sourceTree = "<group>"; };
+		B2FD7F330A5084DD6E3F2BDDB1A9647E /* Null.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Null.swift; path = Sources/Null.swift; sourceTree = "<group>"; };
+		B39C64F8559FC0E0D8CF6D88B2249412 /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Theo/Support/Errors.swift; sourceTree = "<group>"; };
 		B4D1B19ACA19C8168C3DBB6A019A2FFA /* Pods-GoToUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GoToUITests.release.xcconfig"; sourceTree = "<group>"; };
-		B548898EAA338759FA640E599C10961F /* Int.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Int.swift; path = Sources/Int.swift; sourceTree = "<group>"; };
-		B6491A382128052F046438355A683156 /* Relationship.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Relationship.swift; path = Sources/Theo/Relationship.swift; sourceTree = "<group>"; };
-		B71A3924D3D2FC7115D3499C62D38518 /* EncryptedSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EncryptedSocket.swift; path = Sources/EncryptedSocket.swift; sourceTree = "<group>"; };
-		B7B1BE71FCDB20FEEEAEA9F29516A3F5 /* Response+TheoExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Response+TheoExtension.swift"; path = "Sources/Theo/Bolt/Response+TheoExtension.swift"; sourceTree = "<group>"; };
-		B8256B13F41EECF9016E14905574E423 /* BoltProtocol.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BoltProtocol.xcconfig; sourceTree = "<group>"; };
-		BD4CBF40BAA6AAB630EE137E6190ADB0 /* SocketProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketProtocols.swift; path = Sources/SocketProtocols.swift; sourceTree = "<group>"; };
-		BF66F026DC1CDB5F558C1E7C058AF4B4 /* Theo-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Theo-prefix.pch"; sourceTree = "<group>"; };
-		C2C46ECCA00CFB9C1279CEB7CD643EF8 /* BlueSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BlueSocket-dummy.m"; sourceTree = "<group>"; };
+		B5455D620FDA47BD05C9A9E7745821C9 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		B5E29870EBE52BA7DC01EED97EC2AFE4 /* CypherMeta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CypherMeta.swift; path = Sources/Theo/Rest/CypherMeta.swift; sourceTree = "<group>"; };
+		C06FC1DB40468C4A31650DE2F3A50CBB /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Sources/Request.swift; sourceTree = "<group>"; };
+		C2B5A2EA1AB54C70D669D02505D3AA78 /* Float.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Float.swift; path = Sources/Float.swift; sourceTree = "<group>"; };
+		C4FA217C7D43D763C3742665A2C8ED90 /* RestClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestClient.swift; path = Sources/Theo/Rest/RestClient.swift; sourceTree = "<group>"; };
 		C5F8A93ADB367C6542B63084071C3F56 /* Pods-GoTo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GoTo.debug.xcconfig"; sourceTree = "<group>"; };
 		C71DBB904B7A5D3C8E6D4F7DA917F5B9 /* Pods-GoTo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GoTo.release.xcconfig"; sourceTree = "<group>"; };
 		C72FFB295583FA1AF1EAD7D68B1FF9A8 /* Pods-GoToTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GoToTests.release.xcconfig"; sourceTree = "<group>"; };
+		C871BE7DE6BF0A746F90FE0A6824F8A8 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Sources/Response.swift; sourceTree = "<group>"; };
 		C8A300E545AF07AD8FDFF5311EC665E2 /* Pods-GoToTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GoToTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C9650F8C3F6E8A7A441EE60EBDA61F7F /* Pods-GoToTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GoToTests-dummy.m"; sourceTree = "<group>"; };
 		C9A390C96541596924377A18200FFE37 /* Pods-GoToUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GoToUITests-umbrella.h"; sourceTree = "<group>"; };
-		CA1E392E75B9B039140F801A67B50A12 /* SSLKeyGeneratorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLKeyGeneratorConfig.swift; path = Sources/SSLKeyGeneratorConfig.swift; sourceTree = "<group>"; };
-		CCA4CB05FE3D61743DA0CF93A97F85DB /* BoltProtocol-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BoltProtocol-dummy.m"; sourceTree = "<group>"; };
+		CCBF178CDC45CBEF7931CF05BC5A73C9 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extensions.swift"; path = "Sources/Theo/Support/Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		CCF3969E305DC44636076E76E7643229 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF5397D1D0FD8AC47C45AE07D315616 /* Pods-GoTo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GoTo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CE8932C8EFE979AC32B07FBCACAAD6DB /* PackStream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PackStream-umbrella.h"; sourceTree = "<group>"; };
 		D035CAAA76B47D0FDA939483D571E54F /* SSLService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSLService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0CB58BF1EC4BF315E01C6F9189E586D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2A82F565F528E1193EE34EC6D0BE259 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D60AB32E63A9BA68B522954F99D1B29F /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		D6839E30BBFEB262E3800421116D826C /* BoltProtocol-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BoltProtocol-prefix.pch"; sourceTree = "<group>"; };
-		D8EF296A45488EC160A4FAFC5CCE4278 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extensions.swift"; path = "Sources/Theo/Support/Dictionary+Extensions.swift"; sourceTree = "<group>"; };
+		D5895C86F9CED8DFCE0EEEE5F4C547C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7EF11E9A30404B136CB328B406F63A7 /* IndoorAtlas.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IndoorAtlas.framework; path = "indooratlas-ios-sdk/IndoorAtlas.framework"; sourceTree = "<group>"; };
 		D99CD9BBA49B2BB28A52977F7B3BC258 /* Pods-GoTo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-GoTo.modulemap"; sourceTree = "<group>"; };
-		DAD95FD77DFCE7CA5BBA1840EE10B675 /* BoltClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoltClient.swift; path = Sources/Theo/Bolt/BoltClient.swift; sourceTree = "<group>"; };
-		DADC420F46DB05D554B76BAEA35A7932 /* NSDictionary+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSDictionary+Extensions.swift"; path = "Sources/Theo/Support/NSDictionary+Extensions.swift"; sourceTree = "<group>"; };
+		DC2FD0F4CEFC9703F3F7FC22AB2F3C08 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDBC0EE387777AF2034891B1073D1ABA /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		DDEFCA3AE5CA22D62C659D3C1CD10663 /* BoltProtocol-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BoltProtocol-umbrella.h"; sourceTree = "<group>"; };
 		DE97809D1628BE4C5B5F8A027109BB85 /* Pods-GoTo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GoTo-resources.sh"; sourceTree = "<group>"; };
 		DF2E985EC58B945B420D68CA756FAEFE /* Bolt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Bolt.framework; path = BoltProtocol.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E221B4A43B5A20E38679631461E08B1C /* UnencryptedSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnencryptedSocket.swift; path = Sources/UnencryptedSocket.swift; sourceTree = "<group>"; };
-		E627159E1703EB1842F7C8313A043768 /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
+		E1B1E75C2C05F0E57B75C694BF7D9E19 /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		E2752896EEC8A7202D2953DE4015BC1D /* String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = String.swift; path = Sources/String.swift; sourceTree = "<group>"; };
+		E680F744797A9F76722CF2F5F6B01FD6 /* PackProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PackProtocol.swift; path = Sources/PackProtocol.swift; sourceTree = "<group>"; };
 		E7E1401A307B1EE120CC8F373803CE0D /* Pods-GoTo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GoTo-acknowledgements.plist"; sourceTree = "<group>"; };
+		E86186D499A2C347593E81D573373462 /* BlueSocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BlueSocket.modulemap; sourceTree = "<group>"; };
 		EE33E9CE5AD8687A9A7C158E7A2569F3 /* PackStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PackStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F251DBE9577C7C4C73ABA956C6A2DFC6 /* SocketUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketUtils.swift; path = Sources/SocketUtils.swift; sourceTree = "<group>"; };
-		F81CE06F0A8C2EC17052C7E72BD20A67 /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		FB77E6DE73FBBBD46510C0AD3B2FDF5D /* ConnectionSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectionSettings.swift; path = Sources/ConnectionSettings.swift; sourceTree = "<group>"; };
-		FD3C6567D7CE44347CA5B0896503CFA4 /* IndoorAtlas.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IndoorAtlas.framework; path = "indooratlas-ios-sdk/IndoorAtlas.framework"; sourceTree = "<group>"; };
-		FE440BE43AD27D0BC2441FAB8AEF02C4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFA6B235A8ECF30B907DD805ACF424CA /* PackStream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PackStream-prefix.pch"; sourceTree = "<group>"; };
+		F227A552143F9BE10D52AEB200C220A0 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Map.swift; sourceTree = "<group>"; };
+		F2662BAA468615DDD71E6F1FD4E6F059 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3ACF77B0058EBADA7A2A87363ECD10E /* SocketProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketProtocols.swift; path = Sources/SocketProtocols.swift; sourceTree = "<group>"; };
+		F43DA93A8AA204B378869D6E2B91301E /* BlueSSLService-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlueSSLService-prefix.pch"; sourceTree = "<group>"; };
+		F72B4724752B564DF412E456BAF4AFDA /* PackStream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PackStream-prefix.pch"; sourceTree = "<group>"; };
+		FCA90A6C87FF47073C2CFD748F67B802 /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = Sources/List.swift; sourceTree = "<group>"; };
+		FD80C2BB654810EAAB385D178EFA55DC /* Relationship.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Relationship.swift; path = Sources/Theo/Relationship.swift; sourceTree = "<group>"; };
+		FF77D88651E662BD13B0DAE1AC079BAB /* BlueSSLService.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BlueSSLService.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,89 +418,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		098AFB6742072BD684FA40CB8A91A1C2 /* Support Files */ = {
+		3306DABB460CBB2365DB108CC042253E /* IndoorAtlas */ = {
 			isa = PBXGroup;
 			children = (
-				6B84AE486AF8FA3FAA90B844DACD997B /* BlueSocket.modulemap */,
-				21BA7219F79E805C655A930EE118DB86 /* BlueSocket.xcconfig */,
-				C2C46ECCA00CFB9C1279CEB7CD643EF8 /* BlueSocket-dummy.m */,
-				64921707C1D8B23E13493382828043E3 /* BlueSocket-prefix.pch */,
-				51CCA4E82726C690EE9658606413FC27 /* BlueSocket-umbrella.h */,
-				3F3EAD278FC1FE1E7E64F3FB79687180 /* Info.plist */,
+				6F9716D485B9D90E6BDE95A9397CF589 /* Frameworks */,
+			);
+			name = IndoorAtlas;
+			path = IndoorAtlas;
+			sourceTree = "<group>";
+		};
+		4996610EBF59B50C2E1EC61F0C5AC10C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E86186D499A2C347593E81D573373462 /* BlueSocket.modulemap */,
+				505398DBD01D31C025CE9CED0E610813 /* BlueSocket.xcconfig */,
+				928CD106373DBEBA57D41DEFD1046C49 /* BlueSocket-dummy.m */,
+				4FDEB7E2E58278596BB91DDE75B2B873 /* BlueSocket-prefix.pch */,
+				94C4BF7F72164DAA6F08A504F06B03FE /* BlueSocket-umbrella.h */,
+				2204A80E12997014C59AD6EFBE43B348 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/BlueSocket";
 			sourceTree = "<group>";
 		};
-		148548C3E86871B63A0C50502266D8A7 /* Resources */ = {
+		4B1E39B1B42B35FAA9496746BBAD683A /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				989703D5CF094907FABC05BC1937383C /* SVProgressHUD.bundle */,
+				153A4ED164572E9280F2F27E3B436473 /* SVIndefiniteAnimatedView.h */,
+				8D94BFCC75D49D732D4CFFC662867DFC /* SVIndefiniteAnimatedView.m */,
+				DDBC0EE387777AF2034891B1073D1ABA /* SVProgressAnimatedView.h */,
+				B5455D620FDA47BD05C9A9E7745821C9 /* SVProgressAnimatedView.m */,
+				80E35CAB17C5D1473E5EBBD836214669 /* SVProgressHUD.h */,
+				1712343A6F761E234E20AE9AE28D2810 /* SVProgressHUD.m */,
+				5C9D142C38589AD00C065D0796235985 /* SVRadialGradientLayer.h */,
+				4C7609E1A7C61A769DA91252B699BA04 /* SVRadialGradientLayer.m */,
+				F34A84B2037F49CD18B7D709F697AAAE /* Resources */,
+				8593B714F4A474EFAE2782A85FEFCB24 /* Support Files */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		24D48523DBF63F14AA7B1551EE490A6D /* Theo */ = {
-			isa = PBXGroup;
-			children = (
-				DAD95FD77DFCE7CA5BBA1840EE10B675 /* BoltClient.swift */,
-				6C5C498B4664952A11F4342EB5326D6F /* ClientProtocol.swift */,
-				208DA9EFE9E9618079DEDD2580227EC0 /* Cypher.swift */,
-				73D5AE7853FEC9168B95F8B920A4B442 /* CypherMeta.swift */,
-				A185F7A668B80A7D300E15B3F4E59853 /* DBMeta.swift */,
-				4C31137FA92BF981B55F58EF59CE041B /* DecodableType.swift */,
-				D8EF296A45488EC160A4FAFC5CCE4278 /* Dictionary+Extensions.swift */,
-				540996F5A7C6BB2A0F6C9BFFDA79DA8A /* Errors.swift */,
-				430C3EB76BC53C2E865AB0944DC8307C /* Node.swift */,
-				655FDFEFB6829FF3D88C4FE611D13867 /* NodeMeta.swift */,
-				DADC420F46DB05D554B76BAEA35A7932 /* NSDictionary+Extensions.swift */,
-				B6491A382128052F046438355A683156 /* Relationship.swift */,
-				7E717B01760647DFB66F2A837814C96E /* RelationshipMeta.swift */,
-				B7B1BE71FCDB20FEEEAEA9F29516A3F5 /* Response+TheoExtension.swift */,
-				3577F8C41508FF26F9823E75170A3F88 /* RestClient.swift */,
-				1BE494F462D352AE896BDC5013D6F143 /* RestRequest.swift */,
-				6E72F438F5637064BFA863AAD2F1B8E7 /* RestSession.swift */,
-				461648FFA11A0D6B557D346D6E756D9B /* StringProtocol.swift */,
-				9755BE51DFEDE3AFC9DED3A63DC0837C /* Support Files */,
-			);
-			name = Theo;
-			path = Theo;
-			sourceTree = "<group>";
-		};
-		2ECF27F5B7682C554D395F1754336B1E /* BlueSocket */ = {
-			isa = PBXGroup;
-			children = (
-				6BC78B7CDF7CC32AE525B6F3B5F7E03F /* Socket.swift */,
-				BD4CBF40BAA6AAB630EE137E6190ADB0 /* SocketProtocols.swift */,
-				F251DBE9577C7C4C73ABA956C6A2DFC6 /* SocketUtils.swift */,
-				098AFB6742072BD684FA40CB8A91A1C2 /* Support Files */,
-			);
-			name = BlueSocket;
-			path = BlueSocket;
-			sourceTree = "<group>";
-		};
-		43BA1580E45E176C9439C209B8D97272 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				8F3BC40150EE18633A44F9110B4351DA /* Info.plist */,
-				859029DDF22103504154E575174453B8 /* PackStream.modulemap */,
-				0EDB732F4EEE2CC5E7DFBD03691CC90D /* PackStream.xcconfig */,
-				3BD1BB3B992B977C2C27668D6CA74C68 /* PackStream-dummy.m */,
-				FFA6B235A8ECF30B907DD805ACF424CA /* PackStream-prefix.pch */,
-				5BE5E532247DB8530BF0EFE0599ED2CB /* PackStream-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PackStream";
-			sourceTree = "<group>";
-		};
-		4FEA8B28769F098150510D633612407B /* BlueSSLService */ = {
-			isa = PBXGroup;
-			children = (
-				15AA94966AB9D16CA53BFA4F86476C0A /* SSLService.swift */,
-				FD64857A695C2BCE050776A776C939F7 /* Support Files */,
-			);
-			name = BlueSSLService;
-			path = BlueSSLService;
+			name = SVProgressHUD;
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		57D05D4167D52969ED1730AF8EF90554 /* Pods-GoToTests */ = {
@@ -520,51 +477,37 @@
 			path = "Target Support Files/Pods-GoToTests";
 			sourceTree = "<group>";
 		};
+		6F9716D485B9D90E6BDE95A9397CF589 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D7EF11E9A30404B136CB328B406F63A7 /* IndoorAtlas.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				EC8CA520E8BD7D280620F319971BF7D6 /* Frameworks */,
-				BE43A13992394A22DA7EE520462F4613 /* Pods */,
+				F06739882C23A476D4532F5CE135C929 /* Pods */,
 				A5CF1DC90D2B5954ADBC08192F5FFEB4 /* Products */,
 				BA0022E205116A2C1F8115FCDEEE7F59 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		88B3162FF56AC0F2D0B6E9B2612BC8CC /* Frameworks */ = {
+		8593B714F4A474EFAE2782A85FEFCB24 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FD3C6567D7CE44347CA5B0896503CFA4 /* IndoorAtlas.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		932949CF644E6DE4D41E1A8579433B55 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				FE440BE43AD27D0BC2441FAB8AEF02C4 /* Info.plist */,
-				69C376C85AF676ADB5A378F28BEDB591 /* SVProgressHUD.modulemap */,
-				E627159E1703EB1842F7C8313A043768 /* SVProgressHUD.xcconfig */,
-				28DC38CFAB01D287E6670719F7C7C4B5 /* SVProgressHUD-dummy.m */,
-				3397AF6FC71611756621802C2B603D1F /* SVProgressHUD-prefix.pch */,
-				F81CE06F0A8C2EC17052C7E72BD20A67 /* SVProgressHUD-umbrella.h */,
+				1F7A7924829E1A6BE8879CFBCFB643F7 /* Info.plist */,
+				5110CABB1AB149523DB0E4B899488308 /* SVProgressHUD.modulemap */,
+				AF78EAC59EDEF6379900C60C13921F8A /* SVProgressHUD.xcconfig */,
+				E1B1E75C2C05F0E57B75C694BF7D9E19 /* SVProgressHUD-dummy.m */,
+				07F53F4DA2B9A577A4179EA6DEB37B2A /* SVProgressHUD-prefix.pch */,
+				0475B0E92BDCF13EC1D1E3DBA8470663 /* SVProgressHUD-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SVProgressHUD";
-			sourceTree = "<group>";
-		};
-		9755BE51DFEDE3AFC9DED3A63DC0837C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D0CB58BF1EC4BF315E01C6F9189E586D /* Info.plist */,
-				45AEFC7988FD72856B31163B28C00D3D /* Theo.modulemap */,
-				1B0E2F4B76D001E0A23951CE32AFD41B /* Theo.xcconfig */,
-				5DF0F24CCC1674B11A659010B85BD3C4 /* Theo-dummy.m */,
-				BF66F026DC1CDB5F558C1E7C058AF4B4 /* Theo-prefix.pch */,
-				085473F661AE210E3DDAE3BEF486CC1D /* Theo-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Theo";
 			sourceTree = "<group>";
 		};
 		A5CF1DC90D2B5954ADBC08192F5FFEB4 /* Products */ = {
@@ -583,22 +526,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AC2CF854321FD97E15B4ED2643916BED /* BoltProtocol */ = {
+		A830E089CDD70642D5D065E817A9E443 /* Theo */ = {
 			isa = PBXGroup;
 			children = (
-				96E809F942ED6D7FC4AF27ED6F618597 /* Connection.swift */,
-				FB77E6DE73FBBBD46510C0AD3B2FDF5D /* ConnectionSettings.swift */,
-				B71A3924D3D2FC7115D3499C62D38518 /* EncryptedSocket.swift */,
-				37570884176599E1FEE4FC4133425E43 /* Request.swift */,
-				8C88BD3FF1F2E525A1EAF125C068B367 /* Response.swift */,
-				472F85166467974D5C1045363A69E061 /* SocketProtocol.swift */,
-				1E15A324871604F92CD38C65C3C6E9CA /* SSLConfiguration.swift */,
-				CA1E392E75B9B039140F801A67B50A12 /* SSLKeyGeneratorConfig.swift */,
-				E221B4A43B5A20E38679631461E08B1C /* UnencryptedSocket.swift */,
-				EC28B269D68DEF3C4FB4EF394DCDD086 /* Support Files */,
+				7EB9E2A2DDF093346C468ACE1155F83A /* BoltClient.swift */,
+				284B1D110E9B5F0C9C0333A47837D8D8 /* ClientProtocol.swift */,
+				637BC65E88C22D8F1DDB0F7AE812F00C /* Cypher.swift */,
+				B5E29870EBE52BA7DC01EED97EC2AFE4 /* CypherMeta.swift */,
+				520AB57953B62337D0758AA6190D3865 /* DBMeta.swift */,
+				6BE1BA41B8FD49FDE069AC9E57929181 /* DecodableType.swift */,
+				CCBF178CDC45CBEF7931CF05BC5A73C9 /* Dictionary+Extensions.swift */,
+				B39C64F8559FC0E0D8CF6D88B2249412 /* Errors.swift */,
+				8B16607C15EABAB4430CDD5235476ABC /* Node.swift */,
+				75320270C2AF4A1C11DD1851855783B3 /* NodeMeta.swift */,
+				7653F0633BAAD54A771E49633BA663E1 /* NSDictionary+Extensions.swift */,
+				FD80C2BB654810EAAB385D178EFA55DC /* Relationship.swift */,
+				A9EBA93E3509876F0390CA71A8C5BD9A /* RelationshipMeta.swift */,
+				098EDDFECE27021AE3CE38DD382DE303 /* Response+TheoExtension.swift */,
+				C4FA217C7D43D763C3742665A2C8ED90 /* RestClient.swift */,
+				6F6124F953A6DEE69F31DDE8122FC48F /* RestRequest.swift */,
+				254C0C67B96A60CB3D11F857DC3A6ED0 /* RestSession.swift */,
+				69CC428E157A873E7304C1243861768F /* StringProtocol.swift */,
+				C07A9AC3B0D886F228DC14E365F6C28D /* Support Files */,
 			);
-			name = BoltProtocol;
-			path = BoltProtocol;
+			name = Theo;
+			path = Theo;
 			sourceTree = "<group>";
 		};
 		AEFC7F51E9A7AA8020439E60E62F9B56 /* Pods-GoTo */ = {
@@ -629,46 +581,56 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		BE43A13992394A22DA7EE520462F4613 /* Pods */ = {
+		C07A9AC3B0D886F228DC14E365F6C28D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				2ECF27F5B7682C554D395F1754336B1E /* BlueSocket */,
-				4FEA8B28769F098150510D633612407B /* BlueSSLService */,
-				AC2CF854321FD97E15B4ED2643916BED /* BoltProtocol */,
-				BF30FDA84E8CBD9960118F088EAB2137 /* IndoorAtlas */,
-				CE39CB3552DE74CBB35714040849174E /* PackStream */,
-				E0FE64E6FB7BAC011045E6E8F604C7E7 /* SVProgressHUD */,
-				24D48523DBF63F14AA7B1551EE490A6D /* Theo */,
+				D5895C86F9CED8DFCE0EEEE5F4C547C7 /* Info.plist */,
+				8A184BEB254425107AAA61D8E8DE080D /* Theo.modulemap */,
+				60280DE32C65B54AE5D6C9BC2C95E38B /* Theo.xcconfig */,
+				1170D848B467CE3049D522F407928270 /* Theo-dummy.m */,
+				076B93D7772EC5B0190437B0CDB5B8F0 /* Theo-prefix.pch */,
+				9E532CBB49D916E58B841154BBD712D0 /* Theo-umbrella.h */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/Theo";
 			sourceTree = "<group>";
 		};
-		BF30FDA84E8CBD9960118F088EAB2137 /* IndoorAtlas */ = {
+		C8D69BAF10519FA15A0BCF9C79A08880 /* Mapbox-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				88B3162FF56AC0F2D0B6E9B2612BC8CC /* Frameworks */,
+				E676F13BF749A65D52493263E31D2048 /* Frameworks */,
 			);
-			name = IndoorAtlas;
-			path = IndoorAtlas;
+			name = "Mapbox-iOS-SDK";
+			path = "Mapbox-iOS-SDK";
 			sourceTree = "<group>";
 		};
-		CE39CB3552DE74CBB35714040849174E /* PackStream */ = {
+		CBA5520C9B9222EFBEE3418EFC6A8529 /* PackStream */ = {
 			isa = PBXGroup;
 			children = (
-				328DAEB3016F013F3DDDFFBB8F769E8D /* Bool.swift */,
-				4117E7D617CEFCF521A78E33B36599F4 /* Float.swift */,
-				B548898EAA338759FA640E599C10961F /* Int.swift */,
-				634D54CF46722FBD65A85059107AD206 /* List.swift */,
-				55E556FC37EA49D4F1AB3EA84C6DE0B9 /* Map.swift */,
-				95D8FA6E71568A24162A8C8BB4DBCDC0 /* Null.swift */,
-				7B8E2F0AA22017463FE530EF46E6F729 /* Packer.swift */,
-				3A9BD2EBEB23ABF2FE7044B4715DC307 /* PackProtocol.swift */,
-				A9A1FE99CDD514C5BA81D01A4125B9A2 /* String.swift */,
-				443C712972606294B5FD2CC6237E0CE1 /* Structure.swift */,
-				43BA1580E45E176C9439C209B8D97272 /* Support Files */,
+				36F9BE063618DC87062B85A9367CCCE0 /* Bool.swift */,
+				C2B5A2EA1AB54C70D669D02505D3AA78 /* Float.swift */,
+				00534D62593A26B31A2850A2123B62DA /* Int.swift */,
+				FCA90A6C87FF47073C2CFD748F67B802 /* List.swift */,
+				F227A552143F9BE10D52AEB200C220A0 /* Map.swift */,
+				B2FD7F330A5084DD6E3F2BDDB1A9647E /* Null.swift */,
+				3A068DFCA598ACD8FB2CDBE528491F8F /* Packer.swift */,
+				E680F744797A9F76722CF2F5F6B01FD6 /* PackProtocol.swift */,
+				E2752896EEC8A7202D2953DE4015BC1D /* String.swift */,
+				AE23C475E28F63A1CDC54E8DDF0BAC94 /* Structure.swift */,
+				DFDF4B0C9EC09A2BDF9875134D2EDEC7 /* Support Files */,
 			);
 			name = PackStream;
 			path = PackStream;
+			sourceTree = "<group>";
+		};
+		CBA7B910188B92B873D23965F8C3296B /* BlueSSLService */ = {
+			isa = PBXGroup;
+			children = (
+				25FA63F539D353D599D104F1FB34AE5B /* SSLService.swift */,
+				D632179F9AED4E91CA489AE3A3BC713A /* Support Files */,
+			);
+			name = BlueSSLService;
+			path = BlueSSLService;
 			sourceTree = "<group>";
 		};
 		CFC8E6397D1AD8A8CA5F0B6270A6CA33 /* Pods-GoToUITests */ = {
@@ -689,6 +651,34 @@
 			path = "Target Support Files/Pods-GoToUITests";
 			sourceTree = "<group>";
 		};
+		D5371F46FC9160B8BBB3951259077A60 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9364ED1A73C55E10D0857B6B29B4E175 /* BoltProtocol.modulemap */,
+				9DB702B61A53147DA40840E13E4EF061 /* BoltProtocol.xcconfig */,
+				6CAAF010E500A283F061487A768A65E3 /* BoltProtocol-dummy.m */,
+				376C5752852B3EBF568B3F2A7DDB3B77 /* BoltProtocol-prefix.pch */,
+				DDEFCA3AE5CA22D62C659D3C1CD10663 /* BoltProtocol-umbrella.h */,
+				DC2FD0F4CEFC9703F3F7FC22AB2F3C08 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/BoltProtocol";
+			sourceTree = "<group>";
+		};
+		D632179F9AED4E91CA489AE3A3BC713A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4837DB434333D58C3D5EBF08FEF71AD0 /* BlueSSLService.modulemap */,
+				FF77D88651E662BD13B0DAE1AC079BAB /* BlueSSLService.xcconfig */,
+				860CF17412CFE4892D0E13C4B73F57C0 /* BlueSSLService-dummy.m */,
+				F43DA93A8AA204B378869D6E2B91301E /* BlueSSLService-prefix.pch */,
+				36F8B700C72012848F9BB9FAF8979C9B /* BlueSSLService-umbrella.h */,
+				377E21B660216CDC3106ED8DBB7A4B28 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/BlueSSLService";
+			sourceTree = "<group>";
+		};
 		D7A9FC51FF1378D3D2AA91A273C9FB28 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,36 +688,26 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		E0FE64E6FB7BAC011045E6E8F604C7E7 /* SVProgressHUD */ = {
+		DFDF4B0C9EC09A2BDF9875134D2EDEC7 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4D1A73A7EC31A38947A77AD776983C75 /* SVIndefiniteAnimatedView.h */,
-				913D0506DE841A79CDB25C9535AF1910 /* SVIndefiniteAnimatedView.m */,
-				6EC4EEB539935C0D7EB2BAE6E3D7B9AA /* SVProgressAnimatedView.h */,
-				0EEE7C4F019AE118F96A298FD86E5AFC /* SVProgressAnimatedView.m */,
-				A7382C6A8DC4ECD64FCC94CC96FFEBA4 /* SVProgressHUD.h */,
-				930A830C5FD8ED6A50C2E484B715E79C /* SVProgressHUD.m */,
-				19AB69217A08D9780803AE951F48C196 /* SVRadialGradientLayer.h */,
-				D60AB32E63A9BA68B522954F99D1B29F /* SVRadialGradientLayer.m */,
-				148548C3E86871B63A0C50502266D8A7 /* Resources */,
-				932949CF644E6DE4D41E1A8579433B55 /* Support Files */,
-			);
-			name = SVProgressHUD;
-			path = SVProgressHUD;
-			sourceTree = "<group>";
-		};
-		EC28B269D68DEF3C4FB4EF394DCDD086 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6FD98038476E43C8AFE011D2B00FBC4E /* BoltProtocol.modulemap */,
-				B8256B13F41EECF9016E14905574E423 /* BoltProtocol.xcconfig */,
-				CCA4CB05FE3D61743DA0CF93A97F85DB /* BoltProtocol-dummy.m */,
-				D6839E30BBFEB262E3800421116D826C /* BoltProtocol-prefix.pch */,
-				7DF6722688F78CF14BE5D96EB6E69121 /* BoltProtocol-umbrella.h */,
-				D2A82F565F528E1193EE34EC6D0BE259 /* Info.plist */,
+				F2662BAA468615DDD71E6F1FD4E6F059 /* Info.plist */,
+				904CFEEF9048FF879908262EF55C8027 /* PackStream.modulemap */,
+				93C3FDC0E00172F987E699946C0A969A /* PackStream.xcconfig */,
+				3DFBBE0A8721068BE6D6C3A9AFA35E97 /* PackStream-dummy.m */,
+				F72B4724752B564DF412E456BAF4AFDA /* PackStream-prefix.pch */,
+				CE8932C8EFE979AC32B07FBCACAAD6DB /* PackStream-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/BoltProtocol";
+			path = "../Target Support Files/PackStream";
+			sourceTree = "<group>";
+		};
+		E676F13BF749A65D52493263E31D2048 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6396FD28BF03A92FA74A166610322380 /* Mapbox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EC8CA520E8BD7D280620F319971BF7D6 /* Frameworks */ = {
@@ -742,18 +722,57 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FD64857A695C2BCE050776A776C939F7 /* Support Files */ = {
+		F0213F5FBEEAE0507273BD4544DBFE05 /* BlueSocket */ = {
 			isa = PBXGroup;
 			children = (
-				7710DADF816B365CEA77E525E4CE3411 /* BlueSSLService.modulemap */,
-				33E475D5C8DDF3D004857028438A25ED /* BlueSSLService.xcconfig */,
-				279D20ACBA52447C285BDC60C6ABDB1E /* BlueSSLService-dummy.m */,
-				9E7FDCDBB0AA867DFB132CBE8F20F3F0 /* BlueSSLService-prefix.pch */,
-				229735385AB7F844C926CDC7D85A17D7 /* BlueSSLService-umbrella.h */,
-				048B9FAFE495E511D012297F198C38A7 /* Info.plist */,
+				93BE2CF895B671E7FE1884317B09655B /* Socket.swift */,
+				F3ACF77B0058EBADA7A2A87363ECD10E /* SocketProtocols.swift */,
+				3B2849D529325A9860101D6B36EAC0B1 /* SocketUtils.swift */,
+				4996610EBF59B50C2E1EC61F0C5AC10C /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/BlueSSLService";
+			name = BlueSocket;
+			path = BlueSocket;
+			sourceTree = "<group>";
+		};
+		F06739882C23A476D4532F5CE135C929 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0213F5FBEEAE0507273BD4544DBFE05 /* BlueSocket */,
+				CBA7B910188B92B873D23965F8C3296B /* BlueSSLService */,
+				F63E92D7B6DE9AD8346C97625425175E /* BoltProtocol */,
+				3306DABB460CBB2365DB108CC042253E /* IndoorAtlas */,
+				C8D69BAF10519FA15A0BCF9C79A08880 /* Mapbox-iOS-SDK */,
+				CBA5520C9B9222EFBEE3418EFC6A8529 /* PackStream */,
+				4B1E39B1B42B35FAA9496746BBAD683A /* SVProgressHUD */,
+				A830E089CDD70642D5D065E817A9E443 /* Theo */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F34A84B2037F49CD18B7D709F697AAAE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE24802B20B79CF1E11F7B2F0C3DA7 /* SVProgressHUD.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F63E92D7B6DE9AD8346C97625425175E /* BoltProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				4F474E5BCDF155876FC3D2A908F9F7B1 /* Connection.swift */,
+				053097ABE66A132D353681007EE95DB4 /* ConnectionSettings.swift */,
+				50064B4908E00583EA79AE2E310DD2D9 /* EncryptedSocket.swift */,
+				C06FC1DB40468C4A31650DE2F3A50CBB /* Request.swift */,
+				C871BE7DE6BF0A746F90FE0A6824F8A8 /* Response.swift */,
+				03ACEFC03383EE46E69C8597FFDBAF41 /* SocketProtocol.swift */,
+				76FD1720FBFD3582DC35E05A9759B069 /* SSLConfiguration.swift */,
+				19A0ADD260C4F916354955AD306125BF /* SSLKeyGeneratorConfig.swift */,
+				A7737DADD3D1B9988252EF6ED58FF68B /* UnencryptedSocket.swift */,
+				D5371F46FC9160B8BBB3951259077A60 /* Support Files */,
+			);
+			name = BoltProtocol;
+			path = BoltProtocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1261,7 +1280,7 @@
 /* Begin XCBuildConfiguration section */
 		07D3C1CA3244DE873D754A527C4B92CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B0E2F4B76D001E0A23951CE32AFD41B /* Theo.xcconfig */;
+			baseConfigurationReference = 60280DE32C65B54AE5D6C9BC2C95E38B /* Theo.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1296,7 +1315,7 @@
 		};
 		157CAD8AE60988F9DFD00578ADCAA3C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E627159E1703EB1842F7C8313A043768 /* SVProgressHUD.xcconfig */;
+			baseConfigurationReference = AF78EAC59EDEF6379900C60C13921F8A /* SVProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1330,7 +1349,7 @@
 		};
 		2DEE9B0071C74A76FB6854EAFCABB5CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33E475D5C8DDF3D004857028438A25ED /* BlueSSLService.xcconfig */;
+			baseConfigurationReference = FF77D88651E662BD13B0DAE1AC079BAB /* BlueSSLService.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1439,7 +1458,7 @@
 		};
 		3CBAE6ADDA2867340B6E71CD905142EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E627159E1703EB1842F7C8313A043768 /* SVProgressHUD.xcconfig */;
+			baseConfigurationReference = AF78EAC59EDEF6379900C60C13921F8A /* SVProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1473,7 +1492,7 @@
 		};
 		448D2A9A65ECF2B348040A4F9464AEB7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B0E2F4B76D001E0A23951CE32AFD41B /* Theo.xcconfig */;
+			baseConfigurationReference = 60280DE32C65B54AE5D6C9BC2C95E38B /* Theo.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1508,7 +1527,7 @@
 		};
 		5239125833BF248EBD905B048E0F795D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8256B13F41EECF9016E14905574E423 /* BoltProtocol.xcconfig */;
+			baseConfigurationReference = 9DB702B61A53147DA40840E13E4EF061 /* BoltProtocol.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1659,7 +1678,7 @@
 		};
 		7E1660CDDF7E7FD81C267E27E9511448 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33E475D5C8DDF3D004857028438A25ED /* BlueSSLService.xcconfig */;
+			baseConfigurationReference = FF77D88651E662BD13B0DAE1AC079BAB /* BlueSSLService.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1769,7 +1788,7 @@
 		};
 		B514F2990429822C5E33C229686C3B3C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21BA7219F79E805C655A930EE118DB86 /* BlueSocket.xcconfig */;
+			baseConfigurationReference = 505398DBD01D31C025CE9CED0E610813 /* BlueSocket.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1804,7 +1823,7 @@
 		};
 		BE44448007D943FB2EB4FFA097C935AA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EDB732F4EEE2CC5E7DFBD03691CC90D /* PackStream.xcconfig */;
+			baseConfigurationReference = 93C3FDC0E00172F987E699946C0A969A /* PackStream.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1839,7 +1858,7 @@
 		};
 		C406807353DA47F2FA2CAE3BA95FEDD5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21BA7219F79E805C655A930EE118DB86 /* BlueSocket.xcconfig */;
+			baseConfigurationReference = 505398DBD01D31C025CE9CED0E610813 /* BlueSocket.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1874,7 +1893,7 @@
 		};
 		E416BB053D6C417FC06F09DBB5E9F7B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EDB732F4EEE2CC5E7DFBD03691CC90D /* PackStream.xcconfig */;
+			baseConfigurationReference = 93C3FDC0E00172F987E699946C0A969A /* PackStream.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1909,7 +1928,7 @@
 		};
 		E8A4BDB4BCC47D94CBF76A5B0A8F229E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8256B13F41EECF9016E14905574E423 /* BoltProtocol.xcconfig */;
+			baseConfigurationReference = 9DB702B61A53147DA40840E13E4EF061 /* BoltProtocol.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
