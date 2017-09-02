@@ -10,6 +10,8 @@ import UIKit
 import IndoorAtlas
 import SVProgressHUD
 import Mapbox
+import Theo
+import PackStream
 
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationManagerDelegate {
@@ -18,6 +20,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     var label = UILabel()
     var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
     var polylineSource: MGLShapeSource?
+    
+    // Theo Client and Configuration
+    private var theo: BoltClient?
+    var connectionConfig: ConnectionConfig? = ConnectionConfig(host: "http://127.0.0.1/", port: 7687, username: "neo4j", password: "password")
     
     // Manager for IALocationManager
     var manager = IALocationManager.sharedInstance()
@@ -36,6 +42,24 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
         addAnnotation(center: initial_center)
+        
+        connectToTheo()
+    }
+    
+    func connectToTheo() {
+        if let config = connectionConfig {
+            do {
+                theo = try  BoltClient(hostname: config.host, port: config.port, username: config.username, password: config.password, encrypted: true)
+            } catch {
+                DispatchQueue.main.async {
+                    print("Failed during connection configuration")
+                }
+                return
+            }
+        } else {
+            print("Missing connection configuration")
+        }
+
     }
     
     // Hide status bar
@@ -175,8 +199,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         style.addLayer(layer)
         
         
-        let polyline = MGLPolylineFeature(coordinates: [CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562),
-                                                        CLLocationCoordinate2D(latitude: 41.3158781, longitude: -72.92658895)], count: 2)
+        let polyline = MGLPolylineFeature(coordinates: [CLLocationCoordinate2D(latitude: 41.31586349, longitude: -72.92659499),
+                                                        CLLocationCoordinate2D(latitude: 41.31589628, longitude: -72.92650042)], count: 2)
         polylineSource?.shape = polyline
     }
     
