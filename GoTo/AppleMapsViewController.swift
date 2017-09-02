@@ -17,6 +17,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     var mapView: MGLMapView!
     var label = UILabel()
     var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
+    var polylineSource: MGLShapeSource?
     
     // Manager for IALocationManager
     var manager = IALocationManager.sharedInstance()
@@ -149,6 +150,34 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         }
         
         return annotationImage
+    }
+    
+    // Wait until the map is loaded before adding to the map.
+    func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
+        addLayer(to: style)
+    }
+    
+    func addLayer(to style: MGLStyle) {
+        // Add an empty MGLShapeSource, we’ll keep a reference to this and add points to this later.
+        let source = MGLShapeSource(identifier: "polyline", shape: nil, options: nil)
+        style.addSource(source)
+        polylineSource = source
+        
+        // Add a layer to style our polyline.
+        let layer = MGLLineStyleLayer(identifier: "polyline", source: source)
+        layer.lineJoin = MGLStyleValue(rawValue: NSValue(mglLineJoin: .round))
+        layer.lineCap = MGLStyleValue(rawValue: NSValue(mglLineCap: .round))
+        layer.lineColor = MGLStyleValue(rawValue: UIColor.red)
+        layer.lineWidth = MGLStyleFunction(interpolationMode: .exponential,
+                                           cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 5),
+                                                         18: MGLConstantStyleValue<NSNumber>(rawValue: 20)],
+                                           options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.5)])
+        style.addLayer(layer)
+        
+        
+        let polyline = MGLPolylineFeature(coordinates: [CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562),
+                                                        CLLocationCoordinate2D(latitude: 41.3158781, longitude: -72.92658895)], count: 2)
+        polylineSource?.shape = polyline
     }
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
