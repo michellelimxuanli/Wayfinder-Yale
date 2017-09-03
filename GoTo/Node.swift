@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Node {
-    let id: String
-    let name: String?
-    let latitude: String
-    let longitude: (latitude: Double, longitude: Double)
+class Node : NSObject {
+    var id: String!
+    var name: String!
+    var latitude: String!
+    var longitude: String!
 }

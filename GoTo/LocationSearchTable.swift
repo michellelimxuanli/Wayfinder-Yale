@@ -12,15 +12,6 @@ import Alamofire
 import UIKit
 
 extension String {
-    
-    func fromBase64() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
-        
-        return String(data: data, encoding: .utf8)
-    }
-    
     func toBase64() -> String {
         return Data(self.utf8).base64EncodedString()
     }
@@ -28,14 +19,15 @@ extension String {
 
 
 class LocationSearchTable : UITableViewController {
-    
+    var matchingItems:[Node] = []
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
     // Called when the search bar's text or scope has changed or when the search bar becomes first responder.
-    
+
     @available(iOS 8.0, *)
     func updateSearchResults(for searchController: UISearchController){
+        var arrayOfResults:[Node] = []
         let searchBarText = searchController.searchBar.text
         
         let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
@@ -53,10 +45,13 @@ extension LocationSearchTable : UISearchResultsUpdating {
 //                "id4": "4"
 //            ]
 //        ]
- 
+        
+        if searchBarText!.isEmpty {
+            print ("search is empty")
+        } else {
         // Find Similar Items
         let parameters: Parameters = [
-            "query" : "MATCH (n) WHERE n.name CONTAINS {searchstring} RETURN n",
+            "query" : "MATCH (n) WHERE LOWER(n.name) CONTAINS LOWER({searchstring}) RETURN n",
             "params" : [
                 "searchstring": searchBarText
             ]
@@ -72,11 +67,19 @@ extension LocationSearchTable : UISearchResultsUpdating {
             let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
             for result in arrayOfDicts {
                 for item in result{
-                    let node = item
-                    print(node)
+                    var propertiesOfNode = item["data"] as! [String:Any?]
+                    var node: Node = Node()
+                    node.name = propertiesOfNode["name"] as! String
+                    node.id = propertiesOfNode["id"] as! String
+                    node.longitude = propertiesOfNode["longitude"]  as! String
+                    node.latitude = propertiesOfNode["latitude"] as! String
+                    arrayOfResults.append(node)
                 }
             }
+            self.matchingItems = arrayOfResults
+            self.tableView.reloadData()
 
+        }
         }
 
         // The following code is relevant for when the map items come back
@@ -96,16 +99,16 @@ extension LocationSearchTable : UISearchResultsUpdating {
     }
 }
 
-//extension LocationSearchTable {
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return matchingItems.count
-//    }
-//    
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
-//        let selectedItem = matchingItems[indexPath.row].placemark
-//        cell.textLabel?.text = selectedItem.name
-//        cell.detailTextLabel?.text = ""
-//        return cell
-//    }
-//}
+extension LocationSearchTable {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return matchingItems.count
+    }
+    @available(iOS 2.0, *)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        let selectedItem = matchingItems[indexPath.row]
+        cell.textLabel?.text = selectedItem.name
+        cell.detailTextLabel?.text = ""
+        return cell
+    }
+}
