@@ -51,10 +51,6 @@ extension LocationSearchTable : UISearchResultsUpdating {
         
         Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
 
-//            if let json = response.result.value {
-//                print("JSON: \(json)") // serialized json response
-//            }
-            
             let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
             let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
             for result in arrayOfDicts {
@@ -70,6 +66,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
         }
         }
         
+        // Get a list of Noces
         let shortestPath: Parameters = [
             "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
             "params" : [
@@ -77,36 +74,27 @@ extension LocationSearchTable : UISearchResultsUpdating {
                         "id4": "4"
                     ]
         ]
-        //Code that extracts properties from the URL
-        
-        Alamofire.request("http://127.0.0.1:7474/db/data/node/1/properties", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
-            if let json = response.result.value {
-                print("JSON: \(json)") // serialized json response
+
+            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+            let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
+            for result in arrayOfDicts {
+                for item in result{
+                    var nodes = item["nodes"] as! Array<String>
+                    for URLtoNode in nodes {
+                        let propertiesURL = "\(URLtoNode)/properties"
+                        Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                            let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
+                            var node: Node = Node(object_passed_in: propertiesOfNode)!
+                        }
+                    }
             }
-            let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
+
             
-            var node: Node = Node()
-            node.name = propertiesOfNode["name"] as! String
-            node.id = propertiesOfNode["id"] as! String
-            node.longitude = propertiesOfNode["longitude"]  as! String
-            node.latitude = propertiesOfNode["latitude"] as! String
-            
-//            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
-//            let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
-//            for result in arrayOfDicts {
-//                for item in result{
-//                    var propertiesOfNode = item["data"] as! [String:Any?]
-//                    var node: Node = Node()
-//                    node.name = propertiesOfNode["name"] as! String
-//                    node.id = propertiesOfNode["id"] as! String
-//                    node.longitude = propertiesOfNode["longitude"]  as! String
-//                    node.latitude = propertiesOfNode["latitude"] as! String
-//                    arrayOfResults.append(node)
-//                }
-//            }
-            
-        }
+            }}
+        
+        
     }
         
         
