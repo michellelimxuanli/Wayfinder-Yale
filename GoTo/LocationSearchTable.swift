@@ -56,10 +56,14 @@ extension LocationSearchTable : UISearchResultsUpdating {
         
         
         let parameters: Parameters = [
-            "query" : "MATCH path=shortestPath((a:Point {id:'1'})-[*]-(b:Point {id:'4'})) RETURN path",
-            "params" : { }
+            "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
+            "params" : [
+                "id1": "1",
+                "id4": "4"
+            ]
         ]
-        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: parameters, headers: headers).responseJSON { response in
+        
+        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(response.result)")                         // response serialization result
