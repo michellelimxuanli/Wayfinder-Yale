@@ -19,7 +19,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     
     var mapView: MGLMapView!
     var label = UILabel()
-    var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
+    var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31574, longitude: -72.92562)
+
     var polylineSource: MGLShapeSource?
 
     
@@ -44,7 +45,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         // Setting up Map View
         mapView = MGLMapView(frame: view.bounds)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.setCenter(initial_center, zoomLevel: 19, animated: false)
+        mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
         
         // Show spinner while waiting for location information from IALocationManager
@@ -230,11 +231,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         let layer = MGLLineStyleLayer(identifier: "polyline", source: source)
         layer.lineJoin = MGLStyleValue(rawValue: NSValue(mglLineJoin: .round))
         layer.lineCap = MGLStyleValue(rawValue: NSValue(mglLineCap: .round))
-        layer.lineColor = MGLStyleValue(rawValue: UIColor.red)
+        layer.lineColor = MGLStyleValue(rawValue: UIColor.blue)
         layer.lineWidth = MGLStyleFunction(interpolationMode: .exponential,
-                                           cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 5),
-                                                         18: MGLConstantStyleValue<NSNumber>(rawValue: 20)],
-                                           options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.5)])
+                                           cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 2),
+                                                         18: MGLConstantStyleValue<NSNumber>(rawValue: 6)],
+                                           options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.0)])
         style.addLayer(layer)
     }
     
