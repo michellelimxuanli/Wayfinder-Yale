@@ -38,14 +38,6 @@ extension LocationSearchTable : UISearchResultsUpdating {
             "Accept": "application/json"
         ]
         
-//        let parameters: Parameters = [
-//            "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
-//            "params" : [
-//                "id1": "1",
-//                "id4": "4"
-//            ]
-//        ]
-        
         if searchBarText!.isEmpty {
             print ("search is empty")
         } else {
@@ -68,11 +60,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
             for result in arrayOfDicts {
                 for item in result{
                     var propertiesOfNode = item["data"] as! [String:Any?]
-                    var node: Node = Node()
-                    node.name = propertiesOfNode["name"] as! String
-                    node.id = propertiesOfNode["id"] as! String
-                    node.longitude = propertiesOfNode["longitude"]  as! String
-                    node.latitude = propertiesOfNode["latitude"] as! String
+                    var node: Node = Node(object_passed_in: propertiesOfNode)!
                     arrayOfResults.append(node)
                 }
             }
@@ -81,6 +69,48 @@ extension LocationSearchTable : UISearchResultsUpdating {
 
         }
         }
+        
+        let shortestPath: Parameters = [
+            "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
+            "params" : [
+                        "id1": "1",
+                        "id4": "4"
+                    ]
+        ]
+        //Code that extracts properties from the URL
+        
+        Alamofire.request("http://127.0.0.1:7474/db/data/node/1/properties", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            
+            if let json = response.result.value {
+                print("JSON: \(json)") // serialized json response
+            }
+            let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
+            
+            var node: Node = Node()
+            node.name = propertiesOfNode["name"] as! String
+            node.id = propertiesOfNode["id"] as! String
+            node.longitude = propertiesOfNode["longitude"]  as! String
+            node.latitude = propertiesOfNode["latitude"] as! String
+            
+//            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+//            let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
+//            for result in arrayOfDicts {
+//                for item in result{
+//                    var propertiesOfNode = item["data"] as! [String:Any?]
+//                    var node: Node = Node()
+//                    node.name = propertiesOfNode["name"] as! String
+//                    node.id = propertiesOfNode["id"] as! String
+//                    node.longitude = propertiesOfNode["longitude"]  as! String
+//                    node.latitude = propertiesOfNode["latitude"] as! String
+//                    arrayOfResults.append(node)
+//                }
+//            }
+            
+        }
+    }
+        
+        
+        // Write code that extracts the right points from the path
 
         // The following code is relevant for when the map items come back
 //        guard let mapView = mapView,
@@ -97,7 +127,6 @@ extension LocationSearchTable : UISearchResultsUpdating {
 //            self.tableView.reloadData()
 //        }
     }
-}
 
 extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

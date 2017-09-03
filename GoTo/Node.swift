@@ -8,9 +8,18 @@
 
 import Foundation
 
-class Node : NSObject {
+struct Node {
     var id: String!
     var name: String!
     var latitude: String!
     var longitude: String!
+}
+
+extension Node {
+    init?(object_passed_in: [String: Any?]) {
+        self.name = object_passed_in["name"] as! String
+        self.id = object_passed_in["id"] as! String
+        self.longitude = object_passed_in["longitude"] as! String
+        self.latitude = object_passed_in["latitude"] as! String
+    }
 }
