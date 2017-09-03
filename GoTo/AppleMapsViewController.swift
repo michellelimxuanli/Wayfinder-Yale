@@ -16,6 +16,8 @@ import PackStream
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationManagerDelegate {
     
+    var resultSearchController:UISearchController? = nil
+    
     var mapView: MGLMapView!
     var label = UILabel()
     var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
@@ -30,6 +32,17 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
         
         mapView = MGLMapView(frame: view.bounds)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
