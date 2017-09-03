@@ -6,7 +6,6 @@ target 'GoTo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   
-  pod ‘Theo’
   pod 'IndoorAtlas'
   pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   pod 'Mapbox-iOS-SDK', '~> 3.6’

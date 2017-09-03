@@ -103,27 +103,17 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BlueSSLService/SSLService.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BlueSocket/Socket.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BoltProtocol/Bolt.framework"
   install_framework "${PODS_ROOT}/IndoorAtlas/indooratlas-ios-sdk/IndoorAtlas.framework"
   install_framework "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework"
   install_dsym "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM"
-  install_framework "${BUILT_PRODUCTS_DIR}/PackStream/PackStream.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Theo/Theo.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BlueSSLService/SSLService.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BlueSocket/Socket.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BoltProtocol/Bolt.framework"
   install_framework "${PODS_ROOT}/IndoorAtlas/indooratlas-ios-sdk/IndoorAtlas.framework"
   install_framework "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework"
   install_dsym "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM"
-  install_framework "${BUILT_PRODUCTS_DIR}/PackStream/PackStream.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Theo/Theo.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

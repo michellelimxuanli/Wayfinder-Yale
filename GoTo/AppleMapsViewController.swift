@@ -10,8 +10,7 @@ import UIKit
 import IndoorAtlas
 import SVProgressHUD
 import Mapbox
-import Theo
-import PackStream
+import Alamofire
 
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationManagerDelegate {
@@ -22,10 +21,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     var label = UILabel()
     var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31569, longitude: -72.92562)
     var polylineSource: MGLShapeSource?
-    
-    // Theo Client and Configuration
-    private var theo: BoltClient?
-    var connectionConfig: ConnectionConfig? = ConnectionConfig(host: "http://127.0.0.1/", port: 7687, username: "neo4j", password: "password")
+
     
     // Manager for IALocationManager
     var manager = IALocationManager.sharedInstance()
@@ -33,6 +29,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setting up Search Bar
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
@@ -44,10 +41,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
         
+        // Setting up Map View
         mapView = MGLMapView(frame: view.bounds)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        // Set the map’s center coordinate and zoom level.
         mapView.setCenter(initial_center, zoomLevel: 19, animated: false)
         view.addSubview(mapView)
         
@@ -56,21 +52,51 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         
         addAnnotation(center: initial_center)
         
-        connectToTheo()
+        // Testing a function here: 
+        // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
+        getPath(start: "1", end: "4")
     }
     
-    func connectToTheo() {
-        if let config = connectionConfig {
-            do {
-                theo = try  BoltClient(hostname: config.host, port: config.port, username: config.username, password: config.password, encrypted: true)
-            } catch {
-                DispatchQueue.main.async {
-                    print("Failed during connection configuration")
+    func getPath(start: String, end: String){
+        let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
+        let base64LoginData = loginData.base64EncodedString()
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Basic \(base64LoginData)",
+            "Accept": "application/json"
+        ]
+        
+        // Find shortest path via a list of Nodes
+        let shortestPath: Parameters = [
+            "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
+            "params" : [
+                "id1": start,
+                "id4": end
+            ]
+        ]
+        var newListOfCoordinates: [CLLocationCoordinate2D] = []
+        
+        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            
+            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+            let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
+            for result in arrayOfDicts {
+                for item in result{
+                    let nodes = item["nodes"] as! Array<String>
+                    for URLtoNode in nodes {
+                        let propertiesURL = "\(URLtoNode)/properties"
+                        Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                            let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
+                            let node: Node = Node(object_passed_in: propertiesOfNode)!
+                            newListOfCoordinates.append(CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!))
+                            let polyline = MGLPolylineFeature(coordinates: newListOfCoordinates, count: 4)
+                            self.polylineSource?.shape = polyline
+                        }
+                    }
+
                 }
-                return
             }
-        } else {
-            print("Missing connection configuration")
+
         }
 
     }
@@ -181,7 +207,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
             // To make this padding non-interactive, we create another image object
             // with a custom alignment rect that excludes the padding.
             image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
-            image = ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
+            image = Helper.ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
             // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
             annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
         }
@@ -210,11 +236,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
                                                          18: MGLConstantStyleValue<NSNumber>(rawValue: 20)],
                                            options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.5)])
         style.addLayer(layer)
-        
-        
-        let polyline = MGLPolylineFeature(coordinates: [CLLocationCoordinate2D(latitude: 41.31586349, longitude: -72.92659499),
-                                                        CLLocationCoordinate2D(latitude: 41.31589628, longitude: -72.92650042)], count: 2)
-        polylineSource?.shape = polyline
     }
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
@@ -222,12 +243,5 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         return true
     }
     
-    //from https://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage
-    func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(targetSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: targetSize.width, height: targetSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
+    
 }

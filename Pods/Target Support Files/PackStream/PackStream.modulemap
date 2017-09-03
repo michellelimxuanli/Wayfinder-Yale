@@ -1,6 +1,0 @@
-framework module PackStream {
-  umbrella header "PackStream-umbrella.h"
-
-  export *
-  module * { export * }
-}

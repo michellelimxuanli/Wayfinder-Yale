@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0867822A1F5C9A58004B338F /* secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086782291F5C9A58004B338F /* secrets.swift */; };
+		08A053731F5CA69600167B9D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A053721F5CA69600167B9D /* Helper.swift */; };
 		08C0E2AD1F55EF8B007630DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E2AC1F55EF8B007630DC /* AppDelegate.swift */; };
 		08C0E2AF1F55EF8B007630DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E2AE1F55EF8B007630DC /* ViewController.swift */; };
 		08C0E2B21F55EF8B007630DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C0E2B01F55EF8B007630DC /* Main.storyboard */; };
@@ -42,7 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		086782291F5C9A58004B338F /* secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secrets.swift; sourceTree = "<group>"; };
 		08935D5C1F59F8F900656BAB /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		08A053721F5CA69600167B9D /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		08C0E2A91F55EF8B007630DC /* GoTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08C0E2AC1F55EF8B007630DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08C0E2AE1F55EF8B007630DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				08F8C7D71F5AF88D00ADE4F3 /* ConnectionConfig.swift */,
 				08F8C7D91F5B6D2B00ADE4F3 /* LocationSearchTable.swift */,
 				08F944A41F5B977600197EAD /* Node.swift */,
+				086782291F5C9A58004B338F /* secrets.swift */,
+				08A053721F5CA69600167B9D /* Helper.swift */,
 			);
 			path = GoTo;
 			sourceTree = "<group>";
@@ -344,28 +350,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GoTo/Pods-GoTo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BlueSSLService/SSLService.framework",
-				"${BUILT_PRODUCTS_DIR}/BlueSocket/Socket.framework",
-				"${BUILT_PRODUCTS_DIR}/BoltProtocol/Bolt.framework",
 				"${PODS_ROOT}/IndoorAtlas/indooratlas-ios-sdk/IndoorAtlas.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
-				"${BUILT_PRODUCTS_DIR}/PackStream/PackStream.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/Theo/Theo.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSLService.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Socket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IndoorAtlas.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PackStream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Theo.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -494,9 +490,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C0E2AF1F55EF8B007630DC /* ViewController.swift in Sources */,
+				0867822A1F5C9A58004B338F /* secrets.swift in Sources */,
 				08C0E2AD1F55EF8B007630DC /* AppDelegate.swift in Sources */,
 				08C0E3171F566B27007630DC /* AppleMapsViewController.swift in Sources */,
 				08F8C7DA1F5B6D2B00ADE4F3 /* LocationSearchTable.swift in Sources */,
+				08A053731F5CA69600167B9D /* Helper.swift in Sources */,
 				08C0E2DB1F55F9B3007630DC /* ApiKeys.swift in Sources */,
 				08F8C7D81F5AF88D00ADE4F3 /* ConnectionConfig.swift in Sources */,
 				08F944A51F5B977600197EAD /* Node.swift in Sources */,

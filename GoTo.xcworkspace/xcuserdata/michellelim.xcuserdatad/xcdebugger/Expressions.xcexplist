@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AppleMapsViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "arrayOfCoordinates">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppleMapsViewController.addLayer(to : MGLStyle) -&gt; ():AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "arrayOfCoordinates">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

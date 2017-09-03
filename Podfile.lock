@@ -1,25 +1,14 @@
 PODS:
   - Alamofire (4.5.0)
-  - BlueSocket (0.12.61)
-  - BlueSSLService (0.12.48):
-    - BlueSocket (~> 0.12.61)
-  - BoltProtocol (0.9.0):
-    - BlueSocket (~> 0.12.53)
-    - BlueSSLService (~> 0.12.43)
-    - PackStream (~> 0.8.3)
   - IndoorAtlas (2.5.1)
   - Mapbox-iOS-SDK (3.6.2)
-  - PackStream (0.8.3)
   - SVProgressHUD (2.1.2)
-  - Theo (3.1.2):
-    - BoltProtocol (~> 0.9.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - IndoorAtlas
   - Mapbox-iOS-SDK (~> 3.6)
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
-  - Theo
 
 EXTERNAL SOURCES:
   SVProgressHUD:
@@ -32,15 +21,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  BlueSocket: 40546b837252928b88970376acb0570733dcce4e
-  BlueSSLService: 02c168491086129e2ce3e49d46a96fc18367e757
-  BoltProtocol: 828d3eeecc5987d007f8995eb98e90414f68f1b0
   IndoorAtlas: d569f66a96400b60a58ad9d0abd626acb7d01aa5
   Mapbox-iOS-SDK: 1224c5ba79dc9bf9a80bfcc33ae320f5d672a42f
-  PackStream: 62c6a525928db94974852eaa64d5a4d52d320207
   SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
-  Theo: 02666de2dc48eb517264867483270c5a3876cabe
 
-PODFILE CHECKSUM: 068ca52f13c5e437841b45b67f6bf6894aae90b6
+PODFILE CHECKSUM: 5b69dda8e757a93ca365939e73af5e2024ca12c5
 
 COCOAPODS: 1.3.1

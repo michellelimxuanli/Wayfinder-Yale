@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import UIKit
 
 extension String {
     func toBase64() -> String {
@@ -55,8 +54,8 @@ extension LocationSearchTable : UISearchResultsUpdating {
             let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
             for result in arrayOfDicts {
                 for item in result{
-                    var propertiesOfNode = item["data"] as! [String:Any?]
-                    var node: Node = Node(object_passed_in: propertiesOfNode)!
+                    let propertiesOfNode = item["data"] as! [String:Any?]
+                    let node: Node = Node(object_passed_in: propertiesOfNode)!
                     arrayOfResults.append(node)
                 }
             }
@@ -66,54 +65,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
         }
         }
         
-        // Get a list of Noces
-        let shortestPath: Parameters = [
-            "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
-            "params" : [
-                        "id1": "1",
-                        "id4": "4"
-                    ]
-        ]
-        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            
-
-            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
-            let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
-            for result in arrayOfDicts {
-                for item in result{
-                    var nodes = item["nodes"] as! Array<String>
-                    for URLtoNode in nodes {
-                        let propertiesURL = "\(URLtoNode)/properties"
-                        Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                            let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
-                            var node: Node = Node(object_passed_in: propertiesOfNode)!
-                        }
-                    }
-            }
-
-            
-            }}
-        
-        
     }
-        
-        
-        // Write code that extracts the right points from the path
-
-        // The following code is relevant for when the map items come back
-//        guard let mapView = mapView,
-//            let searchBarText = searchController.searchBar.text else { return }
-//        let request = MKLocalSearchRequest()
-//        request.naturalLanguageQuery = searchBarText
-//        request.region = mapView.region
-//        let search = MKLocalSearch(request: request)
-//        search.startWithCompletionHandler { response, _ in
-//            guard let response = response else {
-//                return
-//            }
-//            self.matchingItems = response.mapItems
-//            self.tableView.reloadData()
-//        }
     }
 
 extension LocationSearchTable {

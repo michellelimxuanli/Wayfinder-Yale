@@ -1,6 +1,0 @@
-framework module Theo {
-  umbrella header "Theo-umbrella.h"
-
-  export *
-  module * { export * }
-}
