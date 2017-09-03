@@ -36,6 +36,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
     
     @available(iOS 8.0, *)
     func updateSearchResults(for searchController: UISearchController){
+        let searchBarText = searchController.searchBar.text
         
         let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
         let base64LoginData = loginData.base64EncodedString()
@@ -44,40 +45,41 @@ extension LocationSearchTable : UISearchResultsUpdating {
             "Authorization": "Basic \(base64LoginData)",
             "Accept": "application/json"
         ]
-        Alamofire.request("http://localhost:7474/user/neo4j",headers: headers)
-            .responseJSON { response  in
-                if (response.result.error == nil){
-                    print("Authenticated!: \(String(describing: response.result.value))")
-                }else{
-                    print("Error in authentication: \(response.error)")
-                }
-        }
         
-        
-        
+//        let parameters: Parameters = [
+//            "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
+//            "params" : [
+//                "id1": "1",
+//                "id4": "4"
+//            ]
+//        ]
+ 
+        // Find Similar Items
         let parameters: Parameters = [
-            "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
+            "query" : "MATCH (n) WHERE n.name CONTAINS {searchstring} RETURN n",
             "params" : [
-                "id1": "1",
-                "id4": "4"
+                "searchstring": searchBarText
             ]
         ]
         
         Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
+
+//            if let json = response.result.value {
+//                print("JSON: \(json)") // serialized json response
+//            }
             
-            if let json = response.result.value {
-                print("JSON: \(json)") // serialized json response
+            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+            let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
+            for result in arrayOfDicts {
+                for item in result{
+                    let node = item
+                    print(node)
+                }
             }
-            
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)") // original server data as UTF8 string
-            }
+
         }
 
-        // The following code is relevant for when the map items come back 
+        // The following code is relevant for when the map items come back
 //        guard let mapView = mapView,
 //            let searchBarText = searchController.searchBar.text else { return }
 //        let request = MKLocalSearchRequest()
