@@ -9,7 +9,8 @@ target 'GoTo' do
   pod ‘Theo’
   pod 'IndoorAtlas'
   pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
-  pod 'Mapbox-iOS-SDK', '~> 3.6'
+  pod 'Mapbox-iOS-SDK', '~> 3.6’
+  pod 'Alamofire', '~> 4.4'
 
   # Pods for GoTo
   target 'GoToTests' do

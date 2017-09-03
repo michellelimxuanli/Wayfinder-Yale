@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>BlueSSLService.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,6 +62,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>036C92B232754389F7E8F264C2A2D36E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>03FBA99E2CDEA5603A4AC7599FD12A04</key>
 		<dict>
 			<key>primary</key>
@@ -72,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>22A570B93847309DE4A0AE8672666493</key>
+		<key>12509F4EA1067D64C1353D117B90BC14</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B861DE726568D23F834AF8884215F65</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C984EB6B50B5A69CC389C73A15BE294A</key>
+		<key>F16961383377DA7E3D41093CB34772EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

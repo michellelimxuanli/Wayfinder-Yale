@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1IjoibWwyNDQ1IiwiYSI6ImNqNnpoMDh6dDAwYjEzM3FucThjYm9zODQifQ.eqfWTk6lAaWH5RhreHAymg</string>
 	<key>NSLocationAlwaysUsageDescription</key>
