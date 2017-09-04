@@ -149,6 +149,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     
     func addCurrentLocation(center: CLLocationCoordinate2D) {
         currentAnnotation = MGLPointAnnotation()
+        currentAnnotation?.title = "currentLocation"
         currentAnnotation?.coordinate = center
         mapView.addAnnotation(currentAnnotation!)
         
@@ -182,7 +183,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
                 mapView.removeAnnotation(currentAnnotation)
             }
             userCoordinates = newLocation
-            //addCurrentLocation(center: userCoordinates!)
+            addCurrentLocation(center: userCoordinates!)
         }
     }
     
@@ -268,15 +269,24 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     // This delegate method is where you tell the map to load a view for a specific annotation. To load a static MGLAnnotationImage, you would use `-mapView:imageForAnnotation:`.
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         // This example is only concerned with point annotations.
-        guard annotation is MyCustomPointAnnotation else {
-            return nil
+        if annotation is MyCustomPointAnnotation {
+            // For better performance, always try to reuse existing annotations. To use multiple different annotation views, change the reuse identifier for each.
+            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "draggablePoint") {
+                return annotationView
+            } else {
+                return DraggableAnnotationView(reuseIdentifier: "draggablePoint", size: 50)
+            }
         }
-        
-        // For better performance, always try to reuse existing annotations. To use multiple different annotation views, change the reuse identifier for each.
-        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "draggablePoint") {
-            return annotationView
-        } else {
-            return DraggableAnnotationView(reuseIdentifier: "draggablePoint", size: 50)
+        else {
+            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle") {
+                return annotationView
+            } else {
+                let annotationView = CustomAnnotationView(reuseIdentifier: "circle")
+                annotationView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+                annotationView.backgroundColor = UIColor.blue
+                return annotationView
+            }
+
         }
     }
     
