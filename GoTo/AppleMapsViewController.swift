@@ -255,6 +255,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     // Wait until the map is loaded before adding to the map.
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         addLayer(to: style)
+        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.3us1mnug", sourceLayer: "Art_Rooms-a2rv20")
+        addRoomLayer(to: style, vectorSource: "Elevators", configURL: "mapbox://ml2445.96tmc7k0", sourceLayer: "Elevators-7x4njs ")
     }
     
     func addLayer(to style: MGLStyle) {
@@ -273,14 +275,15 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
                                                          18: MGLConstantStyleValue<NSNumber>(rawValue: 6)],
                                            options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.0)])
         style.addLayer(layer)
-        
-        // Test code for adding the Map Layer, Test whether the selected polygon method works
-        let layerSource = MGLVectorSource(identifier: "Art Rooms", configurationURL: URL(string: "mapbox://ml2445.3us1mnug")!)
+    }
+    func addRoomLayer(to style: MGLStyle, vectorSource: String, configURL: String, sourceLayer: String) {
+        // Test code for adding the Map Layer
+        let layerSource = MGLVectorSource(identifier: vectorSource, configurationURL: URL(string: configURL)!)
         style.addSource(layerSource)
         // Create a style layer using the vector source.
-        let actualLayer = MGLFillStyleLayer(identifier: "Art Rooms", source: layerSource)
+        let actualLayer = MGLFillStyleLayer(identifier: vectorSource, source: layerSource)
         
-        actualLayer.sourceLayerIdentifier = "Art_Rooms-a2rv20"
+        actualLayer.sourceLayerIdentifier = sourceLayer
         
         // Set the fill pattern and opacity for the style layer.
         actualLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
@@ -295,17 +298,17 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     }
     
     // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
-    
+
+    // TODO: generalize handletap and changeopacity for all layers
     func handleTap(_ gesture: UITapGestureRecognizer) {
         
         // Get the CGPoint where the user tapped.
         let spot = gesture.location(in: mapView)
         
         // Access the features at that point within the state layer.
-        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(["Art Rooms"]))
+        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(["Art Rooms", "Elevators"]))
         
-        //just to see what's inside the attributes: I added the third parameter
-        
+        // TO CHANGE KEY TO ID
         // Get the name of the selected state.
         if let feature = features.first, let state = feature.attribute(forKey: "Art Rooms") as? String{
             changeOpacity(name: state)
@@ -314,9 +317,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         }
     }
     
+    //this should apply to all layers
     func changeOpacity(name: String) {
         let layer = mapView.style?.layer(withIdentifier: "Art Rooms") as! MGLFillStyleLayer
         
+        // TO CHANGE KEY TO ID
         // Check if a state was selected, then change the opacity of the states that were not selected.
         if name.characters.count > 0 {
             layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "Art Rooms", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0)])
