@@ -241,31 +241,33 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         SVProgressHUD.dismiss()
     }
     
-     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        
-        // Thisis for the Current Location Cirlce
-        guard annotation is MGLPointAnnotation else {
-            return nil
-        }
-        
-        // For better performance, always try to reuse existing annotations.
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle")
-        
-        // If there’s no reusable annotation view available, initialize a new one.
-        if annotationView == nil {
-            annotationView = CustomAnnotationView(reuseIdentifier: "circle")
-            annotationView!.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-            
-            // Set the annotation view’s background color to a value determined by its longitude.
-            annotationView!.backgroundColor = UIColor.blue
-        }
-        
-        return annotationView
-    }
+//     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+//        
+//        // Thisis for the Current Location Cirlce
+//        guard annotation is MGLPointAnnotation else {
+//            return nil
+//        }
+//        
+//        // For better performance, always try to reuse existing annotations.
+//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle")
+//        
+//        // If there’s no reusable annotation view available, initialize a new one.
+//        if annotationView == nil {
+//            annotationView = CustomAnnotationView(reuseIdentifier: "circle")
+//            annotationView!.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+//            
+//            // Set the annotation view’s background color to a value determined by its longitude.
+//            annotationView!.backgroundColor = UIColor.blue
+//        }
+//        
+//        return annotationView
+//    }
     
-    func mapView(_ mapView: MGLMapView, viewFor annotation: MyCustomPointAnnotation) -> MGLAnnotationView?  {
-        
-        // This is for the Marker Location Marker
+    // MARK: - MGLMapViewDelegate methods
+    
+    // This delegate method is where you tell the map to load a view for a specific annotation. To load a static MGLAnnotationImage, you would use `-mapView:imageForAnnotation:`.
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        // This example is only concerned with point annotations.
         guard annotation is MyCustomPointAnnotation else {
             return nil
         }
@@ -278,127 +280,12 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         }
     }
     
-    
-    // Wait until the map is loaded before adding to the map.
-    func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
-        addLayer(to: style)
-        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.3us1mnug", sourceLayer: "Art_Rooms-a2rv20")
-        addRoomLayer(to: style, vectorSource: "Elevators", configURL: "mapbox://ml2445.96tmc7k0", sourceLayer: "Elevators-7x4njs ")
-    }
-    
-    func addLayer(to style: MGLStyle) {
-        // Add an empty MGLShapeSource, we’ll keep a reference to this and add points to this later.
-        let source = MGLShapeSource(identifier: "polyline", shape: nil, options: nil)
-        style.addSource(source)
-        polylineSource = source
-        
-        // Add a layer to style our polyline.
-        let layer = MGLLineStyleLayer(identifier: "polyline", source: source)
-        layer.lineJoin = MGLStyleValue(rawValue: NSValue(mglLineJoin: .round))
-        layer.lineCap = MGLStyleValue(rawValue: NSValue(mglLineCap: .round))
-        layer.lineColor = MGLStyleValue(rawValue: UIColor.blue)
-        layer.lineWidth = MGLStyleFunction(interpolationMode: .exponential,
-                                           cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 2),
-                                                         18: MGLConstantStyleValue<NSNumber>(rawValue: 6)],
-                                           options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.0)])
-        style.addLayer(layer)
-    }
-    func addRoomLayer(to style: MGLStyle, vectorSource: String, configURL: String, sourceLayer: String) {
-        // Test code for adding the Map Layer
-        let layerSource = MGLVectorSource(identifier: vectorSource, configurationURL: URL(string: configURL)!)
-        style.addSource(layerSource)
-        // Create a style layer using the vector source.
-        let actualLayer = MGLFillStyleLayer(identifier: vectorSource, source: layerSource)
-        
-        actualLayer.sourceLayerIdentifier = sourceLayer
-        
-        // Set the fill pattern and opacity for the style layer.
-        actualLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
-        
-        style.addLayer(actualLayer)
-        
-    }
-    func addMarkerButton() {
-        
-        let button = UIButton(type: UIButtonType.custom) as UIButton
-        
-        button.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
-        button.setTitle("Testing marker placement", for: .normal)
-        button.isSelected = true
-        button.sizeToFit()
-        button.center.x = self.view.center.x
-        button.frame = CGRect(origin: CGPoint(x: button.frame.origin.x, y: self.view.frame.size.height - button.frame.size.height - 5), size: button.frame.size)
-        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
-        self.view.addSubview(button)
-    }
-    
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        // Always allow callouts to popup when annotations are tapped.
         return true
     }
-    
-    // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
 
-    // TODO: generalize handletap and changeopacity for all layers
-    func handleTap(_ gesture: UITapGestureRecognizer) {
-        
-        // Get the CGPoint where the user tapped.
-        let spot = gesture.location(in: mapView)
-        
-        // Access the features at that point within the state layer.
-        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(["Art Rooms", "Elevators"]))
-        
-        // TO CHANGE KEY TO ID
-        // Get the name of the selected state.
-        if let feature = features.first, let state = feature.attribute(forKey: "Art Rooms") as? String{
-            changeOpacity(name: state)
-        } else {
-            changeOpacity(name: "")
-        }
-    }
-    
-    //this should apply to all layers
-    func changeOpacity(name: String) {
-        let layer = mapView.style?.layer(withIdentifier: "Art Rooms") as! MGLFillStyleLayer
-        
-        // TO CHANGE KEY TO ID
-        // Check if a state was selected, then change the opacity of the states that were not selected.
-        if name.characters.count > 0 {
-            layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "Art Rooms", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0)])
-        } else {
-            // Reset the opacity for all states if the user did not tap on a state.
-            layer.fillOpacity = MGLStyleValue(rawValue: 1)
-        }
-    }
-    
-    
-}
 
 // MGLAnnotationView subclass
-class CustomAnnotationView: MGLAnnotationView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Force the annotation view to maintain a constant size when the map is tilted.
-        scalesWithViewingDistance = false
-        
-        // Use CALayer’s corner radius to turn this view into a circle.
-        layer.cornerRadius = frame.width / 2
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.white.cgColor
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Animate the border width in/out, creating an iris effect.
-        let animation = CABasicAnimation(keyPath: "borderWidth")
-        animation.duration = 0.1
-        layer.borderWidth = selected ? frame.width / 4 : 2
-        layer.add(animation, forKey: "borderWidth")
-    }
-}
-
 class DraggableAnnotationView: MGLAnnotationView {
     init(reuseIdentifier: String, size: CGFloat) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -465,7 +352,122 @@ class DraggableAnnotationView: MGLAnnotationView {
         }, completion: nil)
     }
 }
+    
+    
+    // Wait until the map is loaded before adding to the map.
+    func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
+        addLayer(to: style)
+        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.3us1mnug", sourceLayer: "Art_Rooms-a2rv20")
+        addRoomLayer(to: style, vectorSource: "Elevators", configURL: "mapbox://ml2445.96tmc7k0", sourceLayer: "Elevators-7x4njs ")
+    }
+    
+    func addLayer(to style: MGLStyle) {
+        // Add an empty MGLShapeSource, we’ll keep a reference to this and add points to this later.
+        let source = MGLShapeSource(identifier: "polyline", shape: nil, options: nil)
+        style.addSource(source)
+        polylineSource = source
+        
+        // Add a layer to style our polyline.
+        let layer = MGLLineStyleLayer(identifier: "polyline", source: source)
+        layer.lineJoin = MGLStyleValue(rawValue: NSValue(mglLineJoin: .round))
+        layer.lineCap = MGLStyleValue(rawValue: NSValue(mglLineCap: .round))
+        layer.lineColor = MGLStyleValue(rawValue: UIColor.blue)
+        layer.lineWidth = MGLStyleFunction(interpolationMode: .exponential,
+                                           cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 2),
+                                                         18: MGLConstantStyleValue<NSNumber>(rawValue: 6)],
+                                           options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.0)])
+        style.addLayer(layer)
+    }
+    func addRoomLayer(to style: MGLStyle, vectorSource: String, configURL: String, sourceLayer: String) {
+        // Test code for adding the Map Layer
+        let layerSource = MGLVectorSource(identifier: vectorSource, configurationURL: URL(string: configURL)!)
+        style.addSource(layerSource)
+        // Create a style layer using the vector source.
+        let actualLayer = MGLFillStyleLayer(identifier: vectorSource, source: layerSource)
+        
+        actualLayer.sourceLayerIdentifier = sourceLayer
+        
+        // Set the fill pattern and opacity for the style layer.
+        actualLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
+        
+        style.addLayer(actualLayer)
+        
+    }
+    func addMarkerButton() {
+        
+        let button = UIButton(type: UIButtonType.custom) as UIButton
+        
+        button.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
+        button.setTitle("Testing marker placement", for: .normal)
+        button.isSelected = true
+        button.sizeToFit()
+        button.center.x = self.view.center.x
+        button.frame = CGRect(origin: CGPoint(x: button.frame.origin.x, y: self.view.frame.size.height - button.frame.size.height - 5), size: button.frame.size)
+        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
 
+    // TODO: generalize handletap and changeopacity for all layers
+    func handleTap(_ gesture: UITapGestureRecognizer) {
+        
+        // Get the CGPoint where the user tapped.
+        let spot = gesture.location(in: mapView)
+        
+        // Access the features at that point within the state layer.
+        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(["Art Rooms", "Elevators"]))
+        
+        // TO CHANGE KEY TO ID
+        // Get the name of the selected state.
+        if let feature = features.first, let state = feature.attribute(forKey: "Art Rooms") as? String{
+            changeOpacity(name: state)
+        } else {
+            changeOpacity(name: "")
+        }
+    }
+    
+    //this should apply to all layers
+    func changeOpacity(name: String) {
+        let layer = mapView.style?.layer(withIdentifier: "Art Rooms") as! MGLFillStyleLayer
+        
+        // TO CHANGE KEY TO ID
+        // Check if a state was selected, then change the opacity of the states that were not selected.
+        if name.characters.count > 0 {
+            layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "Art Rooms", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0)])
+        } else {
+            // Reset the opacity for all states if the user did not tap on a state.
+            layer.fillOpacity = MGLStyleValue(rawValue: 1)
+        }
+    }
+    
+    
+}
+
+// MGLAnnotationView subclass
+class CustomAnnotationView: MGLAnnotationView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Force the annotation view to maintain a constant size when the map is tilted.
+        scalesWithViewingDistance = false
+        
+        // Use CALayer’s corner radius to turn this view into a circle.
+        layer.cornerRadius = frame.width / 2
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.white.cgColor
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Animate the border width in/out, creating an iris effect.
+        let animation = CABasicAnimation(keyPath: "borderWidth")
+        animation.duration = 0.1
+        layer.borderWidth = selected ? frame.width / 4 : 2
+        layer.add(animation, forKey: "borderWidth")
+    }
+}
 // MGLPointAnnotation subclass, really, this is just to identify that the
 class MyCustomPointAnnotation: MGLPointAnnotation {
     var willUseImage: Bool = false
