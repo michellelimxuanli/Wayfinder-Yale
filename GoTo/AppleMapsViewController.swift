@@ -266,28 +266,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         SVProgressHUD.dismiss()
     }
     
-//     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-//        
-//        // Thisis for the Current Location Cirlce
-//        guard annotation is MGLPointAnnotation else {
-//            return nil
-//        }
-//        
-//        // For better performance, always try to reuse existing annotations.
-//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle")
-//        
-//        // If there’s no reusable annotation view available, initialize a new one.
-//        if annotationView == nil {
-//            annotationView = CustomAnnotationView(reuseIdentifier: "circle")
-//            annotationView!.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-//            
-//            // Set the annotation view’s background color to a value determined by its longitude.
-//            annotationView!.backgroundColor = UIColor.blue
-//        }
-//        
-//        return annotationView
-//    }
-    
     // MARK: - MGLMapViewDelegate methods
     
     // This delegate method is where you tell the map to load a view for a specific annotation. To load a static MGLAnnotationImage, you would use `-mapView:imageForAnnotation:`.
@@ -303,14 +281,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         }
         else {
             return nil
-//            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle") {
-//                return annotationView
-//            } else {
-//                let annotationView = CustomAnnotationView(reuseIdentifier: "circle")
-//                annotationView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-//                annotationView.backgroundColor = UIColor.blue
-//                return annotationView
-//            }
         }
     }
     
@@ -391,8 +361,8 @@ class DraggableAnnotationView: MGLAnnotationView {
     // Wait until the map is loaded before adding to the map.
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         addLayer(to: style)
-        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.3us1mnug", sourceLayer: "Art_Rooms-a2rv20")
-        addRoomLayer(to: style, vectorSource: "Elevators", configURL: "mapbox://ml2445.96tmc7k0", sourceLayer: "Elevators-7x4njs ")
+        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.4ypuarpj", sourceLayer: "Art_Rooms_V2-61f534")
+        addRoomLayer(to: style, vectorSource: "Elevators", configURL: "mapbox://ml2445.btifad83", sourceLayer: "Elevators_V2-9yu6yi")
     }
     
     func addLayer(to style: MGLStyle) {
@@ -454,21 +424,30 @@ class DraggableAnnotationView: MGLAnnotationView {
         
         // TO CHANGE KEY TO ID
         // Get the name of the selected state.
-        if let feature = features.first, let state = feature.attribute(forKey: "Art Rooms") as? String{
-            changeOpacity(name: state)
+        if let feature = features.first, let state = feature.attribute(forKey: "id") as? String{
+            changeOpacity(name: state, layername:getLayerNameFromFeature(attributes: feature.attributes as! [String : String])!)
         } else {
-            changeOpacity(name: "")
+            changeOpacity(name: "", layername: "")
         }
     }
     
+    func getLayerNameFromFeature(attributes :[String:String]) -> String? {
+        for key in attributes.keys {
+            if key != "id"{
+                return key
+            }
+        }
+        return nil
+    }
+    
     //this should apply to all layers
-    func changeOpacity(name: String) {
-        let layer = mapView.style?.layer(withIdentifier: "Art Rooms") as! MGLFillStyleLayer
+    func changeOpacity(name: String, layername: String) {
+        let layer = mapView.style?.layer(withIdentifier: layername) as! MGLFillStyleLayer
         
         // TO CHANGE KEY TO ID
         // Check if a state was selected, then change the opacity of the states that were not selected.
         if name.characters.count > 0 {
-            layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "Art Rooms", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0)])
+            layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "id", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0)])
         } else {
             // Reset the opacity for all states if the user did not tap on a state.
             layer.fillOpacity = MGLStyleValue(rawValue: 1)
