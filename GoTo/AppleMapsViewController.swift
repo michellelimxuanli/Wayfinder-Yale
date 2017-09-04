@@ -13,7 +13,7 @@ import Mapbox
 import Alamofire
 
 // View controller for Apple Maps Example
-class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationManagerDelegate {
+class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
     var resultSearchController:UISearchController? = nil
     
@@ -56,6 +56,13 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         // Testing a function here: 
         // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
         getPath(start: "1", end: "4")
+        
+        
+        
+        // Enable touch gesture for selection of polygon
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        gesture.delegate = self
+        mapView.addGestureRecognizer(gesture)
     }
     
     func getPath(start: String, end: String){
@@ -285,6 +292,38 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         // Always allow callouts to popup when annotations are tapped.
         return true
+    }
+    
+    // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
+    
+    func handleTap(_ gesture: UITapGestureRecognizer) {
+        
+        // Get the CGPoint where the user tapped.
+        let spot = gesture.location(in: mapView)
+        
+        // Access the features at that point within the state layer.
+        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(["Art Rooms"]))
+        
+        //just to see what's inside the attributes: I added the third parameter
+        
+        // Get the name of the selected state.
+        if let feature = features.first, let state = feature.attribute(forKey: "Art Rooms") as? String{
+            changeOpacity(name: state)
+        } else {
+            changeOpacity(name: "")
+        }
+    }
+    
+    func changeOpacity(name: String) {
+        let layer = mapView.style?.layer(withIdentifier: "Art Rooms") as! MGLFillStyleLayer
+        
+        // Check if a state was selected, then change the opacity of the states that were not selected.
+        if name.characters.count > 0 {
+            layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "Art Rooms", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0)])
+        } else {
+            // Reset the opacity for all states if the user did not tap on a state.
+            layer.fillOpacity = MGLStyleValue(rawValue: 1)
+        }
     }
     
     
