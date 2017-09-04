@@ -18,6 +18,12 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     // Remember the current selected Node or searched Node 
     var selectedNode: Node = Node()
     
+    // Remember the current location coordinates 
+    var userCoordinates: CLLocationCoordinate2D?
+    
+    // Remember the current location's annotation
+    var currentAnnotation: MGLPointAnnotation?
+    
     var resultSearchController:UISearchController? = nil
     
     var mapView: MGLMapView!
@@ -50,7 +56,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
         selectedNode.id = "4"
-
         // Testing a function here: 
         // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
         getPath(start: "1", end: selectedNode.id)
@@ -142,12 +147,23 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         return true
     }
     
-    func addAnnotation(center: CLLocationCoordinate2D) {
-        let annotation = MGLPointAnnotation()
-        annotation.coordinate = center
+    func addCurrentLocation(center: CLLocationCoordinate2D) {
+        currentAnnotation = MGLPointAnnotation()
+        currentAnnotation?.coordinate = center
+        mapView.addAnnotation(currentAnnotation!)
         
+    }
+    func addMarkerAnnotation(center: CLLocationCoordinate2D) {
+        let annotation = MyCustomPointAnnotation()
+        annotation.coordinate = center
         mapView.addAnnotation(annotation)
         
+    }
+    
+    func onClick(sender:UIButton!) {
+        print("Button Clicked")
+        // trigger a method that places a marker on the current location for that very point in time
+        addMarkerAnnotation(center: userCoordinates!)
     }
     
     // This function is called whenever new location is received from IALocationManager
@@ -162,9 +178,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
             SVProgressHUD.dismiss()
             
             // Remove all previous overlays from the map and add new
-            mapView.removeAnnotations(mapView.annotations!)
-            addAnnotation(center: newLocation)
-
+            if let currentAnnotation = currentAnnotation{
+                mapView.removeAnnotation(currentAnnotation)
+            }
+            userCoordinates = newLocation
+            //addCurrentLocation(center: userCoordinates!)
         }
     }
     
@@ -193,11 +211,13 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
         mapView.delegate = self
-        addAnnotation(center: initial_center)
         // Enable touch gesture for selection of polygon
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         gesture.delegate = self
         mapView.addGestureRecognizer(gesture)
+        
+        // Test Button for the Marker Placement
+        addMarkerButton()
         
         UIApplication.shared.isStatusBarHidden = true
         
@@ -223,7 +243,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     
      func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         
-        // This example is only concerned with point annotations.
+        // Thisis for the Current Location Cirlce
         guard annotation is MGLPointAnnotation else {
             return nil
         }
@@ -242,6 +262,22 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         
         return annotationView
     }
+    
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MyCustomPointAnnotation) -> MGLAnnotationView?  {
+        
+        // This is for the Marker Location Marker
+        guard annotation is MyCustomPointAnnotation else {
+            return nil
+        }
+        
+        // For better performance, always try to reuse existing annotations. To use multiple different annotation views, change the reuse identifier for each.
+        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "draggablePoint") {
+            return annotationView
+        } else {
+            return DraggableAnnotationView(reuseIdentifier: "draggablePoint", size: 50)
+        }
+    }
+    
     
     // Wait until the map is loaded before adding to the map.
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
@@ -281,6 +317,19 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         
         style.addLayer(actualLayer)
         
+    }
+    func addMarkerButton() {
+        
+        let button = UIButton(type: UIButtonType.custom) as UIButton
+        
+        button.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
+        button.setTitle("Testing marker placement", for: .normal)
+        button.isSelected = true
+        button.sizeToFit()
+        button.center.x = self.view.center.x
+        button.frame = CGRect(origin: CGPoint(x: button.frame.origin.x, y: self.view.frame.size.height - button.frame.size.height - 5), size: button.frame.size)
+        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
+        self.view.addSubview(button)
     }
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
@@ -348,4 +397,76 @@ class CustomAnnotationView: MGLAnnotationView {
         layer.borderWidth = selected ? frame.width / 4 : 2
         layer.add(animation, forKey: "borderWidth")
     }
+}
+
+class DraggableAnnotationView: MGLAnnotationView {
+    init(reuseIdentifier: String, size: CGFloat) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        
+        // `isDraggable` is a property of MGLAnnotationView, disabled by default.
+        isDraggable = true
+        
+        // This property prevents the annotation from changing size when the map is tilted.
+        scalesWithViewingDistance = false
+        
+        // Begin setting up the view.
+        frame = CGRect(x: 0, y: 0, width: size, height: size)
+        
+        backgroundColor = .darkGray
+        
+        // Use CALayer’s corner radius to turn this view into a circle.
+        layer.cornerRadius = size / 2
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.white.cgColor
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.1
+    }
+    
+    // These two initializers are forced upon us by Swift.
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Custom handler for changes in the annotation’s drag state.
+    override func setDragState(_ dragState: MGLAnnotationViewDragState, animated: Bool) {
+        super.setDragState(dragState, animated: animated)
+        
+        switch dragState {
+        case .starting:
+            print("Starting", terminator: "")
+            startDragging()
+        case .dragging:
+            print(".", terminator: "")
+        case .ending, .canceling:
+            print("Ending")
+            endDragging()
+        case .none:
+            return
+        }
+    }
+    
+    // When the user interacts with an annotation, animate opacity and scale changes.
+    func startDragging() {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+            self.layer.opacity = 0.8
+            self.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+        }, completion: nil)
+    }
+    
+    func endDragging() {
+        transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+            self.layer.opacity = 1
+            self.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+        }, completion: nil)
+    }
+}
+
+// MGLPointAnnotation subclass, really, this is just to identify that the
+class MyCustomPointAnnotation: MGLPointAnnotation {
+    var willUseImage: Bool = false
 }
