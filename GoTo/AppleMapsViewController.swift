@@ -15,6 +15,9 @@ import Alamofire
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
+    // Remember the current selected Node or searched Node 
+    var selectedNode: Node = Node()
+    
     var resultSearchController:UISearchController? = nil
     
     var mapView: MGLMapView!
@@ -52,10 +55,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
         addAnnotation(center: initial_center)
+        selectedNode.id = "4"
 
         // Testing a function here: 
         // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
-        getPath(start: "1", end: "4")
+        getPath(start: "1", end: selectedNode.id)
         
         
         
@@ -66,6 +70,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     }
     
     func getPath(start: String, end: String){
+        
+        // TODO: Use the SELECTED NODE for drawing path
         let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
         let base64LoginData = loginData.base64EncodedString()
         
