@@ -18,7 +18,7 @@ struct Node {
 extension Node {
     init?(object_passed_in: [String: Any?]) {
         if let name = object_passed_in["name"]{
-            self.name = name as! String}
+            self.name = name as? String}
         self.id = object_passed_in["id"] as! String
         self.longitude = object_passed_in["longitude"] as! String
         self.latitude = object_passed_in["latitude"] as! String

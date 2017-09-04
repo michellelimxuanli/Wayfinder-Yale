@@ -32,6 +32,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+ 
         
         // Setting up Search Bar
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
@@ -50,11 +51,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
+        addAnnotation(center: initial_center)
         
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
-        addAnnotation(center: initial_center)
         selectedNode.id = "4"
 
         // Testing a function here: 
@@ -241,26 +242,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         guard annotation is MGLPointAnnotation else {
             return nil
         }
-
-//        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
-//        
-//        if annotationImage == nil {
-//            var image = UIImage(named: "circle")!
-//            
-//            // The anchor point of an annotation is currently always the center. To
-//            // shift the anchor point to the bottom of the annotation, the image
-//            // asset includes transparent bottom padding equal to the original image
-//            // height.
-//            //
-//            // To make this padding non-interactive, we create another image object
-//            // with a custom alignment rect that excludes the padding.
-//            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
-//            image = Helper.ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
-//            // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
-//            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
-//        }
-//        
-//        return annotationImage
         
         // For better performance, always try to reuse existing annotations.
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle")
@@ -268,11 +249,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         // If there’s no reusable annotation view available, initialize a new one.
         if annotationView == nil {
             annotationView = CustomAnnotationView(reuseIdentifier: "circle")
-            annotationView!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            annotationView!.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
             
             // Set the annotation view’s background color to a value determined by its longitude.
-            let hue = CGFloat(annotation.coordinate.longitude) / 100
-            annotationView!.backgroundColor = UIColor(hue: hue, saturation: 0.5, brightness: 1, alpha: 1)
+            annotationView!.backgroundColor = UIColor.blue
         }
         
         return annotationView
