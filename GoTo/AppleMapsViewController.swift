@@ -46,13 +46,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
         
-        // Setting up Map View
-        mapView = MGLMapView(frame: view.bounds)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
-        view.addSubview(mapView)
-        addAnnotation(center: initial_center)
-        
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
@@ -62,12 +55,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
         getPath(start: "1", end: selectedNode.id)
         
-        
-        
-        // Enable touch gesture for selection of polygon
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        gesture.delegate = self
-        mapView.addGestureRecognizer(gesture)
     }
     
     func getPath(start: String, end: String){
@@ -200,19 +187,17 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     // When the view will appear, set up the mapView and its delegate and start requesting location
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        mapView.frame = view.bounds
+        // Setting up Map View
+        mapView = MGLMapView(frame: view.bounds)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
-        view.sendSubview(toBack: mapView)
         mapView.delegate = self
-        
-        var frame = view.bounds
-        frame.origin.y = 64
-        frame.size.height = 42
-        label.frame = frame
-        label.textAlignment = NSTextAlignment.center
-        label.numberOfLines = 0
-        view.addSubview(label)
+        addAnnotation(center: initial_center)
+        // Enable touch gesture for selection of polygon
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        gesture.delegate = self
+        mapView.addGestureRecognizer(gesture)
         
         UIApplication.shared.isStatusBarHidden = true
         
