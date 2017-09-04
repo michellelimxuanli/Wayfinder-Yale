@@ -235,27 +235,47 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         SVProgressHUD.dismiss()
     }
     
-    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
-        // Try to reuse the existing ‘pisa’ annotation image, if it exists.
-        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
+     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         
-        if annotationImage == nil {
-            var image = UIImage(named: "circle")!
+        // This example is only concerned with point annotations.
+        guard annotation is MGLPointAnnotation else {
+            return nil
+        }
+
+//        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
+//        
+//        if annotationImage == nil {
+//            var image = UIImage(named: "circle")!
+//            
+//            // The anchor point of an annotation is currently always the center. To
+//            // shift the anchor point to the bottom of the annotation, the image
+//            // asset includes transparent bottom padding equal to the original image
+//            // height.
+//            //
+//            // To make this padding non-interactive, we create another image object
+//            // with a custom alignment rect that excludes the padding.
+//            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
+//            image = Helper.ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
+//            // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
+//            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
+//        }
+//        
+//        return annotationImage
+        
+        // For better performance, always try to reuse existing annotations.
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle")
+        
+        // If there’s no reusable annotation view available, initialize a new one.
+        if annotationView == nil {
+            annotationView = CustomAnnotationView(reuseIdentifier: "circle")
+            annotationView!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
             
-            // The anchor point of an annotation is currently always the center. To
-            // shift the anchor point to the bottom of the annotation, the image
-            // asset includes transparent bottom padding equal to the original image
-            // height.
-            //
-            // To make this padding non-interactive, we create another image object
-            // with a custom alignment rect that excludes the padding.
-            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
-            image = Helper.ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
-            // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
-            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
+            // Set the annotation view’s background color to a value determined by its longitude.
+            let hue = CGFloat(annotation.coordinate.longitude) / 100
+            annotationView!.backgroundColor = UIColor(hue: hue, saturation: 0.5, brightness: 1, alpha: 1)
         }
         
-        return annotationImage
+        return annotationView
     }
     
     // Wait until the map is loaded before adding to the map.
@@ -338,4 +358,29 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     }
     
     
+}
+
+// MGLAnnotationView subclass
+class CustomAnnotationView: MGLAnnotationView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Force the annotation view to maintain a constant size when the map is tilted.
+        scalesWithViewingDistance = false
+        
+        // Use CALayer’s corner radius to turn this view into a circle.
+        layer.cornerRadius = frame.width / 2
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.white.cgColor
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Animate the border width in/out, creating an iris effect.
+        let animation = CABasicAnimation(keyPath: "borderWidth")
+        animation.duration = 0.1
+        layer.borderWidth = selected ? frame.width / 4 : 2
+        layer.add(animation, forKey: "borderWidth")
+    }
 }
