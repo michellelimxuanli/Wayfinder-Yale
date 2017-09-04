@@ -52,7 +52,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
         addAnnotation(center: initial_center)
-        
+
         // Testing a function here: 
         // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
         getPath(start: "1", end: "4")
@@ -75,6 +75,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
                 "id4": end
             ]
         ]
+        
         var newListOfCoordinates: [CLLocationCoordinate2D] = []
         
         Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
@@ -265,6 +266,20 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
                                                          18: MGLConstantStyleValue<NSNumber>(rawValue: 6)],
                                            options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.0)])
         style.addLayer(layer)
+        
+        // Test code for adding the Map Layer, Test whether the selected polygon method works
+        let layerSource = MGLVectorSource(identifier: "Art Rooms", configurationURL: URL(string: "mapbox://ml2445.3us1mnug")!)
+        style.addSource(layerSource)
+        // Create a style layer using the vector source.
+        let actualLayer = MGLFillStyleLayer(identifier: "Art Rooms", source: layerSource)
+        
+        actualLayer.sourceLayerIdentifier = "Art_Rooms-a2rv20"
+        
+        // Set the fill pattern and opacity for the style layer.
+        actualLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
+        
+        style.addLayer(actualLayer)
+        
     }
     
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
