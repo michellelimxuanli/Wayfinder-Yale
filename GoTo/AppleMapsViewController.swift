@@ -142,6 +142,30 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
 
     }
     
+    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
+        // Try to reuse the existing ‘pisa’ annotation image, if it exists.
+        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
+        
+        if annotationImage == nil {
+            var image = UIImage(named: "circle")!
+            
+            // The anchor point of an annotation is currently always the center. To
+            // shift the anchor point to the bottom of the annotation, the image
+            // asset includes transparent bottom padding equal to the original image
+            // height.
+            //
+            // To make this padding non-interactive, we create another image object
+            // with a custom alignment rect that excludes the padding.
+            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
+            image = ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
+            // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
+            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
+        }
+        
+        return annotationImage
+    }
+
+    
     // Hide status bar
     override var prefersStatusBarHidden : Bool {
         return true
@@ -481,4 +505,13 @@ class CustomAnnotationView: MGLAnnotationView {
 // MGLPointAnnotation subclass, really, this is just to identify that the
 class MyCustomPointAnnotation: MGLPointAnnotation {
     var willUseImage: Bool = false
+}
+
+//from https://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage
+func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage{
+    UIGraphicsBeginImageContextWithOptions(targetSize, false, 0.0);
+    image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: targetSize.width, height: targetSize.height)))
+    let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    return newImage
 }
