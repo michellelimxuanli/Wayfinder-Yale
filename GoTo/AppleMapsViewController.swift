@@ -99,6 +99,39 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
             }
 
         }
+        
+        // Test code here: to fetch the nearest node
+        // Find shortest path via a list of Nodes
+        let nearestNodes: Parameters = [
+            "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) + {longitude}) < 0.00012660499 RETURN n",
+            "params" : [
+                "latitude": 41.31582353,
+                "longitude": 72.92588508
+            ]
+        ]
+        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: nearestNodes, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            var sumOfSquares: Double = 0
+            var closestNode: Node = Node()
+            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+            let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
+            for result in arrayOfDicts {
+                for item in result{
+                    let propertiesOfNode = item["data"] as! [String:Any?]
+                    let node: Node = Node(object_passed_in: propertiesOfNode)!
+                    if sumOfSquares == 0 {
+                        closestNode = node
+                        sumOfSquares = pow(Double(node.latitude)! - 41.31582353, 2) + pow(Double(node.longitude)! + 72.92588508, 2)
+                    } else {
+                        let currentSumOfSquares = pow(Double(node.latitude)! - 41.31582353, 2) + pow(Double(node.longitude)! + 72.92588508, 2)
+                        if currentSumOfSquares < sumOfSquares {
+                            closestNode = node
+                            sumOfSquares = currentSumOfSquares
+                        }
+                    }
+                }
+            }
+         print("Closest Node is here \(closestNode)")
+        }
 
     }
     
@@ -129,12 +162,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, IALocationM
             // Remove all previous overlays from the map and add new
             mapView.removeAnnotations(mapView.annotations!)
             addAnnotation(center: newLocation)
-            
-//            // Ask Map Kit for a camera that looks at the location from an altitude of 300 meters above the eye coordinates.
-//            camera = MKMapCamera(lookingAtCenter: (l.location?.coordinate)!, fromEyeCoordinate: (l.location?.coordinate)!, eyeAltitude: 300)
-//            
-//            // Assign the camera to your map view.
-//            map.camera = camera;
+
         }
     }
     
