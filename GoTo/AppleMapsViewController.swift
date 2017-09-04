@@ -278,15 +278,15 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
             }
         }
         else {
-            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle") {
-                return annotationView
-            } else {
-                let annotationView = CustomAnnotationView(reuseIdentifier: "circle")
-                annotationView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-                annotationView.backgroundColor = UIColor.blue
-                return annotationView
-            }
-
+            return nil
+//            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "circle") {
+//                return annotationView
+//            } else {
+//                let annotationView = CustomAnnotationView(reuseIdentifier: "circle")
+//                annotationView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+//                annotationView.backgroundColor = UIColor.blue
+//                return annotationView
+//            }
         }
     }
     
