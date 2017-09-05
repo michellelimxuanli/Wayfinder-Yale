@@ -19,6 +19,7 @@ extension String {
 
 class LocationSearchTable : UITableViewController {
     var matchingItems:[Node] = []
+    var handleMapSearchDelegate:HandleMapSearch? = nil
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
@@ -87,6 +88,7 @@ extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row]
         print(selectedItem)
+        handleMapSearchDelegate?.dropPinZoomIn(selectedNode: selectedItem)
         dismiss(animated: true, completion: nil)
     }
 }

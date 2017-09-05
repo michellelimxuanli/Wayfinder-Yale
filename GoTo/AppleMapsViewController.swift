@@ -12,14 +12,21 @@ import SVProgressHUD
 import Mapbox
 import Alamofire
 
+protocol HandleMapSearch {
+    func dropPinZoomIn(selectedNode:Node)
+}
+
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
     // Remember the current selected Node or searched Node 
-    var selectedNode: Node = Node()
+//    var selectedNode: Node?
     
     // Remember the current location coordinates 
     var userCoordinates: CLLocationCoordinate2D?
+    
+    var styleLayerArray: [String] = ["Art Rooms", "Elevators"]
+    
     
     // Remember the current location's annotation
     var currentAnnotation: MGLPointAnnotation?
@@ -55,10 +62,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
-        selectedNode.id = "4"
         // Testing a function here: 
         // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
-        getPath(start: "1", end: selectedNode.id)
+        getPath(start: "1", end: "4")
+        locationSearchTable.handleMapSearchDelegate = self
         
     }
     
@@ -420,9 +427,8 @@ class DraggableAnnotationView: MGLAnnotationView {
         let spot = gesture.location(in: mapView)
         
         // Access the features at that point within the state layer.
-        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(["Art Rooms", "Elevators"]))
+        let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(styleLayerArray))
         
-        // TO CHANGE KEY TO ID
         // Get the name of the selected state.
         if let feature = features.first, let state = feature.attribute(forKey: "id") as? String{
             changeOpacity(name: state, layername:getLayerNameFromFeature(attributes: feature.attributes as! [String : String])!)
@@ -442,17 +448,32 @@ class DraggableAnnotationView: MGLAnnotationView {
     
     //this should apply to all layers
     func changeOpacity(name: String, layername: String) {
+        // layer is present
         if let layer = mapView.style?.layer(withIdentifier: layername) as! MGLFillStyleLayer? {
-        
-        // TO CHANGE KEY TO ID
-        // Check if a state was selected, then change the opacity of the states that were not selected.
-        if name.characters.count > 0 {
-            layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "id", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0)])
+            // Check if a state was selected, then change the opacity of the states that were not selected.
+            if name.characters.count > 0 {
+                for eachLayerName in styleLayerArray {
+                    if (eachLayerName == layername) {
+                        layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "id", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0.5)])
+                    } else {
+                        if let eachLayer = mapView.style?.layer(withIdentifier: eachLayerName) as! MGLFillStyleLayer? {
+                            eachLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
+                        }
+                    }
+                }
+            
+            } else {
+                // Reset the opacity for all states if the user did not tap on a state.
+                layer.fillOpacity = MGLStyleValue(rawValue: 0.5)
+            }
         } else {
-            // Reset the opacity for all states if the user did not tap on a state.
-            layer.fillOpacity = MGLStyleValue(rawValue: 1)
+            print("layer not available")
+            for eachLayerName in styleLayerArray {
+                if let eachLayer = mapView.style?.layer(withIdentifier: eachLayerName) as! MGLFillStyleLayer? {
+                    eachLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
+                }
+            }
         }
-        } 
     }
     
     
@@ -494,4 +515,20 @@ func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage{
     let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
     return newImage
+}
+
+extension AppleMapsViewController: HandleMapSearch {
+    func dropPinZoomIn(selectedNode:Node){
+        // Access the features at that point within the state layer.
+        let selectedcoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(selectedNode.latitude)!, longitude: Double(selectedNode.longitude)!)
+        // PROBLEM IS HERE: WHERE THE PATH DOT IS IS NOT ON THE MAP POLYGN! --> SOLUTION IS TO GET THE POINT FROM THE SHP FILE
+        let features = mapView.visibleFeatures(at: mapView.convert(selectedcoordinates, toPointTo: mapView), styleLayerIdentifiers: Set(styleLayerArray))
+        // TO CHANGE KEY TO ID
+        // Get the name of the selected state.
+        if let feature = features.first, let state = feature.attribute(forKey: selectedNode.id) as? String{
+            changeOpacity(name: state, layername:getLayerNameFromFeature(attributes: feature.attributes as! [String : String])!)
+        } else {
+            changeOpacity(name: "", layername: "")
+        }
+    }
 }
