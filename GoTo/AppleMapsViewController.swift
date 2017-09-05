@@ -442,7 +442,7 @@ class DraggableAnnotationView: MGLAnnotationView {
     
     //this should apply to all layers
     func changeOpacity(name: String, layername: String) {
-        let layer = mapView.style?.layer(withIdentifier: layername) as! MGLFillStyleLayer
+        if let layer = mapView.style?.layer(withIdentifier: layername) as! MGLFillStyleLayer? {
         
         // TO CHANGE KEY TO ID
         // Check if a state was selected, then change the opacity of the states that were not selected.
@@ -452,6 +452,7 @@ class DraggableAnnotationView: MGLAnnotationView {
             // Reset the opacity for all states if the user did not tap on a state.
             layer.fillOpacity = MGLStyleValue(rawValue: 1)
         }
+        } 
     }
     
     

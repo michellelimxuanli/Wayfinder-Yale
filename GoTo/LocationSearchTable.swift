@@ -81,3 +81,12 @@ extension LocationSearchTable {
         return cell
     }
 }
+
+extension LocationSearchTable {
+    @available(iOS 2.0, *)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = matchingItems[indexPath.row]
+        print(selectedItem)
+        dismiss(animated: true, completion: nil)
+    }
+}
