@@ -262,10 +262,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         
         // we'd probably want to set up constraints here in a real app
         cardView = CustomView(frame: CGRect(
-            origin: CGPoint(x: 0, y: 0),
-            size: UIScreen.main.bounds.size
+            origin: CGPoint(x: 10, y: UIScreen.main.bounds.height - 80 - 10),
+            size: CGSize(width: UIScreen.main.bounds.width - 20, height: 80)
         ))
-        cardView.title = "CodePath starts new class for designers"
         view.addSubview(cardView)
 
     }
@@ -444,6 +443,7 @@ class DraggableAnnotationView: MGLAnnotationView {
         
         // Get the name of the selected state.
         if let feature = features.first, let state = feature.attribute(forKey: "id") as? String , let layername = feature.attribute(forKey: "category") as? String{
+            cardView.title = feature.attribute(forKey: "name") as? String
             changeOpacity(name: state, layername:layername)
             // find the node corresponding to the polygon 
             // TODO: Use the SELECTED NODE for drawing path
