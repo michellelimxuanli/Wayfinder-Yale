@@ -19,6 +19,8 @@ protocol HandleMapSearch {
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
+    var cardView: CustomView!
+    
     // Remember the current selected Node or searched Node 
 //    var selectedNode: Node?
     
@@ -257,6 +259,14 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         requestLocation()
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
+        
+        // we'd probably want to set up constraints here in a real app
+        cardView = CustomView(frame: CGRect(
+            origin: CGPoint(x: 0, y: 0),
+            size: UIScreen.main.bounds.size
+        ))
+        cardView.title = "CodePath starts new class for designers"
+        view.addSubview(cardView)
 
     }
     
