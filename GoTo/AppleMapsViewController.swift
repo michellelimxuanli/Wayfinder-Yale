@@ -13,7 +13,7 @@ import Mapbox
 import Alamofire
 
 protocol HandleMapSearch {
-    func dropPinZoomIn(selectedNode:Node)
+    func dropPinZoomIn(selectedRoom:MGLFeature)
 }
 
 // View controller for Apple Maps Example
@@ -47,26 +47,13 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         super.viewDidLoad()
  
         
-        // Setting up Search Bar
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
-        navigationItem.titleView = resultSearchController?.searchBar
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
-        
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
         // Testing a function here: 
         // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
         getPath(start: "1", end: "4")
-        locationSearchTable.handleMapSearchDelegate = self
-        
+
     }
     
     func getPath(start: String, end: String){
@@ -237,6 +224,20 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
     // When the view will appear, set up the mapView and its delegate and start requesting location
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Setting up Search Bar
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+
         // Setting up Map View
         mapView = MGLMapView(frame: view.bounds)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -254,6 +255,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         UIApplication.shared.isStatusBarHidden = true
         
         requestLocation()
+        locationSearchTable.mapView = mapView
+        locationSearchTable.handleMapSearchDelegate = self
+
     }
     
     // When the view will disappear, stop updating location, remove map from the view and dismiss the HUD
@@ -368,8 +372,7 @@ class DraggableAnnotationView: MGLAnnotationView {
     // Wait until the map is loaded before adding to the map.
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         addLayer(to: style)
-        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.4ypuarpj", sourceLayer: "Art_Rooms_V2-61f534")
-        addRoomLayer(to: style, vectorSource: "Elevators", configURL: "mapbox://ml2445.btifad83", sourceLayer: "Elevators_V2-9yu6yi")
+        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.dtmpr3x3", sourceLayer: "Art_Rooms_V3-97bs8y")
     }
     
     func addLayer(to style: MGLStyle) {
@@ -430,21 +433,49 @@ class DraggableAnnotationView: MGLAnnotationView {
         let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(styleLayerArray))
         
         // Get the name of the selected state.
-        if let feature = features.first, let state = feature.attribute(forKey: "id") as? String{
-            changeOpacity(name: state, layername:getLayerNameFromFeature(attributes: feature.attributes as! [String : String])!)
+        if let feature = features.first, let state = feature.attribute(forKey: "id") as? String , let layername = feature.attribute(forKey: "category") as? String{
+            changeOpacity(name: state, layername:layername)
+            // find the node corresponding to the polygon 
+            // TODO: Use the SELECTED NODE for drawing path
+            let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
+            let base64LoginData = loginData.base64EncodedString()
+            let headers: HTTPHeaders = [
+                "Authorization": "Basic \(base64LoginData)",
+                "Accept": "application/json"
+            ]
+            let entryOfRoom: Parameters = [
+                "query" : "MATCH (n) WHERE n.id = {id} RETURN n",
+                "params" : [
+                    "id": state,
+                ]
+            ]
+            Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: entryOfRoom, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+                let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
+                print(arrayOfDicts)
+                // TODO: REACH IN TO GET IT AND SELECT THE NODE 
+//                for result in arrayOfDicts {
+//                    for item in result{
+//                        let nodes = item["nodes"] as! Array<String>
+//                        for URLtoNode in nodes {
+//                            let propertiesURL = "\(URLtoNode)/properties"
+//                            Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+//                                let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
+//                                let node: Node = Node(object_passed_in: propertiesOfNode)!
+//                            }
+//                        }
+//                        
+//                    }
+//                }
+                
+            }
+
+            
         } else {
             changeOpacity(name: "", layername: "")
         }
     }
     
-    func getLayerNameFromFeature(attributes :[String:String]) -> String? {
-        for key in attributes.keys {
-            if key != "id"{
-                return key
-            }
-        }
-        return nil
-    }
     
     //this should apply to all layers
     func changeOpacity(name: String, layername: String) {
@@ -518,17 +549,8 @@ func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage{
 }
 
 extension AppleMapsViewController: HandleMapSearch {
-    func dropPinZoomIn(selectedNode:Node){
-        // Access the features at that point within the state layer.
-        let selectedcoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(selectedNode.latitude)!, longitude: Double(selectedNode.longitude)!)
-        // PROBLEM IS HERE: WHERE THE PATH DOT IS IS NOT ON THE MAP POLYGN! --> SOLUTION IS TO GET THE POINT FROM THE SHP FILE
-        let features = mapView.visibleFeatures(at: mapView.convert(selectedcoordinates, toPointTo: mapView), styleLayerIdentifiers: Set(styleLayerArray))
-        // TO CHANGE KEY TO ID
-        // Get the name of the selected state.
-        if let feature = features.first, let state = feature.attribute(forKey: selectedNode.id) as? String{
-            changeOpacity(name: state, layername:getLayerNameFromFeature(attributes: feature.attributes as! [String : String])!)
-        } else {
-            changeOpacity(name: "", layername: "")
-        }
+    func dropPinZoomIn(selectedRoom:MGLFeature){
+        changeOpacity(name: (selectedRoom.attribute(forKey: "id") as? String)!, layername: (selectedRoom.attribute(forKey: "category") as? String)!)
     }
 }
+

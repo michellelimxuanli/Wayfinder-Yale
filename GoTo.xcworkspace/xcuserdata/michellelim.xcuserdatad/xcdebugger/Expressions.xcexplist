@@ -18,5 +18,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "LocationSearchTable.updateSearchResults(for : UISearchController) -&gt; ():LocationSearchTable.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mapView.accessibilityFrame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

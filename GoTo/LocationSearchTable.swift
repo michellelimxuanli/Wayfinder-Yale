@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import Mapbox
 
 extension String {
     func toBase64() -> String {
@@ -18,8 +19,10 @@ extension String {
 
 
 class LocationSearchTable : UITableViewController {
-    var matchingItems:[Node] = []
+    var matchingItems:[MGLFeature] = []
     var handleMapSearchDelegate:HandleMapSearch? = nil
+    var styleLayerArray: [String] = ["Art Rooms", "Elevators"]
+    var mapView: MGLMapView!
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
@@ -27,47 +30,28 @@ extension LocationSearchTable : UISearchResultsUpdating {
 
     @available(iOS 8.0, *)
     func updateSearchResults(for searchController: UISearchController){
-        var arrayOfResults:[Node] = []
+        var arrayOfResults:[MGLFeature] = []
         let searchBarText = searchController.searchBar.text
-        
-        let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
-        let base64LoginData = loginData.base64EncodedString()
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "Basic \(base64LoginData)",
-            "Accept": "application/json"
-        ]
         
         if searchBarText!.isEmpty {
             print ("search is empty")
         } else {
-        // Find Similar Items
-        let parameters: Parameters = [
-            "query" : "MATCH (n) WHERE LOWER(n.name) CONTAINS LOWER({searchstring}) RETURN n",
-            "params" : [
-                "searchstring": searchBarText
-            ]
-        ]
-        
-        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-
-            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
-            let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
-            for result in arrayOfDicts {
-                for item in result{
-                    let propertiesOfNode = item["data"] as! [String:Any?]
-                    let node: Node = Node(object_passed_in: propertiesOfNode)!
-                    arrayOfResults.append(node)
+            print(mapView)
+            let boundedRect:CGRect = mapView.convert(MGLCoordinateBoundsMake(CLLocationCoordinate2D(latitude:41.31521, longitude: -72.92666), CLLocationCoordinate2D(latitude:41.31621, longitude:-72.92475)), toRectTo: mapView)
+            let allVisibleFeatures: [MGLFeature] = mapView.visibleFeatures(in: boundedRect, styleLayerIdentifiers: Set(styleLayerArray))
+            for feature in allVisibleFeatures {
+                if let state = feature.attribute(forKey: "name") as? String{
+                    if state.contains(searchBarText!){
+                        arrayOfResults.append(feature)
+                    }
                 }
             }
+
             self.matchingItems = arrayOfResults
             self.tableView.reloadData()
-
         }
-        }
-        
     }
-    }
+}
 
 extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,7 +61,7 @@ extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         let selectedItem = matchingItems[indexPath.row]
-        cell.textLabel?.text = selectedItem.name
+        cell.textLabel?.text = selectedItem.attribute(forKey: "name") as? String
         cell.detailTextLabel?.text = ""
         return cell
     }
@@ -88,7 +72,7 @@ extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row]
         print(selectedItem)
-        handleMapSearchDelegate?.dropPinZoomIn(selectedNode: selectedItem)
+        handleMapSearchDelegate?.dropPinZoomIn(selectedRoom: selectedItem)
         dismiss(animated: true, completion: nil)
     }
 }
