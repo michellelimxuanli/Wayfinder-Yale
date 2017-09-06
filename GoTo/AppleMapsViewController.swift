@@ -21,8 +21,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     
     var cardView: CustomView!
     
-    // Remember the current selected Node or searched Node 
-//    var selectedNode: Node?
+    var selectedId: String?
     
     // Remember the current location coordinates 
     var userCoordinates: CLLocationCoordinate2D?
@@ -52,10 +51,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
         
-        // Testing a function here: 
-        // Takes in Current Location id and Selected Location id and Sets arrayOfCoordinates
-        getPath(start: "1", end: "4")
-
     }
     
     func getPath(start: String, end: String){
@@ -91,7 +86,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                             let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
                             let node: Node = Node(object_passed_in: propertiesOfNode)!
                             newListOfCoordinates.append(CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!))
-                            let polyline = MGLPolylineFeature(coordinates: newListOfCoordinates, count: 4)
+                            let polyline = MGLPolylineFeature(coordinates: newListOfCoordinates, count: 48)
                             self.polylineSource?.shape = polyline
                         }
                     }
@@ -151,17 +146,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         
         if annotationImage == nil {
             var image = UIImage(named: "circle")!
-            
-            // The anchor point of an annotation is currently always the center. To
-            // shift the anchor point to the bottom of the annotation, the image
-            // asset includes transparent bottom padding equal to the original image
-            // height.
-            //
-            // To make this padding non-interactive, we create another image object
-            // with a custom alignment rect that excludes the padding.
             image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
             image = ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
-            // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
             annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
         }
         
@@ -185,12 +171,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         let annotation = MyCustomPointAnnotation()
         annotation.coordinate = center
         mapView.addAnnotation(annotation)
-        
-    }
-    
-    func onClick(sender:UIButton!) {
-        print("Button Clicked")
-        // trigger a method that places a marker on the current location for that very point in time
         
     }
     
@@ -293,6 +273,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     
     func didPressButton(button:UIButton) {
         addMarkerAnnotation(center: userCoordinates!)
+        getPath(start: "1", end: selectedId!)
     }
     
     // MARK: - MGLMapViewDelegate methods
@@ -439,43 +420,8 @@ class DraggableAnnotationView: MGLAnnotationView {
         // Get the name of the selected state.
         if let feature = features.first, let state = feature.attribute(forKey: "id") as? String , let layername = feature.attribute(forKey: "category") as? String{
             cardView.title = feature.attribute(forKey: "name") as? String
+            selectedId = feature.attribute(forKey: "id") as? String
             changeOpacity(name: state, layername:layername)
-            // find the node corresponding to the polygon 
-            // TODO: Use the SELECTED NODE for drawing path
-            let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
-            let base64LoginData = loginData.base64EncodedString()
-            let headers: HTTPHeaders = [
-                "Authorization": "Basic \(base64LoginData)",
-                "Accept": "application/json"
-            ]
-            let entryOfRoom: Parameters = [
-                "query" : "MATCH (n) WHERE n.id = {id} RETURN n",
-                "params" : [
-                    "id": state,
-                ]
-            ]
-            Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: entryOfRoom, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
-                let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
-                print(arrayOfDicts)
-                // TODO: REACH IN TO GET IT AND SELECT THE NODE 
-//                for result in arrayOfDicts {
-//                    for item in result{
-//                        let nodes = item["nodes"] as! Array<String>
-//                        for URLtoNode in nodes {
-//                            let propertiesURL = "\(URLtoNode)/properties"
-//                            Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-//                                let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
-//                                let node: Node = Node(object_passed_in: propertiesOfNode)!
-//                            }
-//                        }
-//                        
-//                    }
-//                }
-                
-            }
-
-            
         } else {
             changeOpacity(name: "", layername: "")
         }

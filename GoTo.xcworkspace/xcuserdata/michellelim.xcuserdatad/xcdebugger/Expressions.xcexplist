@@ -3,7 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "AppleMapsViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):AppleMapsViewController.swift">
+         contextName = "AppleMapsViewController.addLayer(to : MGLStyle) -&gt; ():AppleMapsViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "arrayOfCoordinates">
@@ -11,7 +11,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AppleMapsViewController.addLayer(to : MGLStyle) -&gt; ():AppleMapsViewController.swift">
+         contextName = "AppleMapsViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):AppleMapsViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "arrayOfCoordinates">
@@ -23,6 +23,22 @@
          <PersistentStrings>
             <PersistentString
                value = "mapView.accessibilityFrame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppleMapsViewController.(getPath(start : String, end : String) -&gt; ()).(closure #1).(closure #1):AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "arrayOfDicts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppleMapsViewController.didPressButton(button : UIButton) -&gt; ():AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedId">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
