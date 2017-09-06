@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol DialogDelegate {
+    func didPressButton(button:UIButton)
+}
+
 class CustomView: UIView {
 
     @IBOutlet var topLevelCustomView: CustomView!
     @IBOutlet weak var roomTitle: UILabel!
     @IBOutlet weak var DirectionsButton: UIButton!
+    var delegate:DialogDelegate!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -35,5 +40,8 @@ class CustomView: UIView {
     var title: String? {
         get { return roomTitle?.text }
         set { roomTitle.text = newValue }
+    }
+    @IBAction func setNavigationMode(_ sender: UIButton) {
+        delegate.didPressButton(button: sender)
     }
 }

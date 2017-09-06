@@ -17,7 +17,7 @@ protocol HandleMapSearch {
 }
 
 // View controller for Apple Maps Example
-class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
+class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
     var cardView: CustomView!
     
@@ -265,6 +265,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
             origin: CGPoint(x: 10, y: UIScreen.main.bounds.height - 80 - 10),
             size: CGSize(width: UIScreen.main.bounds.width - 20, height: 80)
         ))
+        cardView.delegate = self
         view.addSubview(cardView)
 
     }
@@ -284,6 +285,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, UIGestureRe
         
         
         SVProgressHUD.dismiss()
+    }
+    
+    func didPressButton(button:UIButton) {
+        print("Pressed!")
     }
     
     // MARK: - MGLMapViewDelegate methods
