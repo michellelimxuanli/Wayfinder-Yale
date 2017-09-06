@@ -60,10 +60,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     
     func getPath(start: String, end: String){
         
-        // TODO: Use the SELECTED NODE for drawing path
         let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
         let base64LoginData = loginData.base64EncodedString()
-        
         let headers: HTTPHeaders = [
             "Authorization": "Basic \(base64LoginData)",
             "Accept": "application/json"
@@ -102,9 +100,17 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             }
 
         }
-        
+    }
+    
+    func closestNode(latitude:Double, longitude:Double){
         // Test code here: to fetch the nearest node
-        // Find shortest path via a list of Nodes
+        // TODO: Use the SELECTED NODE for drawing path
+        let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
+        let base64LoginData = loginData.base64EncodedString()
+        let headers: HTTPHeaders = [
+            "Authorization": "Basic \(base64LoginData)",
+            "Accept": "application/json"
+        ]
         let nearestNodes: Parameters = [
             "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) + {longitude}) < 0.00012660499 RETURN n",
             "params" : [
@@ -133,9 +139,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                     }
                 }
             }
-         print("Closest Node is here \(closestNode)")
+            print("Closest Node is here \(closestNode)")
         }
 
+        
     }
     
     func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
@@ -184,7 +191,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     func onClick(sender:UIButton!) {
         print("Button Clicked")
         // trigger a method that places a marker on the current location for that very point in time
-        addMarkerAnnotation(center: userCoordinates!)
+        
     }
     
     // This function is called whenever new location is received from IALocationManager
@@ -251,9 +258,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         gesture.delegate = self
         mapView.addGestureRecognizer(gesture)
         
-        // Test Button for the Marker Placement
-        addMarkerButton()
-        
         UIApplication.shared.isStatusBarHidden = true
         
         requestLocation()
@@ -288,7 +292,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     }
     
     func didPressButton(button:UIButton) {
-        print("Pressed!")
+        addMarkerAnnotation(center: userCoordinates!)
     }
     
     // MARK: - MGLMapViewDelegate methods
@@ -421,20 +425,6 @@ class DraggableAnnotationView: MGLAnnotationView {
         style.addLayer(actualLayer)
         
     }
-    func addMarkerButton() {
-        
-        let button = UIButton(type: UIButtonType.custom) as UIButton
-        
-        button.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
-        button.setTitle("Testing marker placement", for: .normal)
-        button.isSelected = true
-        button.sizeToFit()
-        button.center.x = self.view.center.x
-        button.frame = CGRect(origin: CGPoint(x: button.frame.origin.x, y: self.view.frame.size.height - button.frame.size.height - 5), size: button.frame.size)
-        button.addTarget(self, action: #selector(onClick), for: .touchUpInside)
-        self.view.addSubview(button)
-    }
-    
     // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
 
     // TODO: generalize handletap and changeopacity for all layers
