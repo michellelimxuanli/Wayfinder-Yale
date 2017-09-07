@@ -70,8 +70,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                 "id4": end
             ]
         ]
-        
-        var newListOfCoordinates: [CLLocationCoordinate2D] = []
+
         
         Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
@@ -79,21 +78,25 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
             for result in arrayOfDicts {
                 for item in result{
-                    let nodes = item["nodes"] as! Array<String>
-                    for URLtoNode in nodes {
+                    var nodes = item["nodes"] as! Array<String>
+                    var size = nodes.count
+                    var coordinatesArray = [CLLocationCoordinate2D](repeating: CLLocationCoordinate2D(), count: size)
+                    var noOfElements = 0
+                    for (index, URLtoNode) in nodes.enumerated() {
                         let propertiesURL = "\(URLtoNode)/properties"
                         Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
                             let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
                             let node: Node = Node(object_passed_in: propertiesOfNode)!
-                            newListOfCoordinates.append(CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!))
-                            let polyline = MGLPolylineFeature(coordinates: newListOfCoordinates, count: 48)
-                            self.polylineSource?.shape = polyline
+                            coordinatesArray[index] = CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!)
+                            noOfElements+=1
+                            if (noOfElements == nodes.count){
+                                let polyline = MGLPolylineFeature(coordinates: coordinatesArray, count: UInt(size))
+                                self.polylineSource?.shape = polyline
+                            }
                         }
                     }
-
                 }
             }
-
         }
     }
     
