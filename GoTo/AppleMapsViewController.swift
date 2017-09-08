@@ -31,6 +31,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     
     // Remember the current location's annotation
     var currentAnnotation: MGLPointAnnotation?
+    var annotation : MyCustomPointAnnotation?
     
     var resultSearchController:UISearchController? = nil
     
@@ -55,7 +56,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     
     func getPath(start: String, end: String){
         
-        let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
+        let loginData = String(format: "gotouser:b.9FyMRNWzPQda.jHQXK7LZo5IF4ahI").data(using: String.Encoding.utf8)!
         let base64LoginData = loginData.base64EncodedString()
         let headers: HTTPHeaders = [
             "Authorization": "Basic \(base64LoginData)",
@@ -72,7 +73,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         ]
 
         
-        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request("http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
             let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
             let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
@@ -100,10 +101,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         }
     }
     
-    func closestNode(latitude:Double, longitude:Double){
+    func closestNode(coordinates: CLLocationCoordinate2D) {
         // Test code here: to fetch the nearest node
         // TODO: Use the SELECTED NODE for drawing path
-        let loginData = String(format: "neo4j:password").data(using: String.Encoding.utf8)!
+        let loginData = String(format: "gotouser:b.9FyMRNWzPQda.jHQXK7LZo5IF4ahI").data(using: String.Encoding.utf8)!
         let base64LoginData = loginData.base64EncodedString()
         let headers: HTTPHeaders = [
             "Authorization": "Basic \(base64LoginData)",
@@ -112,11 +113,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         let nearestNodes: Parameters = [
             "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) + {longitude}) < 0.00012660499 RETURN n",
             "params" : [
-                "latitude": 41.31582353,
-                "longitude": 72.92588508
+                "latitude": coordinates.latitude,
+                "longitude": coordinates.longitude
             ]
         ]
-        Alamofire.request("http://127.0.0.1:7474/db/data/cypher", method: .post, parameters: nearestNodes, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request("http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher", method: .post, parameters: nearestNodes, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             var sumOfSquares: Double = 0
             var closestNode: Node = Node()
             let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
@@ -127,9 +128,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                     let node: Node = Node(object_passed_in: propertiesOfNode)!
                     if sumOfSquares == 0 {
                         closestNode = node
-                        sumOfSquares = pow(Double(node.latitude)! - 41.31582353, 2) + pow(Double(node.longitude)! + 72.92588508, 2)
+                        sumOfSquares = pow(Double(node.latitude)! - coordinates.latitude, 2) + pow(Double(node.longitude)! - coordinates.longitude, 2)
                     } else {
-                        let currentSumOfSquares = pow(Double(node.latitude)! - 41.31582353, 2) + pow(Double(node.longitude)! + 72.92588508, 2)
+                        let currentSumOfSquares = pow(Double(node.latitude)! - coordinates.latitude, 2) + pow(Double(node.longitude)! - coordinates.longitude, 2)
                         if currentSumOfSquares < sumOfSquares {
                             closestNode = node
                             sumOfSquares = currentSumOfSquares
@@ -139,6 +140,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             }
             print("Closest Node is here \(closestNode)")
         }
+        
+        //then run the closestNode thing in the red and print out error if we can't find the closest node
 
         
     }
@@ -170,10 +173,11 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         mapView.addAnnotation(currentAnnotation!)
         
     }
+    // adding the draggable point on the current user location
     func addMarkerAnnotation(center: CLLocationCoordinate2D) {
-        let annotation = MyCustomPointAnnotation()
-        annotation.coordinate = center
-        mapView.addAnnotation(annotation)
+        annotation = MyCustomPointAnnotation()
+        annotation?.coordinate = center
+        mapView.addAnnotation(annotation!)
         
     }
     
@@ -254,6 +258,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         ))
         cardView.delegate = self
         view.addSubview(cardView)
+        cardView.isHidden = true
 
     }
     
@@ -341,13 +346,12 @@ class DraggableAnnotationView: MGLAnnotationView {
         
         switch dragState {
         case .starting:
-            print("Starting", terminator: "")
             startDragging()
         case .dragging:
-            print(".", terminator: "")
+            print(".")
         case .ending, .canceling:
-            print("Ending")
             endDragging()
+        //closestNode(annotation?.coordinate)
         case .none:
             return
         }
@@ -422,6 +426,7 @@ class DraggableAnnotationView: MGLAnnotationView {
         
         // Get the name of the selected state.
         if let feature = features.first, let state = feature.attribute(forKey: "id") as? String , let layername = feature.attribute(forKey: "category") as? String{
+            cardView.isHidden  = false
             cardView.title = feature.attribute(forKey: "name") as? String
             selectedId = feature.attribute(forKey: "id") as? String
             changeOpacity(name: state, layername:layername)
@@ -449,10 +454,11 @@ class DraggableAnnotationView: MGLAnnotationView {
             
             } else {
                 // Reset the opacity for all states if the user did not tap on a state.
+                cardView.isHidden = true
                 layer.fillOpacity = MGLStyleValue(rawValue: 0.5)
             }
         } else {
-            print("layer not available")
+            cardView.isHidden = true
             for eachLayerName in styleLayerArray {
                 if let eachLayer = mapView.style?.layer(withIdentifier: eachLayerName) as! MGLFillStyleLayer? {
                     eachLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
@@ -505,6 +511,8 @@ func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage{
 extension AppleMapsViewController: HandleMapSearch {
     func dropPinZoomIn(selectedRoom:MGLFeature){
         changeOpacity(name: (selectedRoom.attribute(forKey: "id") as? String)!, layername: (selectedRoom.attribute(forKey: "category") as? String)!)
+        cardView.title = selectedRoom.attribute(forKey: "name") as? String
+        cardView.isHidden = false
     }
 }
 

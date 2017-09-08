@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536593.768006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "565"
-            endingLineNumber = "565">
+            startingLineNumber = "574"
+            endingLineNumber = "574">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536593.768006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "587"
-            endingLineNumber = "587">
+            startingLineNumber = "596"
+            endingLineNumber = "596">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536593.768006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "595"
-            endingLineNumber = "595">
+            startingLineNumber = "604"
+            endingLineNumber = "604">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526535694.802823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "prefersStatusBarHidden"
             landmarkType = "24">
          </BreakpointContent>
@@ -68,23 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "getPath(start:end:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
+            timestampString = "526450337.113571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -100,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
+            timestampString = "526450337.113571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "getPath(start:end:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -116,11 +100,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526450337.113571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "getPath(start:end:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoTo/AppleMapsViewController.swift"
+            timestampString = "526536332.71754"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "handleTap(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536332.71754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "handleTap(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536447.061712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "changeOpacity(name:layername:)"
             landmarkType = "7">
             <Locations>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536447.061712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
             landmarkName = "changeOpacity(name:layername:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536447.061712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "changeOpacity(name:layername:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -228,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536447.061712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "handleTap(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -337,11 +337,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526535694.802823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "indoorLocationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -353,11 +353,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536593.768006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
             landmarkName = "dropPinZoomIn(selectedRoom:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -369,11 +369,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536593.768006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
             landmarkName = "dropPinZoomIn(selectedRoom:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -385,11 +385,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536447.061712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
             landmarkName = "changeOpacity(name:layername:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -433,11 +433,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526535694.802823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -449,11 +449,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
+            timestampString = "526450337.113571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "getPath(start:end:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -465,11 +465,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
+            timestampString = "526536332.71754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "didPressButton(button:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -481,11 +481,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
+            timestampString = "526450337.113571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "getPath(start:end:)"
             landmarkType = "7">
             <Locations>
@@ -529,11 +529,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
+            timestampString = "526450337.113571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "getPath(start:end:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -545,140 +545,156 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "getPath(start:end:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437476.266839"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "getPath(start:end:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "getPath(start:end:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "GoTo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
-                  timestampString = "526437915.060278"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "1426">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "GoTo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
-                  timestampString = "526437915.063188"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "54">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437828.781707"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "getPath(start:end:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "GoTo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
-                  timestampString = "526437915.069765"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "1426">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "GoTo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
-                  timestampString = "526437915.071971"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "54">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoTo/AppleMapsViewController.swift"
-            timestampString = "526437852.526249"
+            timestampString = "526450337.113571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
             endingLineNumber = "93"
             landmarkName = "getPath(start:end:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoTo/AppleMapsViewController.swift"
+            timestampString = "526450337.113571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "getPath(start:end:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoTo/AppleMapsViewController.swift"
+            timestampString = "526450337.113571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "getPath(start:end:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "GoTo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
+                  timestampString = "526450821.822724"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "1426">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "GoTo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
+                  timestampString = "526450821.82463"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoTo/AppleMapsViewController.swift"
+            timestampString = "526450337.113571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "getPath(start:end:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "GoTo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
+                  timestampString = "526450821.831612"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "1426">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoTo.AppleMapsViewController.(getPath (start : Swift.String, end : Swift.String) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "GoTo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michellelim/Documents/GoTo/GoTo/AppleMapsViewController.swift"
+                  timestampString = "526450821.834093"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoTo/AppleMapsViewController.swift"
+            timestampString = "526450337.113571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "getPath(start:end:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoTo/AppleMapsViewController.swift"
+            timestampString = "526535694.802823"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "closestNode(coordinates:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

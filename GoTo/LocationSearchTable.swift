@@ -34,9 +34,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
         let searchBarText = searchController.searchBar.text
         
         if searchBarText!.isEmpty {
-            print ("search is empty")
         } else {
-            print(mapView)
             let boundedRect:CGRect = mapView.convert(MGLCoordinateBoundsMake(CLLocationCoordinate2D(latitude:41.31521, longitude: -72.92666), CLLocationCoordinate2D(latitude:41.31621, longitude:-72.92475)), toRectTo: mapView)
             let allVisibleFeatures: [MGLFeature] = mapView.visibleFeatures(in: boundedRect, styleLayerIdentifiers: Set(styleLayerArray))
             for feature in allVisibleFeatures {
@@ -71,7 +69,6 @@ extension LocationSearchTable {
     @available(iOS 2.0, *)
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row]
-        print(selectedItem)
         handleMapSearchDelegate?.dropPinZoomIn(selectedRoom: selectedItem)
         dismiss(animated: true, completion: nil)
     }
