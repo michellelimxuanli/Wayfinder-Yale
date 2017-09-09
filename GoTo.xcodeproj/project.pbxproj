@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0867822A1F5C9A58004B338F /* secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086782291F5C9A58004B338F /* secrets.swift */; };
+		086DE1D61F63A52F001B6B96 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1D51F63A52F001B6B96 /* ImageHelper.swift */; };
+		086DE1D81F63A61D001B6B96 /* DraggableAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1D71F63A61D001B6B96 /* DraggableAnnotationView.swift */; };
+		086DE1DA1F63A808001B6B96 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1D91F63A808001B6B96 /* CustomAnnotationView.swift */; };
 		08A053771F5FA16700167B9D /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A053761F5FA16700167B9D /* CustomView.xib */; };
 		08A053791F5FA63C00167B9D /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A053781F5FA63C00167B9D /* CustomView.swift */; };
 		08C0E2AD1F55EF8B007630DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E2AC1F55EF8B007630DC /* AppDelegate.swift */; };
@@ -45,7 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		086782291F5C9A58004B338F /* secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secrets.swift; sourceTree = "<group>"; };
+		086DE1D51F63A52F001B6B96 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		086DE1D71F63A61D001B6B96 /* DraggableAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableAnnotationView.swift; sourceTree = "<group>"; };
+		086DE1D91F63A808001B6B96 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		08935D5C1F59F8F900656BAB /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		08A053761F5FA16700167B9D /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		08A053781F5FA63C00167B9D /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -143,9 +147,11 @@
 				08F8C7D71F5AF88D00ADE4F3 /* ConnectionConfig.swift */,
 				08F8C7D91F5B6D2B00ADE4F3 /* LocationSearchTable.swift */,
 				08F944A41F5B977600197EAD /* Node.swift */,
-				086782291F5C9A58004B338F /* secrets.swift */,
 				08A053761F5FA16700167B9D /* CustomView.xib */,
 				08A053781F5FA63C00167B9D /* CustomView.swift */,
+				086DE1D51F63A52F001B6B96 /* ImageHelper.swift */,
+				086DE1D71F63A61D001B6B96 /* DraggableAnnotationView.swift */,
+				086DE1D91F63A808001B6B96 /* CustomAnnotationView.swift */,
 			);
 			path = GoTo;
 			sourceTree = "<group>";
@@ -497,12 +503,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C0E2AF1F55EF8B007630DC /* ViewController.swift in Sources */,
-				0867822A1F5C9A58004B338F /* secrets.swift in Sources */,
 				08C0E2AD1F55EF8B007630DC /* AppDelegate.swift in Sources */,
+				086DE1D61F63A52F001B6B96 /* ImageHelper.swift in Sources */,
 				08C0E3171F566B27007630DC /* AppleMapsViewController.swift in Sources */,
 				08A053791F5FA63C00167B9D /* CustomView.swift in Sources */,
+				086DE1DA1F63A808001B6B96 /* CustomAnnotationView.swift in Sources */,
 				08F8C7DA1F5B6D2B00ADE4F3 /* LocationSearchTable.swift in Sources */,
 				08C0E2DB1F55F9B3007630DC /* ApiKeys.swift in Sources */,
+				086DE1D81F63A61D001B6B96 /* DraggableAnnotationView.swift in Sources */,
 				08F8C7D81F5AF88D00ADE4F3 /* ConnectionConfig.swift in Sources */,
 				08F944A51F5B977600197EAD /* Node.swift in Sources */,
 			);
