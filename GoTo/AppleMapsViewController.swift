@@ -100,7 +100,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         ))
         //navigationView.delegate = self
         view.addSubview(navigationView)
-        navigationView.isHidden = true
         
     }
     

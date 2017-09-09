@@ -10,9 +10,12 @@ import UIKit
 
 
 class NavigationView: UIView {
+
     @IBOutlet var topLevelCustomView: UIView!
-    @IBOutlet weak var instruction: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var confirmLocation: UIButton!
+    @IBOutlet weak var instruction: UILabel!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -26,14 +29,10 @@ class NavigationView: UIView {
     
     func initSubviews() {
         // standard initialization logic
-        let nib = UINib(nibName: "CustomView", bundle: nil)
+        let nib = UINib(nibName: "NavigationView", bundle: nil)
         nib.instantiate(withOwner: self, options: nil)
         topLevelCustomView.frame = bounds
         addSubview(topLevelCustomView)
         
-    }
-    var title: String? {
-        get { return instruction?.text }
-        set { instruction.text = newValue }
     }
 }
