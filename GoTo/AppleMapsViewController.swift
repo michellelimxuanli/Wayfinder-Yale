@@ -26,6 +26,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     // ------Navigation System-------
     // Info Screen
     var cardView: CustomView!
+    var navigationView: NavigationView!
     // Route
     var selectedId: String?
     var polylineSource: MGLShapeSource?
@@ -90,6 +91,16 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         cardView.delegate = self
         view.addSubview(cardView)
         cardView.isHidden = true
+        
+        // Setting up Navigation View
+        // also should set up constraints here in a real app
+        navigationView = NavigationView(frame: CGRect(
+            origin: CGPoint(x: 10, y: UIScreen.main.bounds.height - 80 - 10),
+            size: CGSize(width: UIScreen.main.bounds.width - 20, height: 80)
+        ))
+        //navigationView.delegate = self
+        view.addSubview(navigationView)
+        navigationView.isHidden = true
         
     }
     
