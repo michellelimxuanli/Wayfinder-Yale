@@ -79,8 +79,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
             for result in arrayOfDicts {
                 for item in result{
-                    var nodes = item["nodes"] as! Array<String>
-                    var size = nodes.count
+                    let nodes = item["nodes"] as! Array<String>
+                    let size = nodes.count
                     var coordinatesArray = [CLLocationCoordinate2D](repeating: CLLocationCoordinate2D(), count: size)
                     var noOfElements = 0
                     for (index, URLtoNode) in nodes.enumerated() {
@@ -513,6 +513,15 @@ extension AppleMapsViewController: HandleMapSearch {
         changeOpacity(name: (selectedRoom.attribute(forKey: "id") as? String)!, layername: (selectedRoom.attribute(forKey: "category") as? String)!)
         cardView.title = selectedRoom.attribute(forKey: "name") as? String
         cardView.isHidden = false
+        if let dictionary = selectedRoom.geoJSONDictionary() as? [String: Any] {
+            let geometry = dictionary["geometry"] as? [String: Any]
+            let coordinates = geometry?["coordinates"] as? [[[Any]]]
+            let arrayOfArray = coordinates?[0][0] as? [Double]
+            let centerOfSelected = CLLocationCoordinate2D(latitude: (arrayOfArray?[1])!, longitude: (arrayOfArray?[0])!)
+            //TODO: Zoom into the coordinates here
+            mapView.setCenter(centerOfSelected, zoomLevel: 18, animated: false)
+            
+        }
     }
 }
 
