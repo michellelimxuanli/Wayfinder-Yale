@@ -12,6 +12,7 @@
 		086DE1DA1F63A808001B6B96 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1D91F63A808001B6B96 /* CustomAnnotationView.swift */; };
 		086DE1E21F63AC47001B6B96 /* returnLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1E11F63AC47001B6B96 /* returnLine.swift */; };
 		086DE1E41F63B055001B6B96 /* Rooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1E31F63B055001B6B96 /* Rooms.swift */; };
+		086DE1E61F63BA87001B6B96 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1E51F63BA87001B6B96 /* Strings.swift */; };
 		08A053771F5FA16700167B9D /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A053761F5FA16700167B9D /* CustomView.xib */; };
 		08A053791F5FA63C00167B9D /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A053781F5FA63C00167B9D /* CustomView.swift */; };
 		08C0E2AD1F55EF8B007630DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0E2AC1F55EF8B007630DC /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		086DE1D91F63A808001B6B96 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		086DE1E11F63AC47001B6B96 /* returnLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = returnLine.swift; sourceTree = "<group>"; };
 		086DE1E31F63B055001B6B96 /* Rooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rooms.swift; sourceTree = "<group>"; };
+		086DE1E51F63BA87001B6B96 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		08935D5C1F59F8F900656BAB /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		08A053761F5FA16700167B9D /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		08A053781F5FA63C00167B9D /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -115,7 +117,9 @@
 		086DE1DB1F63A9ED001B6B96 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				08C0E2DA1F55F9B3007630DC /* ApiKeys.swift */,
 				086DE1D51F63A52F001B6B96 /* ImageHelper.swift */,
+				086DE1E51F63BA87001B6B96 /* Strings.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -186,7 +190,6 @@
 				08C0E2B31F55EF8B007630DC /* Assets.xcassets */,
 				08C0E2B51F55EF8B007630DC /* LaunchScreen.storyboard */,
 				08C0E2B81F55EF8B007630DC /* Info.plist */,
-				08C0E2DA1F55F9B3007630DC /* ApiKeys.swift */,
 			);
 			path = GoTo;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				08C0E3171F566B27007630DC /* AppleMapsViewController.swift in Sources */,
 				08A053791F5FA63C00167B9D /* CustomView.swift in Sources */,
 				086DE1E21F63AC47001B6B96 /* returnLine.swift in Sources */,
+				086DE1E61F63BA87001B6B96 /* Strings.swift in Sources */,
 				086DE1DA1F63A808001B6B96 /* CustomAnnotationView.swift in Sources */,
 				08F8C7DA1F5B6D2B00ADE4F3 /* LocationSearchTable.swift in Sources */,
 				08C0E2DB1F55F9B3007630DC /* ApiKeys.swift in Sources */,

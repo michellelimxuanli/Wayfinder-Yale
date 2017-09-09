@@ -10,7 +10,7 @@ import Foundation
 import Mapbox
 
 class Rooms {
-    public static func addRoomLayer(to style: MGLStyle, vectorSource: String, configURL: String, sourceLayer: String) {
+    static func addRoomLayer(to style: MGLStyle, vectorSource: String, configURL: String, sourceLayer: String) {
         // Test code for adding the Map Layer
         let layerSource = MGLVectorSource(identifier: vectorSource, configurationURL: URL(string: configURL)!)
         style.addSource(layerSource)
@@ -24,5 +24,19 @@ class Rooms {
         
         style.addLayer(actualLayer)
         
+    }
+    
+    public static func returnFeatureCoordinates(feature:MGLFeature) -> CLLocationCoordinate2D? {
+        let dictionary = feature.geoJSONDictionary() as [String: Any]
+        let geometry = dictionary["geometry"] as? [String: Any]
+        let coordinates = geometry?["coordinates"] as? [[[Any]]]
+        let arrayOfArray = coordinates?[0][0] as? [Double]
+        return CLLocationCoordinate2D(latitude: arrayOfArray![1], longitude: arrayOfArray![0])
+    }
+
+    public static func addRooms(to style: MGLStyle) {
+        for eachKey in mapBoxDictionary.keys {
+            addRoomLayer(to: style, vectorSource: eachKey, configURL: (mapBoxDictionary[eachKey]?["configURL"])!, sourceLayer: (mapBoxDictionary[eachKey]?["sourceLayer"])!)
+        }
     }
 }

@@ -21,7 +21,6 @@ extension String {
 class LocationSearchTable : UITableViewController {
     var matchingItems:[MGLFeature] = []
     var handleMapSearchDelegate:HandleMapSearch? = nil
-    var styleLayerArray: [String] = ["Art Rooms", "Elevators"]
     var mapView: MGLMapView!
 }
 

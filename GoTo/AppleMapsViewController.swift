@@ -20,9 +20,8 @@ protocol HandleMapSearch {
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
     // Basic Map Data
-    var styleLayerArray: [String] = ["Art Rooms", "Elevators"]
     var mapView: MGLMapView!
-    var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31574, longitude: -72.92562)
+    var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: center_of_map["latitude"]!, longitude: center_of_map["longitude"]!)
     
     // ------Navigation System-------
     // Info Screen
@@ -94,10 +93,55 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         
     }
     
-    // ----------Add Layers once map view is loaded-------
+    // This function is called whenever new location is received from IALocationManager
+    func indoorLocationManager(_ manager: IALocationManager, didUpdateLocations locations: [Any]) {
+        
+        // Conversion to IALocation
+        let l = locations.last as! IALocation
+        // Check if there is newLocation and that it is not a nil
+        if let newLocation = l.location?.coordinate {
+            SVProgressHUD.dismiss()
+            // Remove all previous overlays from the map and add new
+            if let currentAnnotation = currentAnnotation{
+                mapView.removeAnnotation(currentAnnotation)
+            }
+            userCoordinates = newLocation
+            addCurrentLocation(center: userCoordinates!)
+        }
+    }
+    
+    // Authenticate to IndoorAtlas services and request location updates
+    func requestLocation() {
+        // Point delegate to receiver
+        manager.delegate = self
+        // Optionally initial location
+        if !kFloorplanId.isEmpty {
+            let location = IALocation(floorPlanId: kFloorplanId)
+            manager.location = location
+        }
+        // Request location updates
+        manager.startUpdatingLocation()
+    }
+    // When the view will disappear, stop updating location, remove map from the view and dismiss the HUD
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        self.manager.stopUpdatingLocation()
+        
+        manager.delegate = nil
+        mapView.delegate = nil
+        mapView.removeFromSuperview()
+        
+        UIApplication.shared.isStatusBarHidden = false
+        
+        SVProgressHUD.dismiss()
+    }
+
+    
+    // ----------Add Layers and features -------
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         addLayer(to: style)
-        Rooms.addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.dtmpr3x3", sourceLayer: "Art_Rooms_V3-97bs8y")
+        Rooms.addRooms(to: style)
     }
     // Draggable Point
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
@@ -128,6 +172,40 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         return true
     }
     
+    func addCurrentLocation(center: CLLocationCoordinate2D) {
+        currentAnnotation = MGLPointAnnotation()
+        currentAnnotation?.coordinate = center
+        mapView.addAnnotation(currentAnnotation!)
+        
+    }
+    // adding the draggable point on the current user location
+    func addMarkerAnnotation(center: CLLocationCoordinate2D) {
+        annotation = MyCustomPointAnnotation()
+        annotation?.coordinate = center
+        mapView.addAnnotation(annotation!)
+        
+    }
+    // MGLPointAnnotation subclass, really, this is just to identify that the
+    class MyCustomPointAnnotation: MGLPointAnnotation {
+        var willUseImage: Bool = false
+    }
+
+    
+    //----------GETTING PATHS-------
+    func addLayer(to style: MGLStyle) {
+        // Add an empty MGLShapeSource, we’ll keep a reference to this and add points to this later.
+        let source = MGLShapeSource(identifier: "polyline", shape: nil, options: nil)
+        style.addSource(source)
+        polylineSource = source
+        
+        // Add a layer to style our polyline.
+        let layer = returnLine.line(source: source);
+        style.addLayer(layer)
+    }
+    func didPressButton(button:UIButton) {
+        addMarkerAnnotation(center: userCoordinates!)
+        getPath(start: "1", end: selectedId!)
+    }
     func getPath(start: String, end: String){
         // Find shortest path via a list of Nodes
         let shortestPath: Parameters = [
@@ -137,7 +215,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                 "id4": end
             ]
         ]
-        Alamofire.request("http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request(cypherURL, method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
             let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
             let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
@@ -149,7 +227,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             }
         }
     }
-    
     func drawLine(nodes: Array<String>){
         let size = nodes.count
         var coordinatesArray = [CLLocationCoordinate2D](repeating: CLLocationCoordinate2D(), count: size)
@@ -179,7 +256,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                 "longitude": coordinates.longitude
             ]
         ]
-        Alamofire.request("http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher", method: .post, parameters: nearestNodes, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request(cypherURL, method: .post, parameters: nearestNodes, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             var sumOfSquares: Double = 0
             var closestNode: Node = Node()
             let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
@@ -204,110 +281,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         }
         
         //then run the closestNode thing in the red and print out error if we can't find the closest node
-
-        
     }
 
-    func addCurrentLocation(center: CLLocationCoordinate2D) {
-        currentAnnotation = MGLPointAnnotation()
-        currentAnnotation?.coordinate = center
-        mapView.addAnnotation(currentAnnotation!)
-        
-    }
-    // adding the draggable point on the current user location
-    func addMarkerAnnotation(center: CLLocationCoordinate2D) {
-        annotation = MyCustomPointAnnotation()
-        annotation?.coordinate = center
-        mapView.addAnnotation(annotation!)
-        
-    }
-    
-    // This function is called whenever new location is received from IALocationManager
-    func indoorLocationManager(_ manager: IALocationManager, didUpdateLocations locations: [Any]) {
-        
-        // Conversion to IALocation
-        let l = locations.last as! IALocation
-        
-        // Check if there is newLocation and that it is not a nil
-        if let newLocation = l.location?.coordinate {
-            
-            SVProgressHUD.dismiss()
-            
-            // Remove all previous overlays from the map and add new
-            if let currentAnnotation = currentAnnotation{
-                mapView.removeAnnotation(currentAnnotation)
-            }
-            userCoordinates = newLocation
-            addCurrentLocation(center: userCoordinates!)
-        }
-    }
-    
-    // Authenticate to IndoorAtlas services and request location updates
-    func requestLocation() {
-        
-        // Point delegate to receiver
-        manager.delegate = self
-        
-        // Optionally initial location
-        if !kFloorplanId.isEmpty {
-            let location = IALocation(floorPlanId: kFloorplanId)
-            manager.location = location
-        }
-        
-        // Request location updates
-        manager.startUpdatingLocation()
-    }
-
-    
-    // When the view will disappear, stop updating location, remove map from the view and dismiss the HUD
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        
-        self.manager.stopUpdatingLocation()
-        
-        manager.delegate = nil
-        mapView.delegate = nil
-        mapView.removeFromSuperview()
-        
-        UIApplication.shared.isStatusBarHidden = false
-    
-        SVProgressHUD.dismiss()
-    }
-    
-    func didPressButton(button:UIButton) {
-        addMarkerAnnotation(center: userCoordinates!)
-        getPath(start: "1", end: selectedId!)
-    }
-    
-    func addLayer(to style: MGLStyle) {
-        // Add an empty MGLShapeSource, we’ll keep a reference to this and add points to this later.
-        let source = MGLShapeSource(identifier: "polyline", shape: nil, options: nil)
-        style.addSource(source)
-        polylineSource = source
-        
-        // Add a layer to style our polyline.
-        let layer = returnLine.line(source: source);
-        style.addLayer(layer)
-    }
-    
-    
-    
-    
-    
-    func zoomToFeature(feature: MGLFeature){
-        if let dictionary = feature.geoJSONDictionary() as? [String: Any] {
-            let geometry = dictionary["geometry"] as? [String: Any]
-            let coordinates = geometry?["coordinates"] as? [[[Any]]]
-            let arrayOfArray = coordinates?[0][0] as? [Double]
-            let centerOfSelected = CLLocationCoordinate2D(latitude: arrayOfArray![1], longitude: arrayOfArray![0])
-            //Zoom into the coordinates here
-            mapView.setCenter(centerOfSelected, zoomLevel: 18, animated: true)
-        }
-    }
-    
+    // ----Tap and select----
     // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
-
-    // TODO: generalize handletap and changeopacity for all layers
     func handleTap(_ gesture: UITapGestureRecognizer) {
         
         // Get the CGPoint where the user tapped.
@@ -316,39 +293,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         // Access the features at that point within the state layer.
         let features = mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(styleLayerArray))
         
-        // Get the name of the selected state.
-        if let feature = features.first, let state = feature.attribute(forKey: "id") as? String , let layername = feature.attribute(forKey: "category") as? String{
-            cardView.isHidden  = false
-            cardView.title = feature.attribute(forKey: "name") as? String
-            selectedId = feature.attribute(forKey: "id") as? String
-            changeOpacity(name: state, layername:layername)
-            zoomToFeature(feature: feature)
-        } else {
-            changeOpacity(name: "", layername: "")
-        }
-    }
-    
-    //this should apply to all layers
-    func changeOpacity(name: String, layername: String) {
-        // layer is present
-        if let layer = mapView.style?.layer(withIdentifier: layername) as! MGLFillStyleLayer? {
-            // Check if a state was selected, then change the opacity of the states that were not selected.
-            if name.characters.count > 0 {
-                for eachLayerName in styleLayerArray {
-                    if (eachLayerName == layername) {
-                        layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "id", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0.5)])
-                    } else {
-                        if let eachLayer = mapView.style?.layer(withIdentifier: eachLayerName) as! MGLFillStyleLayer? {
-                            eachLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
-                        }
-                    }
-                }
-            
-            } else {
-                // Reset the opacity for all states if the user did not tap on a state.
-                cardView.isHidden = true
-                layer.fillOpacity = MGLStyleValue(rawValue: 0.5)
-            }
+        // Check if feature in a layer was selected.
+        if let feature = features.first, let _ = feature.attribute(forKey: "category") as? String{
+            whenSelected(selectedRoom: feature)
         } else {
             cardView.isHidden = true
             for eachLayerName in styleLayerArray {
@@ -358,24 +305,39 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             }
         }
     }
-    
-    
-}
-
-// MGLPointAnnotation subclass, really, this is just to identify that the
-class MyCustomPointAnnotation: MGLPointAnnotation {
-    var willUseImage: Bool = false
-}
-
-
-extension AppleMapsViewController: HandleMapSearch {
-    func dropPinZoomIn(selectedRoom:MGLFeature){
+    func whenSelected(selectedRoom: MGLFeature){
+        // Highlight
         changeOpacity(name: (selectedRoom.attribute(forKey: "id") as? String)!, layername: (selectedRoom.attribute(forKey: "category") as? String)!)
+        // Update Info
         cardView.title = selectedRoom.attribute(forKey: "name") as? String
         cardView.isHidden = false
         selectedId = selectedRoom.attribute(forKey: "id") as? String
-        zoomToFeature(feature: selectedRoom)
+        // Zooming
+        let centerOfSelected = Rooms.returnFeatureCoordinates(feature: selectedRoom)
+        mapView.setCenter(centerOfSelected!, zoomLevel: 18, animated: true)
+    }
+    func changeOpacity(name: String, layername: String) {
+        let layer = mapView.style?.layer(withIdentifier: layername) as! MGLFillStyleLayer
+            for eachLayerName in styleLayerArray {
+                if (eachLayerName == layername) {
+                    layer.fillOpacity = MGLStyleValue(interpolationMode: .categorical, sourceStops: [name: MGLStyleValue<NSNumber>(rawValue: 1)], attributeName: "id", options: [.defaultValue: MGLStyleValue<NSNumber>(rawValue: 0.5)])
+                } else {
+                    if let eachLayer = mapView.style?.layer(withIdentifier: eachLayerName) as! MGLFillStyleLayer? {
+                        eachLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
+                    }
+                }
+            }
+    }
+    
+}
+extension AppleMapsViewController: HandleMapSearch {
+    func dropPinZoomIn(selectedRoom:MGLFeature){
+        whenSelected(selectedRoom: selectedRoom)
     }
 }
+
+
+
+
 
 
