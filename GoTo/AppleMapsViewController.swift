@@ -517,9 +517,9 @@ extension AppleMapsViewController: HandleMapSearch {
             let geometry = dictionary["geometry"] as? [String: Any]
             let coordinates = geometry?["coordinates"] as? [[[Any]]]
             let arrayOfArray = coordinates?[0][0] as? [Double]
-            let centerOfSelected = CLLocationCoordinate2D(latitude: (arrayOfArray?[1])!, longitude: (arrayOfArray?[0])!)
+            let centerOfSelected = CLLocationCoordinate2D(latitude: arrayOfArray![1], longitude: arrayOfArray![0])
             //TODO: Zoom into the coordinates here
-            mapView.setCenter(centerOfSelected, zoomLevel: 18, animated: false)
+            mapView.setCenter(centerOfSelected, zoomLevel: 18, animated: true)
             
         }
     }
