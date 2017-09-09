@@ -82,6 +82,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
         
+        // Setting up Card View
         // we'd probably want to set up constraints here in a real app
         cardView = CustomView(frame: CGRect(
             origin: CGPoint(x: 10, y: UIScreen.main.bounds.height - 80 - 10),
@@ -96,7 +97,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     // ----------Add Layers once map view is loaded-------
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         addLayer(to: style)
-        addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.dtmpr3x3", sourceLayer: "Art_Rooms_V3-97bs8y")
+        Rooms.addRoomLayer(to: style, vectorSource: "Art Rooms", configURL: "mapbox://ml2445.dtmpr3x3", sourceLayer: "Art_Rooms_V3-97bs8y")
     }
     // Draggable Point
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
@@ -128,14 +129,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     }
     
     func getPath(start: String, end: String){
-        
-        let loginData = String(format: "gotouser:b.9FyMRNWzPQda.jHQXK7LZo5IF4ahI").data(using: String.Encoding.utf8)!
-        let base64LoginData = loginData.base64EncodedString()
-        let headers: HTTPHeaders = [
-            "Authorization": "Basic \(base64LoginData)",
-            "Accept": "application/json"
-        ]
-        
         // Find shortest path via a list of Nodes
         let shortestPath: Parameters = [
             "query" : "MATCH path=shortestPath((a:Point {id:{id1}})-[*]-(b:Point {id:{id4}})) RETURN path",
@@ -144,8 +137,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                 "id4": end
             ]
         ]
-
-        
         Alamofire.request("http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher", method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
             let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
@@ -153,22 +144,26 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             for result in arrayOfDicts {
                 for item in result{
                     let nodes = item["nodes"] as! Array<String>
-                    let size = nodes.count
-                    var coordinatesArray = [CLLocationCoordinate2D](repeating: CLLocationCoordinate2D(), count: size)
-                    var noOfElements = 0
-                    for (index, URLtoNode) in nodes.enumerated() {
-                        let propertiesURL = "\(URLtoNode)/properties"
-                        Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                            let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
-                            let node: Node = Node(object_passed_in: propertiesOfNode)!
-                            coordinatesArray[index] = CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!)
-                            noOfElements+=1
-                            if (noOfElements == nodes.count){
-                                let polyline = MGLPolylineFeature(coordinates: coordinatesArray, count: UInt(size))
-                                self.polylineSource?.shape = polyline
-                            }
-                        }
-                    }
+                    self.drawLine(nodes: nodes)
+                }
+            }
+        }
+    }
+    
+    func drawLine(nodes: Array<String>){
+        let size = nodes.count
+        var coordinatesArray = [CLLocationCoordinate2D](repeating: CLLocationCoordinate2D(), count: size)
+        var noOfElements = 0
+        for (index, URLtoNode) in nodes.enumerated() {
+            let propertiesURL = "\(URLtoNode)/properties"
+            Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
+                let node: Node = Node(object_passed_in: propertiesOfNode)!
+                coordinatesArray[index] = CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!)
+                noOfElements+=1
+                if (noOfElements == size){
+                    let polyline = MGLPolylineFeature(coordinates: coordinatesArray, count: UInt(size))
+                    self.polylineSource?.shape = polyline
                 }
             }
         }
@@ -177,12 +172,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     func closestNode(coordinates: CLLocationCoordinate2D) {
         // Test code here: to fetch the nearest node
         // TODO: Use the SELECTED NODE for drawing path
-        let loginData = String(format: "gotouser:b.9FyMRNWzPQda.jHQXK7LZo5IF4ahI").data(using: String.Encoding.utf8)!
-        let base64LoginData = loginData.base64EncodedString()
-        let headers: HTTPHeaders = [
-            "Authorization": "Basic \(base64LoginData)",
-            "Accept": "application/json"
-        ]
         let nearestNodes: Parameters = [
             "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) + {longitude}) < 0.00012660499 RETURN n",
             "params" : [
@@ -221,7 +210,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
 
     func addCurrentLocation(center: CLLocationCoordinate2D) {
         currentAnnotation = MGLPointAnnotation()
-        currentAnnotation?.title = "currentLocation"
         currentAnnotation?.coordinate = center
         mapView.addAnnotation(currentAnnotation!)
         
@@ -282,8 +270,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         mapView.removeFromSuperview()
         
         UIApplication.shared.isStatusBarHidden = false
-        
-        
+    
         SVProgressHUD.dismiss()
     }
     
@@ -299,31 +286,13 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         polylineSource = source
         
         // Add a layer to style our polyline.
-        let layer = MGLLineStyleLayer(identifier: "polyline", source: source)
-        layer.lineJoin = MGLStyleValue(rawValue: NSValue(mglLineJoin: .round))
-        layer.lineCap = MGLStyleValue(rawValue: NSValue(mglLineCap: .round))
-        layer.lineColor = MGLStyleValue(rawValue: UIColor.blue)
-        layer.lineWidth = MGLStyleFunction(interpolationMode: .exponential,
-                                           cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 2),
-                                                         18: MGLConstantStyleValue<NSNumber>(rawValue: 6)],
-                                           options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.0)])
+        let layer = returnLine.line(source: source);
         style.addLayer(layer)
     }
-    func addRoomLayer(to style: MGLStyle, vectorSource: String, configURL: String, sourceLayer: String) {
-        // Test code for adding the Map Layer
-        let layerSource = MGLVectorSource(identifier: vectorSource, configurationURL: URL(string: configURL)!)
-        style.addSource(layerSource)
-        // Create a style layer using the vector source.
-        let actualLayer = MGLFillStyleLayer(identifier: vectorSource, source: layerSource)
-        
-        actualLayer.sourceLayerIdentifier = sourceLayer
-        
-        // Set the fill pattern and opacity for the style layer.
-        actualLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
-        
-        style.addLayer(actualLayer)
-        
-    }
+    
+    
+    
+    
     
     func zoomToFeature(feature: MGLFeature){
         if let dictionary = feature.geoJSONDictionary() as? [String: Any] {
@@ -399,12 +368,12 @@ class MyCustomPointAnnotation: MGLPointAnnotation {
 }
 
 
-
 extension AppleMapsViewController: HandleMapSearch {
     func dropPinZoomIn(selectedRoom:MGLFeature){
         changeOpacity(name: (selectedRoom.attribute(forKey: "id") as? String)!, layername: (selectedRoom.attribute(forKey: "category") as? String)!)
         cardView.title = selectedRoom.attribute(forKey: "name") as? String
         cardView.isHidden = false
+        selectedId = selectedRoom.attribute(forKey: "id") as? String
         zoomToFeature(feature: selectedRoom)
     }
 }
