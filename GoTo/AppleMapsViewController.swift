@@ -40,8 +40,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 41.31574, longitude: -72.92562)
 
     var polylineSource: MGLShapeSource?
-
-    
+        
     // Manager for IALocationManager
     var manager = IALocationManager.sharedInstance()
     
@@ -413,6 +412,18 @@ class DraggableAnnotationView: MGLAnnotationView {
         style.addLayer(actualLayer)
         
     }
+    
+    func zoomToFeature(feature: MGLFeature){
+        if let dictionary = feature.geoJSONDictionary() as? [String: Any] {
+            let geometry = dictionary["geometry"] as? [String: Any]
+            let coordinates = geometry?["coordinates"] as? [[[Any]]]
+            let arrayOfArray = coordinates?[0][0] as? [Double]
+            let centerOfSelected = CLLocationCoordinate2D(latitude: arrayOfArray![1], longitude: arrayOfArray![0])
+            //Zoom into the coordinates here
+            mapView.setCenter(centerOfSelected, zoomLevel: 18, animated: true)
+        }
+    }
+    
     // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
 
     // TODO: generalize handletap and changeopacity for all layers
@@ -430,11 +441,11 @@ class DraggableAnnotationView: MGLAnnotationView {
             cardView.title = feature.attribute(forKey: "name") as? String
             selectedId = feature.attribute(forKey: "id") as? String
             changeOpacity(name: state, layername:layername)
+            zoomToFeature(feature: feature)
         } else {
             changeOpacity(name: "", layername: "")
         }
     }
-    
     
     //this should apply to all layers
     func changeOpacity(name: String, layername: String) {
@@ -513,15 +524,8 @@ extension AppleMapsViewController: HandleMapSearch {
         changeOpacity(name: (selectedRoom.attribute(forKey: "id") as? String)!, layername: (selectedRoom.attribute(forKey: "category") as? String)!)
         cardView.title = selectedRoom.attribute(forKey: "name") as? String
         cardView.isHidden = false
-        if let dictionary = selectedRoom.geoJSONDictionary() as? [String: Any] {
-            let geometry = dictionary["geometry"] as? [String: Any]
-            let coordinates = geometry?["coordinates"] as? [[[Any]]]
-            let arrayOfArray = coordinates?[0][0] as? [Double]
-            let centerOfSelected = CLLocationCoordinate2D(latitude: arrayOfArray![1], longitude: arrayOfArray![0])
-            //TODO: Zoom into the coordinates here
-            mapView.setCenter(centerOfSelected, zoomLevel: 18, animated: true)
-            
-        }
+        zoomToFeature(feature: selectedRoom)
     }
 }
+
 
