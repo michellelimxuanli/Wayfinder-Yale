@@ -31,7 +31,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     // Route
     var selectedId: String?
     var polylineSource: MGLShapeSource?
-    var annotation : MyCustomPointAnnotation?
     var userCoordinates: CLLocationCoordinate2D?
     var linelayer: MGLLineStyleLayer!
     
@@ -164,20 +163,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         addLayer(to: style)
         Rooms.addRooms(to: style)
     }
-    // Draggable Point
-    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        if annotation is MyCustomPointAnnotation {
-            // For better performance, always try to reuse existing annotations. To use multiple different annotation views, change the reuse identifier for each.
-            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "draggablePoint") {
-                return annotationView
-            } else {
-                return DraggableAnnotationView(reuseIdentifier: "draggablePoint", size: 30)
-            }
-        }
-        else {
-            return nil
-        }
-    }
     // Current Location
     func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
@@ -199,17 +184,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         mapView.addAnnotation(currentAnnotation!)
         
     }
-    // adding the draggable point on the current user location
-    func addMarkerAnnotation(center: CLLocationCoordinate2D) {
-        annotation = MyCustomPointAnnotation()
-        annotation?.coordinate = center
-        mapView.addAnnotation(annotation!)
-        
-    }
-    // MGLPointAnnotation subclass, really, this is just to identify that the
-    class MyCustomPointAnnotation: MGLPointAnnotation {
-        var willUseImage: Bool = false
-    }
 
     
     //----------GETTING PATHS-------
@@ -226,14 +200,18 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     }
     func didPressButton(button:UIButton) {
         navigationView.isHidden = false
+        mapView.setCenter(userCoordinates!, zoomLevel: 18, animated: true)
         imageView.isHidden = false;
-        addMarkerAnnotation(center: userCoordinates!)
-        getPath(start: "1", end: selectedId!)
     }
     func didPressCancel(button:UIButton) {
         navigationView.isHidden = true
         imageView.isHidden = true
         linelayer.isVisible = false
+    }
+    func didPressStarting(button: UIButton) {
+        // if all goes well and you get Id
+        let newCoordinate = mapView.convert(CGPoint(x: (self.view.frame.size.width / 2), y: (self.view.frame.size.height / 2)-10), toCoordinateFrom: mapView)
+        closestNode(coordinates: newCoordinate)
     }
     func getPath(start: String, end: String){
         // Find shortest path via a list of Nodes
@@ -279,7 +257,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         // Test code here: to fetch the nearest node
         // TODO: Use the SELECTED NODE for drawing path
         let nearestNodes: Parameters = [
-            "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) + {longitude}) < 0.00012660499 RETURN n",
+            "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) + {longitude}) > 0.00012660499 RETURN n",
             "params" : [
                 "latitude": coordinates.latitude,
                 "longitude": coordinates.longitude
@@ -306,7 +284,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                     }
                 }
             }
-            print("Closest Node is here \(closestNode)")
+            //get Id
+            self.getPath(start: closestNode.id, end: self.selectedId!)
         }
         
         //then run the closestNode thing in the red and print out error if we can't find the closest node

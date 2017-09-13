@@ -10,6 +10,7 @@ import UIKit
 
 protocol NavigateDialogDelegate {
     func didPressCancel(button:UIButton)
+    func didPressStarting(button:UIButton)
 }
 
 
@@ -42,6 +43,9 @@ class NavigationView: UIView {
     
     @IBAction func cancelClicked(_ sender: UIButton) {
         delegate.didPressCancel(button: sender)
+    }
+    @IBAction func confirmStarting(_ sender: UIButton) {
+        delegate.didPressStarting (button: sender)
     }
     
 }
