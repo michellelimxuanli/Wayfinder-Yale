@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol NavigateDialogDelegate {
+    func didPressCancel(button:UIButton)
+}
+
 
 class NavigationView: UIView {
 
@@ -16,6 +20,7 @@ class NavigationView: UIView {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var confirmLocation: UIButton!
     @IBOutlet weak var instruction: UILabel!
+    var delegate: NavigateDialogDelegate!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -34,8 +39,9 @@ class NavigationView: UIView {
         topLevelCustomView.frame = bounds
         addSubview(topLevelCustomView)
     }
-    @IBAction func cancelClick(_ sender: UIButton) {
-        self.isHidden = true
+    
+    @IBAction func cancelClicked(_ sender: UIButton) {
+        delegate.didPressCancel(button: sender)
     }
     
 }

@@ -46,7 +46,7 @@
                     </constraints>
                     <state key="normal" title="Button" image="icons8-cancel"/>
                     <connections>
-                        <action selector="cancelClick:" destination="-1" eventType="touchUpInside" id="rA6-9R-Y6w"/>
+                        <action selector="cancelClicked:" destination="-1" eventType="touchUpInside" id="giY-i2-bQJ"/>
                     </connections>
                 </button>
             </subviews>

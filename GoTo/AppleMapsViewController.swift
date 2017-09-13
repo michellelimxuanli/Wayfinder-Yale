@@ -17,7 +17,7 @@ protocol HandleMapSearch {
 }
 
 // View controller for Apple Maps Example
-class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
+class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDelegate, NavigateDialogDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
     // Basic Map Data
     var mapView: MGLMapView!
@@ -27,11 +27,13 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     // Info Screen
     var cardView: CustomView!
     var navigationView: NavigationView!
+    var imageView: UIImageView!
     // Route
     var selectedId: String?
     var polylineSource: MGLShapeSource?
     var annotation : MyCustomPointAnnotation?
     var userCoordinates: CLLocationCoordinate2D?
+    var linelayer: MGLLineStyleLayer!
     
     // ------Blue dot positioning--------
     var currentAnnotation: MGLPointAnnotation?
@@ -98,9 +100,17 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             origin: CGPoint(x: 10, y: UIScreen.main.bounds.height - 80 - 10),
             size: CGSize(width: UIScreen.main.bounds.width - 20, height: 80)
         ))
-        //navigationView.delegate = self
+        navigationView.delegate = self
         view.addSubview(navigationView)
         navigationView.isHidden = true
+        
+        // the middle pin
+        imageView = UIImageView(frame: CGRect(x: (self.view.frame.size.width / 2), y: (self.view.frame.size.height / 2) - 30, width: 40, height: 40));
+        let image = UIImage(named: "icons8-Marker.png");
+        imageView.image = image;
+        imageView.contentMode = .scaleAspectFit
+        self.view.addSubview(imageView);
+        imageView.isHidden = true
         
     }
     
@@ -210,13 +220,20 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         polylineSource = source
         
         // Add a layer to style our polyline.
-        let layer = returnLine.line(source: source);
-        style.addLayer(layer)
+        linelayer = returnLine.line(source: source);
+        style.addLayer(linelayer)
+        linelayer.isVisible = true
     }
     func didPressButton(button:UIButton) {
         navigationView.isHidden = false
+        imageView.isHidden = false;
         addMarkerAnnotation(center: userCoordinates!)
         getPath(start: "1", end: selectedId!)
+    }
+    func didPressCancel(button:UIButton) {
+        navigationView.isHidden = true
+        imageView.isHidden = true
+        linelayer.isVisible = false
     }
     func getPath(start: String, end: String){
         // Find shortest path via a list of Nodes
