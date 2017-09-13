@@ -100,6 +100,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         ))
         //navigationView.delegate = self
         view.addSubview(navigationView)
+        navigationView.isHidden = true
         
     }
     
@@ -213,6 +214,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         style.addLayer(layer)
     }
     func didPressButton(button:UIButton) {
+        navigationView.isHidden = false
         addMarkerAnnotation(center: userCoordinates!)
         getPath(start: "1", end: selectedId!)
     }

@@ -33,6 +33,9 @@ class NavigationView: UIView {
         nib.instantiate(withOwner: self, options: nil)
         topLevelCustomView.frame = bounds
         addSubview(topLevelCustomView)
-        
     }
+    @IBAction func cancelClick(_ sender: UIButton) {
+        self.isHidden = true
+    }
+    
 }
