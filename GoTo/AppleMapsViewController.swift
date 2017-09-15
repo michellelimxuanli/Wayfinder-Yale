@@ -33,6 +33,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     var polylineSource: MGLShapeSource?
     var userCoordinates: CLLocationCoordinate2D?
     var linelayer: MGLLineStyleLayer!
+    var gesture: UIGestureRecognizer!
     
     // ------Blue dot positioning--------
     var currentAnnotation: MGLPointAnnotation?
@@ -73,7 +74,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         view.addSubview(mapView)
         mapView.delegate = self
         // Enable touch gesture for selection of polygon
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         gesture.delegate = self
         mapView.addGestureRecognizer(gesture)
         
@@ -201,12 +202,15 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     func didPressButton(button:UIButton) {
         navigationView.isHidden = false
         mapView.setCenter(userCoordinates!, zoomLevel: 18, animated: true)
-        imageView.isHidden = false;
+        imageView.isHidden = false
+        gesture.isEnabled = false
+        
     }
     func didPressCancel(button:UIButton) {
         navigationView.isHidden = true
         imageView.isHidden = true
         linelayer.isVisible = false
+        gesture.isEnabled = true
     }
     func didPressStarting(button: UIButton) {
         // if all goes well and you get Id
