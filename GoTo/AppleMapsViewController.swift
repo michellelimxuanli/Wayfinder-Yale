@@ -34,6 +34,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     var userCoordinates: CLLocationCoordinate2D?
     var linelayer: MGLLineStyleLayer!
     var gesture: UIGestureRecognizer!
+    var destination:String!
     
     // ------Blue dot positioning--------
     var currentAnnotation: MGLPointAnnotation?
@@ -200,8 +201,10 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         linelayer.isVisible = true
     }
     func didPressButton(button:UIButton) {
+        navigationView.instruction.text = "Adjust map to select location"
         navigationView.isHidden = false
         mapView.setCenter(userCoordinates!, zoomLevel: 18, animated: true)
+        navigationView.confirmLocation.setTitle("Confirm starting location", for: [])
         imageView.isHidden = false
         gesture.isEnabled = false
         
@@ -214,6 +217,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     }
     func didPressStarting(button: UIButton) {
         // if all goes well and you get Id
+        navigationView.start()
         let newCoordinate = mapView.convert(CGPoint(x: (self.view.frame.size.width / 2), y: (self.view.frame.size.height / 2)-10), toCoordinateFrom: mapView)
         closestNode(coordinates: newCoordinate)
     }
@@ -227,13 +231,35 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             ]
         ]
         Alamofire.request(cypherURL, method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            
-            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
-            let arrayOfDicts = dictionary["data"] as! [[[String:Any?]]]
-            for result in arrayOfDicts {
-                for item in result{
-                    let nodes = item["nodes"] as! Array<String>
-                    self.drawLine(nodes: nodes)
+            switch response.result {
+            case .failure(let error):
+                self.navigationView.instruction.text = "Error connecting to internet"
+                self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                self.navigationView.stop()
+                self.linelayer.isVisible = false
+            case .success:
+                let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+                if let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]?{
+                    if arrayOfDicts.isEmpty{
+                        self.navigationView.instruction.text = "Your marker is not on a hallway"
+                        self.navigationView.stop()
+                        self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                        self.linelayer.isVisible = false
+                    
+                    } else {
+                        for result in arrayOfDicts {
+                            for item in result{
+                                let nodes = item["nodes"] as! Array<String>
+                                self.drawLine(nodes: nodes)
+                            }
+                        }
+                    }
+                } else {
+                    //error
+                    self.navigationView.instruction.text = "Error fetching from server"
+                    self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                    self.navigationView.stop()
+                    self.linelayer.isVisible = false
                 }
             }
         }
@@ -245,13 +271,25 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         for (index, URLtoNode) in nodes.enumerated() {
             let propertiesURL = "\(URLtoNode)/properties"
             Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
-                let node: Node = Node(object_passed_in: propertiesOfNode)!
-                coordinatesArray[index] = CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!)
-                noOfElements+=1
-                if (noOfElements == size){
-                    let polyline = MGLPolylineFeature(coordinates: coordinatesArray, count: UInt(size))
-                    self.polylineSource?.shape = polyline
+                switch response.result {
+                case .failure(let error):
+                    self.navigationView.instruction.text = "Error connecting to server"
+                    self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                    self.navigationView.stop()
+                    self.linelayer.isVisible = false
+                case .success:
+                    let propertiesOfNode = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:String]
+                    let node: Node = Node(object_passed_in: propertiesOfNode)!
+                    coordinatesArray[index] = CLLocationCoordinate2D(latitude: Double(node.latitude)!, longitude: Double(node.longitude)!)
+                    noOfElements+=1
+                    if (noOfElements == size){
+                        let polyline = MGLPolylineFeature(coordinates: coordinatesArray, count: UInt(size))
+                        self.polylineSource?.shape = polyline
+                        self.linelayer.isVisible = true
+                        self.navigationView.stop()
+                        self.navigationView.instruction.text = "Route to \(self.destination!)"
+                        self.navigationView.confirmLocation.setTitle("Readjust location", for: [])
+                    }
                 }
             }
         }
@@ -268,31 +306,51 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             ]
         ]
         Alamofire.request(cypherURL, method: .post, parameters: nearestNodes, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            var sumOfSquares: Double = 0
-            var closestNode: Node = Node()
-            let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
-            let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]
-            for result in arrayOfDicts {
-                for item in result{
-                    let propertiesOfNode = item["data"] as! [String:Any?]
-                    let node: Node = Node(object_passed_in: propertiesOfNode)!
-                    if sumOfSquares == 0 {
-                        closestNode = node
-                        sumOfSquares = pow(Double(node.latitude)! - coordinates.latitude, 2) + pow(Double(node.longitude)! - coordinates.longitude, 2)
+            switch response.result {
+            case .failure(let error):
+                self.navigationView.instruction.text = "Error connecting to internet"
+                self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                self.navigationView.stop()
+                self.linelayer.isVisible = false
+            case .success:
+                var sumOfSquares: Double = 0
+                var closestNode: Node = Node()
+                let dictionary = try! JSONSerialization.jsonObject(with: response.data!, options: []) as! [String:Any]
+                if let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]?{
+                    if arrayOfDicts.isEmpty{
+                        self.navigationView.instruction.text = "Your marker is not on a hallway"
+                        self.navigationView.stop()
+                        self.linelayer.isVisible = false
+                        self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                    
                     } else {
-                        let currentSumOfSquares = pow(Double(node.latitude)! - coordinates.latitude, 2) + pow(Double(node.longitude)! - coordinates.longitude, 2)
-                        if currentSumOfSquares < sumOfSquares {
-                            closestNode = node
-                            sumOfSquares = currentSumOfSquares
+                        for result in arrayOfDicts {
+                            for item in result{
+                                let propertiesOfNode = item["data"] as! [String:Any?]
+                                let node: Node = Node(object_passed_in: propertiesOfNode)!
+                                if sumOfSquares == 0 {
+                                    closestNode = node
+                                    sumOfSquares = pow(Double(node.latitude)! - coordinates.latitude, 2) + pow(Double(node.longitude)! - coordinates.longitude, 2)
+                                } else {
+                                    let currentSumOfSquares = pow(Double(node.latitude)! - coordinates.latitude, 2) + pow(Double(node.longitude)! - coordinates.longitude, 2)
+                                    if currentSumOfSquares < sumOfSquares {
+                                        closestNode = node
+                                        sumOfSquares = currentSumOfSquares
+                                    }
+                                }
+                            }
                         }
+                //get Id
+                        self.getPath(start: closestNode.id, end: self.selectedId!)
                     }
+                } else {
+                    // an error 
+                    self.navigationView.instruction.text = "Error fetching from server"
+                    self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                    self.navigationView.stop()
+                    self.linelayer.isVisible = false
                 }
-            }
-            //get Id
-            self.getPath(start: closestNode.id, end: self.selectedId!)
-        }
-        
-        //then run the closestNode thing in the red and print out error if we can't find the closest node
+            }}
     }
 
     // ----Tap and select----
@@ -321,7 +379,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         // Highlight
         changeOpacity(name: (selectedRoom.attribute(forKey: "id") as? String)!, layername: (selectedRoom.attribute(forKey: "category") as? String)!)
         // Update Info
-        cardView.title = selectedRoom.attribute(forKey: "name") as? String
+        destination = selectedRoom.attribute(forKey: "name") as? String
+        cardView.title = destination
         cardView.isHidden = false
         selectedId = selectedRoom.attribute(forKey: "id") as? String
         // Zooming
@@ -347,9 +406,5 @@ extension AppleMapsViewController: HandleMapSearch {
         whenSelected(selectedRoom: selectedRoom)
     }
 }
-
-
-
-
 
 

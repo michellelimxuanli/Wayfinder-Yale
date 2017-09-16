@@ -18,9 +18,9 @@ class NavigationView: UIView {
 
     @IBOutlet var topLevelCustomView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var confirmLocation: UIButton!
     @IBOutlet weak var instruction: UILabel!
+    @IBOutlet weak var loadingCircle: UIActivityIndicatorView!
     var delegate: NavigateDialogDelegate!
     
     required init(coder aDecoder: NSCoder) {
@@ -38,7 +38,22 @@ class NavigationView: UIView {
         let nib = UINib(nibName: "NavigationView", bundle: nil)
         nib.instantiate(withOwner: self, options: nil)
         topLevelCustomView.frame = bounds
+        
+        loadingCircle.hidesWhenStopped = true
+        loadingCircle.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        
         addSubview(topLevelCustomView)
+    }
+    
+    func start(){
+        confirmLocation.isHidden = true
+        loadingCircle.startAnimating()
+        instruction.text = "Loading route..."
+    }
+    
+    func stop(){
+        confirmLocation.isHidden = false
+        loadingCircle.stopAnimating()
     }
     
     @IBAction func cancelClicked(_ sender: UIButton) {

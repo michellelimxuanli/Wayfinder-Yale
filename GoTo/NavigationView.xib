@@ -14,6 +14,7 @@
                 <outlet property="cancelButton" destination="5Lh-T8-tVQ" id="fvY-ZR-9FO"/>
                 <outlet property="confirmLocation" destination="cCM-No-3u0" id="EtL-5P-onv"/>
                 <outlet property="instruction" destination="sGx-Xa-8rj" id="ihp-W3-M0e"/>
+                <outlet property="loadingCircle" destination="2XH-iS-5tz" id="43o-ld-ogk"/>
                 <outlet property="topLevelCustomView" destination="iN0-l3-epB" id="pqH-qh-Nac"/>
             </connections>
         </placeholder>

@@ -11,6 +11,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AppleMapsViewController.(closestNode(coordinates : CLLocationCoordinate2D) -&gt; ()).(closure #1):AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "response.result.error">
+            </PersistentString>
+            <PersistentString
+               value = "response.data">
+            </PersistentString>
+            <PersistentString
+               value = "response.result.failure">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AppleMapsViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):AppleMapsViewController.swift">
          <PersistentStrings>
             <PersistentString
