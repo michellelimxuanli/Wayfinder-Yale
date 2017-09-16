@@ -242,8 +242,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                 if let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]?{
                     if arrayOfDicts.isEmpty{
                         self.navigationView.instruction.text = "Your marker is not on a hallway"
-                        self.navigationView.stop()
                         self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                        self.navigationView.stop()
                         self.linelayer.isVisible = false
                     
                     } else {
@@ -286,9 +286,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                         let polyline = MGLPolylineFeature(coordinates: coordinatesArray, count: UInt(size))
                         self.polylineSource?.shape = polyline
                         self.linelayer.isVisible = true
+                        self.navigationView.confirmLocation.setTitle("Readjust location", for: [])
                         self.navigationView.stop()
                         self.navigationView.instruction.text = "Route to \(self.destination!)"
-                        self.navigationView.confirmLocation.setTitle("Readjust location", for: [])
                     }
                 }
             }
@@ -309,7 +309,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             switch response.result {
             case .failure(let error):
                 self.navigationView.instruction.text = "Error connecting to internet"
-                self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
+                self.navigationView.confirmLocation.setTitle("Check connection & Re-confirm starting location", for: [])
                 self.navigationView.stop()
                 self.linelayer.isVisible = false
             case .success:
@@ -319,10 +319,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
                 if let arrayOfDicts = dictionary["data"] as! [[[String:Any]]]?{
                     if arrayOfDicts.isEmpty{
                         self.navigationView.instruction.text = "Your marker is not on a hallway"
+                        self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
                         self.navigationView.stop()
                         self.linelayer.isVisible = false
-                        self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
-                    
                     } else {
                         for result in arrayOfDicts {
                             for item in result{
