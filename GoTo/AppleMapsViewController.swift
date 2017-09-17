@@ -32,6 +32,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     var selectedId: String?
     var polylineSource: MGLShapeSource?
     var userCoordinates: CLLocationCoordinate2D?
+    var oldLocation: CLLocationCoordinate2D?
     var linelayer: MGLLineStyleLayer!
     var gesture: UIGestureRecognizer!
     var destination:String!
@@ -127,6 +128,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             if let currentAnnotation = currentAnnotation{
                 mapView.removeAnnotation(currentAnnotation)
             }
+            oldLocation = userCoordinates
             userCoordinates = newLocation
             addCurrentLocation(center: userCoordinates!)
         }
@@ -169,10 +171,15 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
         if annotationImage == nil {
-            var image = UIImage(named: "circle")!
+            var image = UIImage(named: "icons8-arrow")!
             image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
-            image = ImageHelper.ResizeImage(image: image, targetSize: CGSize(width: 20, height: 20.0))
+                        if let old = oldLocation{
+                image = BlueDot.imageRotatedByDegrees(degrees: BlueDot.findDegrees(oldLocation: old, newLocation: userCoordinates!), image: image)
+            }
             annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
+        }
+        if let old = oldLocation{
+        annotationImage?.image = BlueDot.imageRotatedByDegrees(degrees: BlueDot.findDegrees(oldLocation: old, newLocation: userCoordinates!), image: (annotationImage?.image)!)
         }
         return annotationImage
     }
@@ -184,7 +191,6 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         currentAnnotation = MGLPointAnnotation()
         currentAnnotation?.coordinate = center
         mapView.addAnnotation(currentAnnotation!)
-        
     }
 
     
@@ -234,7 +240,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         ]
         Alamofire.request(cypherURL, method: .post, parameters: shortestPath, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             switch response.result {
-            case .failure(let error):
+            case .failure( _):
                 self.navigationView.instruction.text = "Error connecting to internet"
                 self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
                 self.navigationView.stop()
@@ -274,7 +280,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             let propertiesURL = "\(URLtoNode)/properties"
             Alamofire.request(propertiesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
                 switch response.result {
-                case .failure(let error):
+                case .failure( _):
                     self.navigationView.instruction.text = "Error connecting to server"
                     self.navigationView.confirmLocation.setTitle("Re-confirm starting location", for: [])
                     self.navigationView.stop()
@@ -309,7 +315,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         ]
         Alamofire.request(cypherURL, method: .post, parameters: nearestNodes, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             switch response.result {
-            case .failure(let error):
+            case .failure(_):
                 self.navigationView.instruction.text = "Error connecting to internet"
                 self.navigationView.confirmLocation.setTitle("Check connection & Re-confirm starting location", for: [])
                 self.navigationView.stop()
