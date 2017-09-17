@@ -201,6 +201,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         linelayer.isVisible = true
     }
     func didPressButton(button:UIButton) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         navigationView.instruction.text = "Adjust map to select location"
         navigationView.isHidden = false
         mapView.setCenter(userCoordinates!, zoomLevel: 18, animated: true)
@@ -210,6 +211,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         
     }
     func didPressCancel(button:UIButton) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationView.isHidden = true
         imageView.isHidden = true
         linelayer.isVisible = false

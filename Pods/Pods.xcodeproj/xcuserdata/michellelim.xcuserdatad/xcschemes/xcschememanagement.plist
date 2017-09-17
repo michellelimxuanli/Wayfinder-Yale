@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>GradientCircularProgress.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-GoTo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,17 +37,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>079324337E7058C8AD638741E4E5632F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>25A71C0CE55365B5084A5974890E34CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A108852257DBA7D631ADD308603A73A</key>
+		<key>303592DD1E5512261A15A2458E45E857</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A047AB52F35F55F78DE20462411109DE</key>
+		<key>BC2AE7EFC8CB44592798A3EA738CCE8A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
