@@ -167,26 +167,35 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         addLayer(to: style)
         Rooms.addRooms(to: style)
     }
-    // Current Location
-    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
-        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "circle")
-        if annotationImage == nil {
-            var image = UIImage(named: "icons8-arrow")!
-            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
-                        if let old = oldLocation{
-                image = BlueDot.imageRotatedByDegrees(degrees: BlueDot.findDegrees(oldLocation: old, newLocation: userCoordinates!), image: image)
-            }
-            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "circle")
+    // This delegate method is where you tell the map to load a view for a specific annotation. To load a static MGLAnnotationImage, you would use `-mapView:imageForAnnotation:`.
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        // This example is only concerned with point annotations.
+        guard annotation is MGLPointAnnotation else {
+            return nil
         }
-        if let old = oldLocation{
-        annotationImage?.image = BlueDot.imageRotatedByDegrees(degrees: BlueDot.findDegrees(oldLocation: old, newLocation: userCoordinates!), image: (annotationImage?.image)!)
+        
+        // Use the point annotation’s longitude value (as a string) as the reuse identifier for its view.
+        let reuseIdentifier = "\(annotation.coordinate.longitude)"
+        
+        // For better performance, always try to reuse existing annotations.
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        // If there’s no reusable annotation view available, initialize a new one.
+        if annotationView == nil {
+            annotationView = CustomAnnotationView(reuseIdentifier: reuseIdentifier)
+            annotationView!.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+            
+            // Set the annotation view’s background color.
+            annotationView!.backgroundColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
         }
-        return annotationImage
+        
+        return annotationView
     }
+    
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
-    
+
     func addCurrentLocation(center: CLLocationCoordinate2D) {
         currentAnnotation = MGLPointAnnotation()
         currentAnnotation?.coordinate = center
