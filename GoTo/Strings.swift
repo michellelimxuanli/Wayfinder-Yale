@@ -17,7 +17,8 @@ let mapBoxDictionary = [
 
 let backgroundHallway = [
     ["identifier": "Background", "configURL":"mapbox://ml2445.58o91ooh", "sourceLayer":"Background_V2-42tpfv"],
-    ["identifier": "Hallways", "configURL":"mapbox://ml2445.du2mf0zl", "sourceLayer":"Hallways_V2-3xvh03"]
+    ["identifier": "Other Rooms", "configURL":"mapbox://ml2445.1i3y3w08", "sourceLayer":"Other_Rooms_V2-awbrod"],
+    ["identifier": "Spaces", "configURL":"mapbox://ml2445.d4g75h8g", "sourceLayer":"Spaces_V2-3m4vpl"]
     ]
 
 let styleLayerArray = mapBoxDictionary.keys

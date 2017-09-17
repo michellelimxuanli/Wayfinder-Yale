@@ -164,7 +164,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     
     // ----------Add Layers and features -------
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
-        addBackgroundHallway(to: style)
+        addBackground(to: style)
+        addWalls(to: style)
         Rooms.addRooms(to: style)
         addPathLayer(to: style)
     }
@@ -203,7 +204,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         mapView.addAnnotation(currentAnnotation!)
     }
 
-    func addBackgroundHallway(to style: MGLStyle) {
+    func addBackground(to style: MGLStyle) {
         for backlayer in backgroundHallway {
             let layerSource = MGLVectorSource(identifier: backlayer["identifier"]!, configurationURL: URL(string: backlayer["configURL"]!)!)
             style.addSource(layerSource)
@@ -214,15 +215,30 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         
             // Set the fill pattern and opacity for the style layer.
             if backlayer["identifier"]! == "Background" {
-                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.99, green:0.99, blue:0.85, alpha:1.0))
-            } else if backlayer["identifier"]! == "Hallways"{
-                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.93, green:0.94, blue:0.96, alpha:1.0))
-                
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0))
+            } else if backlayer["identifier"]! == "Other Rooms"{
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0))
+            }  else if backlayer["identifier"]! == "Spaces" {
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.95, green:0.94, blue:0.94, alpha:1.0))
             }
-        
+            
             style.addLayer(actualLayer)
         }
 
+    }
+    
+    func addWalls(to style: MGLStyle) {
+        let layerSource = MGLVectorSource(identifier: "Walls", configurationURL: URL(string: "mapbox://ml2445.8wf06h7s")!)
+        style.addSource(layerSource)
+        // Create a style layer using the vector source.
+        let actualLayer = MGLLineStyleLayer(identifier: "contours", source: layerSource)
+        actualLayer.lineColor = MGLStyleValue(rawValue: UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0))
+        actualLayer.lineWidth = MGLStyleValue(rawValue: 1.0)
+        
+        actualLayer.sourceLayerIdentifier = "Walls_V2-b78r4m"
+        
+        style.addLayer(actualLayer)
+        
     }
     
     //----------GETTING PATHS-------
