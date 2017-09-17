@@ -70,7 +70,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         
         
         // Setting up Map View
-        mapView = MGLMapView(frame: view.bounds)
+        mapView = MGLMapView(frame: view.bounds, styleURL: URL(string: "mapbox://styles/mapbox/light-v9"))
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
@@ -164,8 +164,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
     
     // ----------Add Layers and features -------
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
-        addLayer(to: style)
+        addBackgroundHallway(to: style)
         Rooms.addRooms(to: style)
+        addPathLayer(to: style)
     }
     // This delegate method is where you tell the map to load a view for a specific annotation. To load a static MGLAnnotationImage, you would use `-mapView:imageForAnnotation:`.
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
@@ -202,9 +203,30 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         mapView.addAnnotation(currentAnnotation!)
     }
 
+    func addBackgroundHallway(to style: MGLStyle) {
+        for backlayer in backgroundHallway {
+            let layerSource = MGLVectorSource(identifier: backlayer["identifier"]!, configurationURL: URL(string: backlayer["configURL"]!)!)
+            style.addSource(layerSource)
+            // Create a style layer using the vector source.
+            let actualLayer = MGLFillStyleLayer(identifier: backlayer["identifier"]!, source: layerSource)
+        
+            actualLayer.sourceLayerIdentifier = backlayer["sourceLayer"]!
+        
+            // Set the fill pattern and opacity for the style layer.
+            if backlayer["identifier"]! == "Background" {
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.99, green:0.99, blue:0.85, alpha:1.0))
+            } else if backlayer["identifier"]! == "Hallways"{
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.93, green:0.94, blue:0.96, alpha:1.0))
+                
+            }
+        
+            style.addLayer(actualLayer)
+        }
+
+    }
     
     //----------GETTING PATHS-------
-    func addLayer(to style: MGLStyle) {
+    func addPathLayer(to style: MGLStyle) {
         // Add an empty MGLShapeSource, we’ll keep a reference to this and add points to this later.
         let source = MGLShapeSource(identifier: "polyline", shape: nil, options: nil)
         style.addSource(source)
@@ -215,6 +237,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         style.addLayer(linelayer)
         linelayer.isVisible = true
     }
+    
+    
     func didPressButton(button:UIButton) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         navigationView.instruction.text = "Adjust map to select location"
