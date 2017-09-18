@@ -497,11 +497,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoTo/Strings.swift"
-            timestampString = "527347360.824575"
+            timestampString = "527389628.645061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16">
+            startingLineNumber = "29"
+            endingLineNumber = "29">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

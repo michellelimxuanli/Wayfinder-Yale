@@ -21,6 +21,7 @@ class Rooms {
         
         // Set the fill pattern and opacity for the style layer.
         actualLayer.fillOpacity = MGLStyleValue(rawValue: 0.5)
+        actualLayer.fillColor = MGLStyleValue(rawValue: UIColor(red:0.99, green:0.96, blue:0.55, alpha:1.0))
         
         style.addLayer(actualLayer)
         
