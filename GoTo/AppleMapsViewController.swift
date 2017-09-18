@@ -19,6 +19,8 @@ protocol HandleMapSearch {
 // View controller for Apple Maps Example
 class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDelegate, NavigateDialogDelegate, UIGestureRecognizerDelegate, IALocationManagerDelegate {
     
+    private var colorado: MGLCoordinateBounds!
+    
     // Basic Map Data
     var mapView: MGLMapView!
     var initial_center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: center_of_map["latitude"]!, longitude: center_of_map["longitude"]!)
@@ -75,6 +77,14 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
         mapView.delegate = self
+        
+        // Colorado’s bounds
+        let ne = CLLocationCoordinate2D(latitude: 41.31719653753876, longitude: -72.92181276214905)
+        let sw = CLLocationCoordinate2D(latitude: 41.3133204934724, longitude: -72.92948387993164)
+        colorado = MGLCoordinateBounds(sw: sw, ne: ne)
+        
+        
+        
         // Enable touch gesture for selection of polygon
         gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         gesture.delegate = self
@@ -159,6 +169,30 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         UIApplication.shared.isStatusBarHidden = false
         
         SVProgressHUD.dismiss()
+    }
+    
+    //---------Restrict panning ------
+    // This example uses Colorado’s boundaries to restrict the camera movement.
+    func mapView(_ mapView: MGLMapView, shouldChangeFrom oldCamera: MGLMapCamera, to newCamera: MGLMapCamera) -> Bool {
+        
+        // Get the current camera to restore it after.
+        let currentCamera = mapView.camera
+        
+        // From the new camera obtain the center to test if it’s inside the boundaries.
+        let newCameraCenter = newCamera.centerCoordinate
+        
+        // Set the map’s visible bounds to newCamera.
+        mapView.camera = newCamera
+        let newVisibleCoordinates = mapView.visibleCoordinateBounds
+        
+        // Revert the camera.
+        mapView.camera = currentCamera
+        
+        // Test if the newCameraCenter and newVisibleCoordinates are inside self.colorado.
+        let inside = MGLCoordinateInCoordinateBounds(newCameraCenter, self.colorado)
+        let intersects = MGLCoordinateInCoordinateBounds(newVisibleCoordinates.ne, self.colorado) && MGLCoordinateInCoordinateBounds(newVisibleCoordinates.sw, self.colorado)
+        
+        return inside && intersects
     }
 
     
