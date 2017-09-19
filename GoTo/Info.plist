@@ -2,27 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>IANoCoreBluetoothPowerAlert</key>
-	<string>AnyString</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>For better indoor positioning.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>For better indoor positioning.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Platform location requested for better indoor positioning experience.</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoibWwyNDQ1IiwiYSI6ImNqNnpoMDh6dDAwYjEzM3FucThjYm9zODQifQ.eqfWTk6lAaWH5RhreHAymg</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>For indoor positioning</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>GoTo</string>
+	<string>Wayfinder@Yale</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -37,8 +20,25 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>IANoCoreBluetoothPowerAlert</key>
+	<string>AnyString</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoibWwyNDQ1IiwiYSI6ImNqNnpoMDh6dDAwYjEzM3FucThjYm9zODQifQ.eqfWTk6lAaWH5RhreHAymg</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>For better indoor positioning.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>For indoor positioning</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Platform location requested for better indoor positioning experience.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>For better indoor positioning.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
