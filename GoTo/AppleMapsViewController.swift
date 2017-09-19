@@ -72,7 +72,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         
         
         // Setting up Map View
-        mapView = MGLMapView(frame: view.bounds, styleURL: URL(string: "mapbox://styles/mapbox/light-v9"))
+        mapView = MGLMapView(frame: view.bounds, styleURL: URL(string: "mapbox://styles/mapbox/streets-v10"))
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
@@ -251,9 +251,9 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             if backlayer["identifier"]! == "Background" {
                 actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0))
             } else if backlayer["identifier"]! == "Other Rooms"{
-                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0))
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.82, green:0.82, blue:0.82, alpha:1.0))
             }  else if backlayer["identifier"]! == "Spaces" {
-                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.95, green:0.94, blue:0.94, alpha:1.0))
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.79, green:0.92, blue:0.80, alpha:1.0))
             }
             
             style.addLayer(actualLayer)

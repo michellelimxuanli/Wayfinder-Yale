@@ -14,7 +14,7 @@ class returnLine{
         let layer = MGLLineStyleLayer(identifier: "polyline", source: source)
         layer.lineJoin = MGLStyleValue(rawValue: NSValue(mglLineJoin: .round))
         layer.lineCap = MGLStyleValue(rawValue: NSValue(mglLineCap: .round))
-        layer.lineColor = MGLStyleValue(rawValue: UIColor.blue)
+        layer.lineColor = MGLStyleValue(rawValue: UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0))
         layer.lineWidth = MGLStyleFunction(interpolationMode: .exponential,
                                            cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 2),
                                                          18: MGLConstantStyleValue<NSNumber>(rawValue: 6)],
