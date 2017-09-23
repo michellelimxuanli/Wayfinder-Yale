@@ -43,13 +43,13 @@ class Rooms {
             case "itilities":
             actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.95, green:0.96, blue:0.86, alpha:1.0)) //random green
             case "Kitchen":
-            actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:1.00, green:0.95, blue:0.71, alpha:1.0)) //yellow
+            actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.74, green:0.92, blue:0.87, alpha:1.0)) //green
             case "Computers":
             actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.70, green:0.83, blue:0.93, alpha:1.0)) //blue
             case "Elevator":
             actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.79, green:0.83, blue:0.87, alpha:1.0)) //bluish grey
             case "Buttery":
-            actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:1.00, green:0.95, blue:0.71, alpha:1.0)) //yellow
+            actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.74, green:0.92, blue:0.87, alpha:1.0)) //green
             default:
             actualLayer.fillColor = MGLStyleValue(rawValue: UIColor(red:0.99, green:0.96, blue:0.55, alpha:1.0))
         }

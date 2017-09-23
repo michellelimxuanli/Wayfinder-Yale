@@ -253,7 +253,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
             } else if backlayer["identifier"]! == "Other Rooms"{
                 actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.82, green:0.82, blue:0.82, alpha:1.0))
             }  else if backlayer["identifier"]! == "Spaces" {
-                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.79, green:0.92, blue:0.80, alpha:1.0))
+                actualLayer.fillColor = MGLStyleValue(rawValue:UIColor(red:0.94, green:0.92, blue:0.83, alpha:1.0))
             }
             
             style.addLayer(actualLayer)
