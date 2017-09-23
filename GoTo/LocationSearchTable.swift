@@ -38,7 +38,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
             let allVisibleFeatures: [MGLFeature] = mapView.visibleFeatures(in: boundedRect, styleLayerIdentifiers: Set(styleLayerArray))
             for feature in allVisibleFeatures {
                 if let state = feature.attribute(forKey: "name") as? String{
-                    if state.contains(searchBarText!){
+                    if state.lowercased().contains(searchBarText!.lowercased()){
                         arrayOfResults.append(feature)
                     }
                 }
