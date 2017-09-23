@@ -221,6 +221,7 @@
 				494D6CBB18DC8A44004AA8E1 /* Frameworks */,
 				494D6CBC18DC8A44004AA8E1 /* Resources */,
 				C333CF8A1E94BFCD00A5F956 /* Embed Frameworks */,
+				49ACCA611F56DB620073C431 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -273,6 +274,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49ACCA611F56DB620073C431 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\napp_path=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\necho \"Target architectures: $ARCHS\"\necho \"Searching frameworks from: $app_path\"\n\nfind \"$app_path\" -name '*.framework' -type d | while read -r framework; do\nframework_exe_name=\"$(defaults read \"$framework/Info.plist\" CFBundleExecutable)\"\nframework_exe_path=\"$framework/$framework_exe_name\"\n\necho \"Executable is $framework_exe_path\"\nlipo -info \"$framework_exe_path\" || true\n\ntmp=\"$framework_exe_path-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\necho \"No need to remove archs\"\n;;\n*)\nfor arch in \"i386\" \"x86_64\"; do\nif lipo \"$framework_exe_path\" -verify_arch \"$arch\"; then\nlipo -output \"$tmp\" -remove \"$arch\" \"$framework_exe_path\"\necho \"$arch architecture removed\"\nrm \"$framework_exe_path\"\nmv \"$tmp\" \"$framework_exe_path\"\nfi\ndone\n;;\nesac\n\necho \"Completed for executable $framework_exe_path\"\nlipo -info \"$framework_exe_path\" || true\ndone";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		494D6CBA18DC8A44004AA8E1 /* Sources */ = {

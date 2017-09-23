@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.5.0)
-  - IndoorAtlas (2.5.1)
-  - Mapbox-iOS-SDK (3.6.2)
+  - IndoorAtlas (2.5.2)
+  - Mapbox-iOS-SDK (3.6.3)
   - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
@@ -21,8 +21,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  IndoorAtlas: d569f66a96400b60a58ad9d0abd626acb7d01aa5
-  Mapbox-iOS-SDK: 1224c5ba79dc9bf9a80bfcc33ae320f5d672a42f
+  IndoorAtlas: ec4cd9c39944f6ec444c510ae1d5c71d9d449702
+  Mapbox-iOS-SDK: 27805cb5f36d2bffe732b1d392278f4e408d06d2
   SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
 
 PODFILE CHECKSUM: 5b69dda8e757a93ca365939e73af5e2024ca12c5

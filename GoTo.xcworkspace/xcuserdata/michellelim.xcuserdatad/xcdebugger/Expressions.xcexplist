@@ -3,14 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "AppleMapsViewController.addLayer(to : MGLStyle) -&gt; ():AppleMapsViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "arrayOfCoordinates">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "AppleMapsViewController.(closestNode(coordinates : CLLocationCoordinate2D) -&gt; ()).(closure #1):AppleMapsViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -21,14 +13,6 @@
             </PersistentString>
             <PersistentString
                value = "response.result.failure">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AppleMapsViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):AppleMapsViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "arrayOfCoordinates">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -45,6 +29,33 @@
          <PersistentStrings>
             <PersistentString
                value = "arrayOfDicts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppleMapsViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "arrayOfCoordinates">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppleMapsViewController.closestNode(coordinates : CLLocationCoordinate2D) -&gt; ():AppleMapsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AppleMapsViewController.addLayer(to : MGLStyle) -&gt; ():AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "arrayOfCoordinates">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppleMapsViewController.(getPath(start : String, end : String) -&gt; ()).(closure #1):AppleMapsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "start">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
