@@ -390,7 +390,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         // Test code here: to fetch the nearest node
         // TODO: Use the SELECTED NODE for drawing path
         let nearestNodes: Parameters = [
-            "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) - {longitude}) < 0.00012660499 RETURN n",
+            "query" : "MATCH (n) WHERE abs(toFloat(n.latitude) - {latitude}) < 0.00004694 AND abs(toFloat(n.longitude) - {longitude}) < 0.00006330249 RETURN n",
             "params" : [
                 "latitude": coordinates.latitude,
                 "longitude": coordinates.longitude
