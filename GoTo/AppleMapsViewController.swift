@@ -72,16 +72,16 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         
         
         // Setting up Map View
-        mapView = MGLMapView(frame: view.bounds, styleURL: URL(string: "mapbox://styles/mapbox/streets-v10"))
+        mapView = MGLMapView(frame: view.bounds, styleURL: URL(string: "mapbox://styles/ml2445/cj7xfpkzw4whr2ro19k65wmxy"))
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.setCenter(initial_center, zoomLevel: 18, animated: false)
         view.addSubview(mapView)
         mapView.delegate = self
         
         // Colorado’s bounds
-        let ne = CLLocationCoordinate2D(latitude: 41.31719653753876, longitude: -72.92181276214905)
-        let sw = CLLocationCoordinate2D(latitude: 41.3133204934724, longitude: -72.92948387993164)
-        colorado = MGLCoordinateBounds(sw: sw, ne: ne)
+        let ne_cll = CLLocationCoordinate2D(latitude: ne["latitude"]!, longitude: ne["longitude"]!)
+        let sw_cll = CLLocationCoordinate2D(latitude: sw["latitude"]!, longitude: sw["longitude"]!)
+        colorado = MGLCoordinateBounds(sw: sw_cll, ne: ne_cll)
         
         
         
@@ -293,6 +293,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         navigationView.instruction.text = "Adjust map to select location"
         navigationView.isHidden = false
+        // fly to the current location if within bounds
         mapView.setCenter(userCoordinates!, zoomLevel: 18, animated: true)
         navigationView.confirmLocation.setTitle("Confirm starting location", for: [])
         imageView.isHidden = false

@@ -12,6 +12,9 @@ let cypherURL = "http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/
 
 let center_of_map: [String: Double] = ["latitude": 41.31574, "longitude": -72.92562]
 
+let ne: [String: Double] = ["latitude": 41.31719653753876, "longitude": -72.92181276214905]
+let sw: [String: Double] = ["latitude": 41.3133204934724, "longitude": -72.92948387993164]
+
 let mapBoxDictionary = [
     "Art Rooms": [ "configURL":"mapbox://ml2445.dtmpr3x3", "sourceLayer":"Art_Rooms_V3-97bs8y"],
     "Theater": [ "configURL":"mapbox://ml2445.08wbs2xm", "sourceLayer":"Theater_V3-a5oqmu"],
