@@ -1,5 +1,7 @@
 # Wayfinder@Yale
-An iOS app that helps you navigate around Yale's new residential colleges fast.
+An iOS app that helps you navigate around Yale's new residential colleges fast. 
+
+We realized that everyone was getting lost in the basement of the new colleges and decided to build an app to solve this problem.
 
 ## User Stories
 * User can **search any place in a search bar and location will be highlighted
