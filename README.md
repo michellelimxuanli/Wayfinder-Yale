@@ -1,4 +1,4 @@
-# Wayfinder-Yale
+# Wayfinder@Yale
 An iOS app that helps you navigate around Yale's new residential colleges fast.
 
 ## User Stories
@@ -17,8 +17,9 @@ The following **additional** features will be implemented soon:
 
 Here's a walkthrough of implemented user stories:
 
-[![Video Walkthrough](https://j.gifs.com/qjwGKy.gif)]
-GIF created with [GifYoutube](https://gifs.com/).
+![Video Walkthrough](https://j.gifs.com/qjwGKy.gif)
+
+GIF created with [GifYoutube](https://gifs.com/)
 
 ## Libraries used
 
