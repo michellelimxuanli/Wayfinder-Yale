@@ -50,6 +50,8 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Start fetching data
+        Strings.retrieve()
         // Show spinner while waiting for location information from IALocationManager
         SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
     }

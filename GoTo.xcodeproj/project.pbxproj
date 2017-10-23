@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0805822C1F9E9843005EAD6C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0805822B1F9E9843005EAD6C /* GoogleService-Info.plist */; };
 		085236FA1F6E2B13009B8361 /* BlueDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085236F91F6E2B13009B8361 /* BlueDot.swift */; };
 		086DE1D61F63A52F001B6B96 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1D51F63A52F001B6B96 /* ImageHelper.swift */; };
 		086DE1DA1F63A808001B6B96 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DE1D91F63A808001B6B96 /* CustomAnnotationView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0805822B1F9E9843005EAD6C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		085236F91F6E2B13009B8361 /* BlueDot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueDot.swift; sourceTree = "<group>"; };
 		086DE1D51F63A52F001B6B96 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		086DE1D91F63A808001B6B96 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		08C0E2AB1F55EF8B007630DC /* GoTo */ = {
 			isa = PBXGroup;
 			children = (
+				0805822B1F9E9843005EAD6C /* GoogleService-Info.plist */,
 				086DE1E71F63C523001B6B96 /* Storyboards */,
 				086DE1DE1F63AAD0001B6B96 /* Models */,
 				086DE1DD1F63AAB4001B6B96 /* ViewControllers */,
@@ -373,6 +376,7 @@
 				08A053771F5FA16700167B9D /* CustomView.xib in Resources */,
 				08C0E2B41F55EF8B007630DC /* Assets.xcassets in Resources */,
 				08C0E2B21F55EF8B007630DC /* Main.storyboard in Resources */,
+				0805822C1F9E9843005EAD6C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,18 +420,24 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GoTo/Pods-GoTo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${PODS_ROOT}/IndoorAtlas/indooratlas-ios-sdk/IndoorAtlas.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IndoorAtlas.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

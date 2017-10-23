@@ -7,9 +7,10 @@ target 'GoTo' do
   use_frameworks!
   
   pod 'IndoorAtlas'
-  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+  pod 'SVProgressHUD', :'~> 2.1.2’
   pod 'Mapbox-iOS-SDK', '~> 3.6’
   pod 'Alamofire', '~> 4.4'
+  pod ‘Firebase/Database’
 
   # Pods for GoTo
   target 'GoToTests' do

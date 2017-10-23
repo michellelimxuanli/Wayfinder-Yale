@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Firebase
 
 let cypherURL = "http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher"
 
 let center_of_map: [String: Double] = ["latitude": 41.31574, "longitude": -72.92562]
 
-let ne: [String: Double] = ["latitude": 41.31719653753876, "longitude": -72.92181276214905]
-let sw: [String: Double] = ["latitude": 41.3133204934724, "longitude": -72.92948387993164]
+var ne: [String: Double]!
+var sw: [String: Double]!
 
 let mapBoxDictionary = [
     "Art Rooms": [ "configURL":"mapbox://ml2445.dtmpr3x3", "sourceLayer":"Art_Rooms_V3-97bs8y"],
@@ -38,3 +39,20 @@ let backgroundHallway = [
     ]
 
 let styleLayerArray = mapBoxDictionary.keys
+
+
+class Strings {
+    public static func retrieve() {
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            let postDict = snapshot.value as? [String : AnyObject]
+            ne = ["latitude": (postDict!["ne"]?["latitude"]?! as? Double)!, "longitude": (postDict!["ne"]?["longitude"]?! as? Double)!]
+            sw = ["latitude": (postDict!["sw"]?["latitude"]?! as? Double)!, "longitude": (postDict!["sw"]?["longitude"]?! as? Double)!]
+            print(postDict!["center_of_map"])
+            print(postDict!["rooms"])
+            print(postDict!["sw"])
+        })
+    }
+}
+

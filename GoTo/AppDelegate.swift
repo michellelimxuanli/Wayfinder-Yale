@@ -8,6 +8,7 @@
 
 import UIKit
 import IndoorAtlas
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard kAPIKey.characters.count > 0 || kAPISecret.characters.count > 0 else { print("Configure API key and API secret inside ApiKeys.swift"); return false}
         
         authenticateIALocationManager()
+        FirebaseApp.configure()
         
         return true
     }
