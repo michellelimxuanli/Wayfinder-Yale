@@ -48,7 +48,8 @@ extension Request {
         init?(_ string: String) {
             let components: [String] = {
                 let stripped = string.trimmingCharacters(in: .whitespacesAndNewlines)
-                let split = stripped.substring(to: stripped.range(of: ";")?.lowerBound ?? stripped.endIndex)
+                let innersemi = stripped.range(of: ";")?.lowerBound ?? stripped.endIndex
+                let split = stripped[..<innersemi]
                 return split.components(separatedBy: "/")
             }()
 

@@ -446,7 +446,7 @@ class AppleMapsViewController: UIViewController, MGLMapViewDelegate, DialogDeleg
 
     // ----Tap and select----
     // source: https://www.mapbox.com/ios-sdk/examples/select-layer/
-    func handleTap(_ gesture: UITapGestureRecognizer) {
+    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         
         // Get the CGPoint where the user tapped.
         let spot = gesture.location(in: mapView)
