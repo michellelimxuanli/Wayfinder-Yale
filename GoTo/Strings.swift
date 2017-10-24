@@ -9,14 +9,12 @@
 import Foundation
 import Firebase
 
-let cypherURL = "http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher"
+var cypherURL = "http://hobby-jhaamkgcjildgbkembihibpl.dbs.graphenedb.com:24789/db/data/cypher"
+var center_of_map: [String: Double] = ["latitude": 41.31574, "longitude": -72.92562]
+var ne: [String: Double] = ["latitude": 41.31719653753876, "longitude": -72.92181276214905]
+var sw: [String: Double] = ["latitude": 41.3133204934724, "longitude": -72.92948387993164]
 
-let center_of_map: [String: Double] = ["latitude": 41.31574, "longitude": -72.92562]
-
-var ne: [String: Double]!
-var sw: [String: Double]!
-
-let mapBoxDictionary = [
+var mapBoxDictionary = [
     "Art Rooms": [ "configURL":"mapbox://ml2445.dtmpr3x3", "sourceLayer":"Art_Rooms_V3-97bs8y"],
     "Theater": [ "configURL":"mapbox://ml2445.08wbs2xm", "sourceLayer":"Theater_V3-a5oqmu"],
     "Student Meeting Rooms": [ "configURL":"mapbox://ml2445.1kxi0jtv", "sourceLayer":"Student_Meeting_Rooms_V3-3mfgvf"],
@@ -49,9 +47,13 @@ class Strings {
             let postDict = snapshot.value as? [String : AnyObject]
             ne = ["latitude": (postDict!["ne"]?["latitude"]?! as? Double)!, "longitude": (postDict!["ne"]?["longitude"]?! as? Double)!]
             sw = ["latitude": (postDict!["sw"]?["latitude"]?! as? Double)!, "longitude": (postDict!["sw"]?["longitude"]?! as? Double)!]
-            print(postDict!["center_of_map"])
-            print(postDict!["rooms"])
-            print(postDict!["sw"])
+            center_of_map = ["latitude": (postDict!["center_of_map"]?["latitude"]?! as? Double)!, "longitude": (postDict!["center_of_map"]?["longitude"]?! as? Double)!]
+            cypherURL = (postDict!["cypherURL"] as? String)!
+            if let receivedRooms = postDict!["rooms"] as? [String: [String:String]?]{
+                for (key, value) in receivedRooms {
+                    mapBoxDictionary[key] = value
+                }
+            }
         })
     }
 }
