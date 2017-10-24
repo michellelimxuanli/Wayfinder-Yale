@@ -19,7 +19,7 @@ The following **additional** features will be implemented soon:
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](https://j.gifs.com/qjwGKy.gif)
+![Video Walkthrough](https://gifs.com/gif/gotodemo-nrZ81D)
 
 GIF created with [GifYoutube](https://gifs.com/)
 
